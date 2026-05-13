@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^python3 - << 'PYEOF'\nimport re\n\npath = \"/Users/rahulsengupta/Desktop/My-Documents/Programming/Personal Projects/Portfolio Website/script\\.js\"\nwith open\\(path, 'r'\\) as f:\n    content = f\\.read\\(\\)\n\n# Find where data ends\nmarker = 'const setText'\nidx = content\\.find\\(marker\\)\nprint\\(f\"marker at index: \\{idx\\}\"\\)\nprint\\(f\"File length: \\{len\\(content\\)\\}\"\\)\nPYEOF$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

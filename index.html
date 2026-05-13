@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rahul Sengupta | Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Rahul Sengupta — projects, experience, and contact."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="scroll-rail" aria-hidden="true">
+      <span class="scroll-rail-progress" id="scroll-rail-progress"></span>
+    </div>
+
+    <header class="site-header" id="top">
+      <div class="container nav-wrap">
+        <a class="brand" href="#top">RS.</a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Work</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="container hero-layout">
+          <div class="hero-content reveal">
+            <p class="eyebrow">AVAILABLE · DATA SCIENCE · ML ENGINEERING · AI</p>
+            <h1 id="hero-headline">Building software that turns ideas into useful products.</h1>
+            <p id="hero-subtext">
+              I design and ship end-to-end experiences across web, product, and systems work.
+            </p>
+            <div class="hero-meta" aria-label="Quick profile details">
+              <span>Currently @ Eurofins USA</span>
+              <span>Based in Bay Area, CA</span>
+              <span>UCSD Data Science '26</span>
+            </div>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#projects">View Work</a>
+              <a class="btn btn-ghost" href="#contact">Get in Touch</a>
+            </div>
+          </div>
+          <figure class="hero-photo-wrap reveal" aria-label="Rahul Sengupta headshot">
+            <img
+              class="hero-photo"
+              src="headshot.jpg"
+              alt="Portrait of Rahul Sengupta"
+              loading="eager"
+            />
+          </figure>
+          </div>
+        </section>
+
+      <section class="marquee-wrap" aria-label="Skills marquee">
+        <div class="marquee-track">
+          <span>Python</span>
+          <span>LLM Evaluation</span>
+          <span>XGBoost</span>
+          <span>RAG Systems</span>
+          <span>AWS</span>
+          <span>Power BI</span>
+          <span>React</span>
+          <span>Data Engineering</span>
+          <span>Python</span>
+          <span>LLM Evaluation</span>
+          <span>XGBoost</span>
+          <span>RAG Systems</span>
+          <span>AWS</span>
+          <span>Power BI</span>
+          <span>React</span>
+          <span>Data Engineering</span>
+        </div>
+      </section>
+
+      <section class="transition-section" id="transition">
+        <div class="transition-stars" aria-hidden="true"></div>
+        <div class="transition-nebula" aria-hidden="true"></div>
+        <div class="transition-orbits" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="transition-core" aria-hidden="true"></div>
+        <div class="transition-scroll-orbit" aria-hidden="true">
+          <span class="transition-scroll-node"></span>
+        </div>
+        <div class="transition-content">
+          <p class="transition-kicker">ENTER THE GRAVITY WELL</p>
+          <div class="transition-vault"></div>
+          <p class="transition-copy">Scroll to ride the orbit.</p>
+        </div>
+      </section>
+
+
+      <div class="section-overlay" data-text="driven"></div>
+      <section class="section container reveal" id="about">
+        <div class="section-head">
+          <p class="eyebrow">ABOUT</p>
+          <h2>Focused on <span class="accent-text">clear products</span> and real-world outcomes.</h2>
+        </div>
+        <div class="about-body">
+          <p id="about-text" class="section-copy"></p>
+          <div class="about-cards" id="about-cards"></div>
+        </div>
+      </section>
+
+      <section class="section container reveal" id="skills">
+        <div class="section-head">
+          <p class="eyebrow">SKILLS</p>
+          <h2>Core tools I build with.</h2>
+        </div>
+        <div class="skills-body" id="skills-body"></div>
+      </section>
+
+      <div class="section-overlay" data-text="interactive"></div>
+      <section class="section container reveal" id="projects">
+        <div class="section-head">
+          <p class="eyebrow">SELECTED WORK</p>
+          <h2>Projects with <span class="accent-text">measurable impact.</span></h2>
+        </div>
+        <div id="projects-grid" class="project-grid"></div>
+      </section>
+
+      <div class="section-overlay" data-text="research"></div>
+      <section class="section container reveal" id="honda">
+        <div class="section-head">
+          <p class="eyebrow">FEATURED PROJECT</p>
+          <h2>Enterprise LLM <span class="accent-text">Evaluation Framework</span></h2>
+        </div>
+        <div class="honda-showcase">
+          <div class="honda-description">
+            <p class="honda-lead">Led evaluation strategy research and built a scalable framework for enterprise AI systems at Honda Research Labs.</p>
+            <div class="honda-highlights">
+              <div class="honda-highlight-item">
+                <h4>5 Quality Dimensions</h4>
+                <p>Multi-axis evaluation across accuracy, coherence, relevance, safety, and user alignment</p>
+              </div>
+              <div class="honda-highlight-item">
+                <h4>LLM-as-Judge + Human Validation</h4>
+                <p>Hybrid scoring system combining AI evaluation with human expert review for ground truth</p>
+              </div>
+              <div class="honda-highlight-item">
+                <h4>0.96 Score / 4.7/5 Agreement</h4>
+                <p>High inter-rater consistency across 7 cross-domain lecture datasets</p>
+              </div>
+              <div class="honda-highlight-item">
+                <h4>Trend-Aware Stopping Controller</h4>
+                <p>Smart termination logic to optimize evaluation efficiency without compromising reliability</p>
+              </div>
+            </div>
+            <p class="honda-tech"><strong>Stack:</strong> Python, LangChain, Streamlit, RAG Systems, Statistical Analysis</p>
+          </div>
+          <div class="honda-visual">
+            <div class="honda-stat">
+              <div class="stat-number">7</div>
+              <div class="stat-label">Datasets<br>Evaluated</div>
+            </div>
+            <div class="honda-stat">
+              <div class="stat-number">0.96</div>
+              <div class="stat-label">Avg<br>Score</div>
+            </div>
+            <div class="honda-stat">
+              <div class="stat-number">5</div>
+              <div class="stat-label">Quality<br>Dimensions</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container reveal" id="throughline">
+        <div class="section-head">
+          <p class="eyebrow">THE PROCESS</p>
+          <h2>Transforming <span class="accent-text">complexity into clarity</span> and scale</h2>
+        </div>
+        <div class="throughline-grid" id="throughline-grid"></div>
+      </section>
+
+      <section class="section container reveal" id="experience">
+        <div class="section-head">
+          <p class="eyebrow">EXPERIENCE</p>
+          <h2>Roles and milestones.</h2>
+        </div>
+        <div id="experience-list" class="timeline"></div>
+      </section>
+
+      <div class="section-overlay" data-text="impact"></div>
+      <section class="section container reveal" id="impact">
+        <div class="section-head">
+          <p class="eyebrow">METRICS</p>
+          <h2>Building <span class="accent-text">at scale</span> with measurable results.</h2>
+        </div>
+        <div class="metrics-grid" id="metrics-list"></div>
+      </section>
+
+      <div class="section-overlay" data-text="recognized"></div>
+      <section class="section container reveal" id="recognition">
+        <div class="section-head">
+          <p class="eyebrow">RECOGNITION</p>
+          <h2>Awards and <span class="accent-text">achievements</span>.</h2>
+        </div>
+        <ul class="achievements-list" id="achievements-list"></ul>
+      </section>
+
+      <div class="section-overlay" data-text="exploring"></div>
+      <section class="section container reveal" id="learning">
+        <div class="section-head">
+          <p class="eyebrow">CURRENTLY EXPLORING</p>
+          <h2>Technologies and <span class="accent-text">ideas</span> I'm diving into.</h2>
+        </div>
+        <div class="learning-grid" id="learning-list"></div>
+      </section>
+
+      <section class="section container reveal" id="contact">
+        <div class="section-head">
+          <p class="eyebrow">CONTACT</p>
+          <h2>Let’s build something meaningful.</h2>
+        </div>
+        <div class="contact-card">
+          <p id="contact-note">
+            I'm actively looking for Data Science, ML Engineering, and AI roles — open to remote, hybrid, or onsite anywhere.
+          </p>
+          <div class="contact-links" id="contact-links"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer container">
+      <p id="footer-text">© <span id="year"></span> Rahul Sengupta</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
