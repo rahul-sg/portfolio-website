@@ -1,7 +1,7 @@
 const portfolioData = {
   "hero": {
     "headline": "Building AI and data products that turn complex signals into decisions.",
-    "subtext": "Data Science @ UC San Diego. I ship full-stack analytics platforms, LLM evaluation systems, and forecasting tools with measurable business impact."
+    "subtext": "Data Science @ UC San Diego. I bridge the gap between data science and engineering, turning research and raw data into production-ready AI systems."
   },
   "about": "I’m Rahul Sengupta — a Data Science and Finance student at UC San Diego with a drive for building things that actually work. From enterprise LLM evaluation at Honda Research Labs to real-time forecasting for Eurofins, I’ve consistently shipped production systems that reduce uncertainty and accelerate decisions. I care about the full stack: the model, the interface, and the story the data tells.",
   "skills": [
@@ -145,10 +145,10 @@ const portfolioData = {
     }
   ],
   "contact": {
-    "note": "Actively looking for Data Science, ML Engineering, and AI roles. Open to remote, hybrid, or onsite — anywhere. Let's connect.",
+    "note": "Actively looking for Data Science, ML Engineering, and AI roles. Open to remote, hybrid, or onsite — anywhere. If you're building something in AI or data, I'd love to hear about it.",
     "links": [
       {
-        "label": "Email",
+        "label": "rahul_sen_gupta@yahoo.com",
         "href": "mailto:rahul_sen_gupta@yahoo.com"
       },
       {
@@ -459,13 +459,34 @@ const contactLinks = document.getElementById("contact-links");
 portfolioData.contact.links.forEach((link) => {
   const anchor = document.createElement("a");
   anchor.href = link.href;
-  anchor.target = "_blank";
-  anchor.rel = "noreferrer";
+  if (!link.href.startsWith("mailto:") && !link.href.startsWith("tel:")) {
+    anchor.target = "_blank";
+    anchor.rel = "noreferrer";
+  }
   anchor.textContent = `${link.label} →`;
   contactLinks.appendChild(anchor);
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
+
+// ── Cursor spotlight ──────────────────────────────────────────────────────────
+(function () {
+  const spotlight = document.createElement("div");
+  spotlight.id = "cursor-spotlight";
+  document.body.appendChild(spotlight);
+
+  let mx = -9999, my = -9999;
+  document.addEventListener("mousemove", (e) => {
+    mx = e.clientX;
+    my = e.clientY;
+    spotlight.style.transform = `translate(${mx}px, ${my}px)`;
+    spotlight.style.opacity = "1";
+  });
+  document.addEventListener("mouseleave", () => {
+    spotlight.style.opacity = "0";
+  });
+})();
+// ─────────────────────────────────────────────────────────────────────────────
 
 const siteHeader = document.querySelector(".site-header");
 const scrollRailProgress = document.getElementById("scroll-rail-progress");
@@ -617,38 +638,115 @@ revealElements.forEach((el) => el.classList.add("visible"));
 // ─────────────────────────────────────────────────────────────────────────────
 
 // ── Background snowy owl visuals ─────────────────────────────────────────────
-const owlSVG = `<svg viewBox="0 0 80 112" xmlns="http://www.w3.org/2000/svg" fill="none">
+const owlSVG = `<svg viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bodyGrad" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#e8e4f0"/>
+      <stop offset="100%" stop-color="#c8c0d8"/>
+    </radialGradient>
+    <radialGradient id="headGrad" cx="50%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#ede8f8"/>
+      <stop offset="100%" stop-color="#d0c8e0"/>
+    </radialGradient>
+    <radialGradient id="eyeGrad" cx="35%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#f5c842"/>
+      <stop offset="45%" stop-color="#e09820"/>
+      <stop offset="100%" stop-color="#7a4800"/>
+    </radialGradient>
+    <radialGradient id="faceGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f0e8d8"/>
+      <stop offset="100%" stop-color="#d8ccc0"/>
+    </radialGradient>
+  </defs>
+
   <!-- Body -->
-  <ellipse cx="40" cy="76" rx="21" ry="27" fill="white"/>
+  <ellipse cx="60" cy="122" rx="34" ry="46" fill="url(#bodyGrad)"/>
+
+  <!-- Body dark barring / feather pattern -->
+  <ellipse cx="60" cy="122" rx="34" ry="46" fill="none" stroke="#9080a8" stroke-width="0.4" opacity="0.3"/>
+  <!-- Feather barring rows -->
+  <path d="M30,100 Q45,96 60,100 Q75,96 90,100" fill="none" stroke="#7060a0" stroke-width="0.7" opacity="0.25"/>
+  <path d="M28,110 Q45,106 60,110 Q75,106 92,110" fill="none" stroke="#7060a0" stroke-width="0.7" opacity="0.25"/>
+  <path d="M27,120 Q44,116 60,120 Q76,116 93,120" fill="none" stroke="#7060a0" stroke-width="0.7" opacity="0.22"/>
+  <path d="M28,130 Q45,126 60,130 Q75,126 92,130" fill="none" stroke="#7060a0" stroke-width="0.7" opacity="0.20"/>
+  <path d="M30,140 Q46,136 60,140 Q74,136 90,140" fill="none" stroke="#7060a0" stroke-width="0.7" opacity="0.18"/>
+  <path d="M33,150 Q47,146 60,150 Q73,146 87,150" fill="none" stroke="#7060a0" stroke-width="0.7" opacity="0.15"/>
+  <!-- Chest speckles -->
+  <ellipse cx="52" cy="108" rx="2.5" ry="1.5" fill="#6050a0" opacity="0.18" transform="rotate(-10 52 108)"/>
+  <ellipse cx="60" cy="104" rx="2" ry="1.2" fill="#6050a0" opacity="0.15"/>
+  <ellipse cx="68" cy="108" rx="2.5" ry="1.5" fill="#6050a0" opacity="0.18" transform="rotate(10 68 108)"/>
+  <ellipse cx="48" cy="118" rx="2" ry="1.3" fill="#6050a0" opacity="0.14" transform="rotate(-8 48 118)"/>
+  <ellipse cx="63" cy="115" rx="2" ry="1.2" fill="#6050a0" opacity="0.13"/>
+  <ellipse cx="72" cy="118" rx="2" ry="1.3" fill="#6050a0" opacity="0.14" transform="rotate(8 72 118)"/>
+  <ellipse cx="55" cy="128" rx="1.8" ry="1.1" fill="#6050a0" opacity="0.12"/>
+  <ellipse cx="65" cy="128" rx="1.8" ry="1.1" fill="#6050a0" opacity="0.12"/>
+
+  <!-- Wing left -->
+  <path d="M28,90 Q14,100 12,130 Q14,155 30,162 Q40,158 42,148 Q30,140 30,122 Q30,108 38,98 Z" fill="#d8d0e8"/>
+  <path d="M29,95 Q18,108 17,128" fill="none" stroke="#9080b8" stroke-width="0.8" opacity="0.4"/>
+  <path d="M30,105 Q20,116 19,134" fill="none" stroke="#9080b8" stroke-width="0.8" opacity="0.35"/>
+  <path d="M31,115 Q22,124 21,140" fill="none" stroke="#9080b8" stroke-width="0.8" opacity="0.3"/>
+  <!-- Wing right -->
+  <path d="M92,90 Q106,100 108,130 Q106,155 90,162 Q80,158 78,148 Q90,140 90,122 Q90,108 82,98 Z" fill="#d8d0e8"/>
+  <path d="M91,95 Q102,108 103,128" fill="none" stroke="#9080b8" stroke-width="0.8" opacity="0.4"/>
+  <path d="M90,105 Q100,116 101,134" fill="none" stroke="#9080b8" stroke-width="0.8" opacity="0.35"/>
+  <path d="M89,115 Q98,124 99,140" fill="none" stroke="#9080b8" stroke-width="0.8" opacity="0.3"/>
+
   <!-- Head -->
-  <circle cx="40" cy="32" r="19" fill="white"/>
+  <circle cx="60" cy="50" r="30" fill="url(#headGrad)"/>
+
+  <!-- Head barring -->
+  <path d="M35,42 Q48,38 60,42 Q72,38 85,42" fill="none" stroke="#8070b0" stroke-width="0.6" opacity="0.22"/>
+  <path d="M33,52 Q47,48 60,52 Q73,48 87,52" fill="none" stroke="#8070b0" stroke-width="0.6" opacity="0.20"/>
+  <path d="M37,62 Q49,58 60,62 Q71,58 83,62" fill="none" stroke="#8070b0" stroke-width="0.6" opacity="0.18"/>
+
   <!-- Left ear tuft -->
-  <polygon points="26,19 30,5 37,17" fill="white"/>
+  <polygon points="42,27 38,10 48,24" fill="#e8e0f0"/>
+  <polygon points="42,27 39,12 45,22" fill="#c0b8d0" opacity="0.5"/>
   <!-- Right ear tuft -->
-  <polygon points="54,19 50,5 43,17" fill="white"/>
-  <!-- Left eye socket -->
-  <circle cx="33" cy="31" r="6.5" fill="#060509"/>
-  <!-- Right eye socket -->
-  <circle cx="47" cy="31" r="6.5" fill="#060509"/>
+  <polygon points="78,27 82,10 72,24" fill="#e8e0f0"/>
+  <polygon points="78,27 81,12 75,22" fill="#c0b8d0" opacity="0.5"/>
+
+  <!-- Facial disc (heart-shaped frame) -->
+  <path d="M60,78 Q42,72 38,58 Q36,44 48,40 Q54,38 60,44 Q66,38 72,40 Q84,44 82,58 Q78,72 60,78 Z" fill="url(#faceGrad)" opacity="0.7"/>
+  <path d="M60,78 Q42,72 38,58 Q36,44 48,40 Q54,38 60,44 Q66,38 72,40 Q84,44 82,58 Q78,72 60,78 Z" fill="none" stroke="#b8a8c8" stroke-width="0.8" opacity="0.5"/>
+
+  <!-- Left eye outer ring -->
+  <circle cx="50" cy="50" r="10" fill="#1a1230"/>
+  <!-- Left eye iris -->
+  <circle cx="50" cy="50" r="8" fill="url(#eyeGrad)"/>
+  <!-- Left pupil -->
+  <circle cx="50" cy="50" r="4.5" fill="#0a0818"/>
   <!-- Left eye gleam -->
-  <circle cx="34.5" cy="29.5" r="1.8" fill="white"/>
+  <circle cx="52.5" cy="47.5" r="2" fill="white" opacity="0.9"/>
+  <circle cx="48" cy="52" r="0.8" fill="white" opacity="0.4"/>
+
+  <!-- Right eye outer ring -->
+  <circle cx="70" cy="50" r="10" fill="#1a1230"/>
+  <!-- Right eye iris -->
+  <circle cx="70" cy="50" r="8" fill="url(#eyeGrad)"/>
+  <!-- Right pupil -->
+  <circle cx="70" cy="50" r="4.5" fill="#0a0818"/>
   <!-- Right eye gleam -->
-  <circle cx="48.5" cy="29.5" r="1.8" fill="white"/>
+  <circle cx="72.5" cy="47.5" r="2" fill="white" opacity="0.9"/>
+  <circle cx="68" cy="52" r="0.8" fill="white" opacity="0.4"/>
+
   <!-- Beak -->
-  <polygon points="40,37 36.5,43 43.5,43" fill="#060509"/>
-  <!-- Wing texture lines (feather suggestion) -->
-  <line x1="22" y1="62" x2="30" y2="68" stroke="#060509" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
-  <line x1="22" y1="70" x2="30" y2="75" stroke="#060509" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
-  <line x1="58" y1="62" x2="50" y2="68" stroke="#060509" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
-  <line x1="58" y1="70" x2="50" y2="75" stroke="#060509" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
-  <!-- Left foot -->
-  <line x1="33" y1="101" x2="26" y2="110" stroke="white" stroke-width="2" stroke-linecap="round"/>
-  <line x1="33" y1="101" x2="33" y2="111" stroke="white" stroke-width="2" stroke-linecap="round"/>
-  <line x1="33" y1="101" x2="40" y2="110" stroke="white" stroke-width="2" stroke-linecap="round"/>
-  <!-- Right foot -->
-  <line x1="47" y1="101" x2="40" y2="110" stroke="white" stroke-width="2" stroke-linecap="round"/>
-  <line x1="47" y1="101" x2="47" y2="111" stroke="white" stroke-width="2" stroke-linecap="round"/>
-  <line x1="47" y1="101" x2="54" y2="110" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <path d="M60,58 L55,66 Q58,70 60,68 Q62,70 65,66 Z" fill="#c89030"/>
+  <path d="M60,58 L60,68" fill="none" stroke="#a07020" stroke-width="0.6" opacity="0.7"/>
+
+  <!-- Talons left -->
+  <line x1="48" y1="165" x2="36" y2="175" stroke="#c8c0d0" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="48" y1="165" x2="42" y2="177" stroke="#c8c0d0" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="48" y1="165" x2="50" y2="178" stroke="#c8c0d0" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="48" y1="165" x2="56" y2="174" stroke="#c8c0d0" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- Talons right -->
+  <line x1="72" y1="165" x2="64" y2="174" stroke="#c8c0d0" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="72" y1="165" x2="70" y2="178" stroke="#c8c0d0" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="72" y1="165" x2="78" y2="177" stroke="#c8c0d0" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="72" y1="165" x2="84" y2="175" stroke="#c8c0d0" stroke-width="2.2" stroke-linecap="round"/>
 </svg>`;
 
 const owlConfigs = [
@@ -663,7 +761,7 @@ owlConfigs.forEach((cfg) => {
   el.className = "bg-owl";
   el.innerHTML = owlSVG;
   el.style.width  = cfg.width + "px";
-  el.style.height = Math.round(cfg.width * 112 / 80) + "px";
+  el.style.height = Math.round(cfg.width * 180 / 120) + "px";
   el.style.opacity = cfg.opacity;
   el.style.setProperty("--owl-dur",   cfg.dur);
   el.style.setProperty("--owl-delay", cfg.delay);
