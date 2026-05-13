@@ -415,14 +415,13 @@ body::before {
 .section {
   position: sticky;
   top: 72px;
-  height: calc(100svh - 72px);
-  min-height: unset;
+  min-height: calc(100svh - 72px);
   display: grid;
   grid-template-columns: clamp(180px, 17vw, 240px) 1fr;
   align-items: center;
   gap: 0 clamp(2.5rem, 4vw, 5rem);
   padding: clamp(2.5rem, 4vh, 4rem) 0;
-  overflow: hidden;
+  overflow: visible;
   isolation: isolate;
   opacity: 1;
   transform: none;
@@ -487,12 +486,7 @@ body::before {
   align-self: center;
   position: relative;
   z-index: 1;
-  overflow-y: auto;
-  max-height: calc(100svh - 72px - 5rem);
-  scrollbar-width: none;
 }
-
-.section > *:not(.section-head)::-webkit-scrollbar { display: none; }
 
 /* Alternating: header on right side, content on left */
 .section-wrap--alt .section {
