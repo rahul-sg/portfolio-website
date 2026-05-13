@@ -735,6 +735,24 @@ section.section {
   border-top: 1px solid var(--border);
 }
 
+.honda-article-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent-strong);
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, gap 0.2s ease;
+}
+.honda-article-link:hover {
+  opacity: 1;
+  gap: 0.65rem;
+}
+
 .honda-visual {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
