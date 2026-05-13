@@ -3,7 +3,7 @@ const portfolioData = {
     "headline": "Building AI and data products that turn complex signals into decisions.",
     "subtext": "Data Science @ UC San Diego. I bridge the gap between data science and engineering, turning research and raw data into production-ready AI systems."
   },
-  "about": "I’m Rahul Sengupta — a Data Science and Finance student at UC San Diego with a drive for building things that actually work. From enterprise LLM evaluation at Honda Research Labs to real-time forecasting for Eurofins, I’ve consistently shipped production systems that reduce uncertainty and accelerate decisions. I care about the full stack: the model, the interface, and the story the data tells.",
+  "about": "I'm Rahul Sengupta — a Data Science and Finance graduate from UC San Diego, where I earned Provost Honors, with a drive for building things that actually work. From enterprise LLM evaluation at Honda Research Labs to real-time forecasting for Eurofins, I've consistently shipped production systems that reduce uncertainty and accelerate decisions. I care about the full stack: the model, the interface, and the story the data tells.",
   "skills": [
     {
       "category": "Languages",
@@ -150,10 +150,6 @@ const portfolioData = {
       {
         "label": "rahul_sen_gupta@yahoo.com",
         "href": "mailto:rahul_sen_gupta@yahoo.com"
-      },
-      {
-        "label": "Phone",
-        "href": "tel:+14087099428"
       },
       {
         "label": "LinkedIn",

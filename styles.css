@@ -414,14 +414,14 @@ body::before {
 
 .section {
   position: sticky;
-  top: 0;
-  height: 100svh;
+  top: 72px;
+  height: calc(100svh - 72px);
   min-height: unset;
   display: grid;
   grid-template-columns: clamp(180px, 17vw, 240px) 1fr;
   align-items: center;
   gap: 0 clamp(2.5rem, 4vw, 5rem);
-  padding: clamp(4rem, 7vh, 6rem) 0;
+  padding: clamp(2.5rem, 4vh, 4rem) 0;
   overflow: hidden;
   isolation: isolate;
   opacity: 1;
@@ -488,7 +488,7 @@ body::before {
   position: relative;
   z-index: 1;
   overflow-y: auto;
-  max-height: calc(100svh - 8rem);
+  max-height: calc(100svh - 72px - 5rem);
   scrollbar-width: none;
 }
 
@@ -1983,6 +1983,7 @@ section.section {
     display: flex;
     flex-direction: column;
     position: relative;
+    top: auto;
     height: auto;
     min-height: unset;
     overflow-y: visible;
