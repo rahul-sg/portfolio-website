@@ -1843,65 +1843,266 @@ section.section {
 }
 
 @media (max-width: 680px) {
+
+  /* ── Disable scroll-snap on mobile ── */
+  html {
+    scroll-snap-type: none;
+  }
+
+  .section-wrap {
+    scroll-snap-align: none;
+  }
+
+  /* ── Global container padding ── */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  section.section {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* ── Scroll rail ── */
   .scroll-rail {
-    left: 10px;
-    height: 28vh;
+    display: none;
   }
 
+  /* ── Navigation ── */
   .nav-wrap {
-    min-height: 64px;
-    align-items: flex-start;
-    padding: 0.8rem 0;
-    flex-direction: column;
-    gap: 0.55rem;
+    min-height: 56px;
+    padding: 0.7rem 0;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
+  .nav-links {
+    gap: 0.6rem;
+  }
+
+  .nav-links a {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── Hero ── */
   .hero {
     min-height: auto;
-    padding-top: 5.6rem;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
   }
 
   .hero-layout {
     grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
   }
 
-  .hero-scroll-hint {
-    top: 72px;
+  .hero-layout > *:first-child {
+    order: 2;
+  }
+
+  .hero-photo-wrap {
+    order: 1;
+    width: min(60vw, 220px);
+    margin-bottom: 1.2rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.8rem, 7vw, 2.8rem);
+    max-width: 100%;
+  }
+
+  .hero p {
+    font-size: 0.92rem;
+    max-width: 100%;
+  }
+
+  .hero-actions {
+    justify-content: center;
   }
 
   .hero-meta {
+    justify-content: center;
     gap: 0.35rem;
   }
 
   .hero-meta span {
-    font-size: 0.68rem;
+    font-size: 0.65rem;
   }
 
-  .hero-photo-wrap {
-    width: min(72vw, 290px);
+  .hero-scroll-hint {
+    display: none;
   }
 
-  .hero-transition {
-    margin-bottom: 1rem;
+  /* ── Core section layout: collapse sidebar to top ── */
+  .section {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: auto;
+    min-height: unset;
+    overflow-y: visible;
+    overflow-x: hidden;
+    padding-top: 4.5rem;
+    padding-bottom: 3rem;
+    gap: 1.5rem;
   }
 
-  .hero-transition-label {
-    font-size: 0.62rem;
-    letter-spacing: 0.16em;
+  .section-head {
+    grid-column: unset;
+    grid-row: unset;
+    border-right: none;
+    border-bottom: 1px solid rgba(177, 39, 255, 0.14);
+    padding-right: 0;
+    padding-bottom: 1rem;
+    align-self: unset;
   }
 
+  .section > *:not(.section-head) {
+    grid-column: unset;
+    grid-row: unset;
+    max-height: unset;
+    overflow-y: visible;
+    align-self: unset;
+  }
+
+  /* Alt sections: same treatment */
+  .section-wrap--alt .section {
+    grid-template-columns: unset;
+  }
+
+  .section-wrap--alt .section-head {
+    grid-column: unset;
+    grid-row: unset;
+    border-left: none;
+    border-bottom: 1px solid rgba(177, 39, 255, 0.14);
+    padding-left: 0;
+    text-align: left;
+  }
+
+  .section-wrap--alt .section-head .section-num {
+    text-align: left;
+  }
+
+  .section-wrap--alt .section > *:not(.section-head) {
+    grid-column: unset;
+    grid-row: unset;
+  }
+
+  /* Section wrap: let height be natural */
+  .section-wrap {
+    height: auto;
+  }
+
+  .section-gap {
+    height: 3rem;
+  }
+
+  .section-head h2 {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    margin-top: 0.4rem;
+  }
+
+  .section-head .section-num {
+    font-size: 3rem;
+    margin-top: 0.5rem;
+  }
+
+  /* ── About cards ── */
+  .about-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    margin-top: 1.2rem;
+  }
+
+  .about-card {
+    padding: 1.1rem 0.85rem;
+  }
+
+  .about-card-value {
+    font-size: 1.4rem;
+  }
+
+  .about-card-label {
+    font-size: 0.82rem;
+  }
+
+  /* ── Metrics ── */
   .metrics-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
   }
 
   .metric-card {
-    padding: 1rem;
+    padding: 1rem 0.7rem;
   }
 
   .metric-value {
     font-size: 1.8rem;
   }
 
+  /* ── Skills ── */
+  .chip-list li {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.7rem;
+  }
+
+  /* ── Projects ── */
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+
+  /* ── Experience / timeline ── */
+  .timeline-head {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .timeline-range {
+    font-size: 0.78rem;
+  }
+
+  .timeline-bullets {
+    font-size: 0.85rem;
+  }
+
+  /* ── Honda showcase ── */
+  .honda-showcase {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .honda-visual {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+  }
+
+  .honda-stat {
+    padding: 1rem 0.5rem;
+  }
+
+  .stat-number {
+    font-size: 1.8rem;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+  }
+
+  /* ── Throughline ── */
+  .throughline-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .throughline-arrow {
+    display: none;
+  }
+
+  /* ── Learning ── */
   .learning-grid {
     grid-template-columns: 1fr;
   }
@@ -1915,43 +2116,23 @@ section.section {
     margin-bottom: 0.4rem;
   }
 
-  .about-cards {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
+  /* ── Contact ── */
+  .contact-card {
+    padding: 1.4rem 1rem;
   }
 
-  .about-card {
-    padding: 1.1rem 0.85rem;
+  .contact-links {
+    gap: 0.6rem;
   }
 
-  .about-card-value {
-    font-size: 1.5rem;
+  .contact-links a {
+    font-size: 0.82rem;
+    padding: 0.45rem 1rem;
   }
 
-  .honda-showcase {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .honda-visual {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .stat-number {
-    font-size: 2.2rem;
-  }
-
-  .throughline-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .throughline-arrow {
+  /* ── Background owls: hide on mobile ── */
+  .bg-owl {
     display: none;
-  }
-
-  .section-head h2 {
-    font-size: clamp(1.6rem, 2.2vw, 2rem);
   }
 }
 
