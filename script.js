@@ -107,9 +107,8 @@ const portfolioData = {
         "Data Viz"
       ],
       "links": [
-        { "label": "In Progress", "href": "#" }
-      ],
-      "wip": true
+        { "label": "GitHub →", "href": "https://github.com/rahul-sg/midterm-predictor" }
+      ]
     }
   ],
   "experience": [
