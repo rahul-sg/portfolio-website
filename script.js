@@ -99,15 +99,17 @@ const portfolioData = {
     {
       "index": "04",
       "title": "2026 Midterm Election Predictor",
-      "description": "Live election forecasting model combining polling aggregates, economic indicators, incumbency data, and district-level PVI. Interactive map with district-by-district win probabilities — updated as polls drop.",
+      "description": "AI/ML-powered prediction engine forecasting Senate, House, and Governor races using a weighted ensemble of polling, economic fundamentals, sentiment analysis, and campaign finance data. Full-stack app with an interactive map, scenario builder, daily win probability tracking, and live data ingestion from Reddit, NewsAPI, Google Trends, and FEC.",
       "tags": [
         "Python",
-        "Polling Aggregation",
-        "Forecasting",
+        "Full-Stack",
+        "Machine Learning",
+        "NLP",
         "Data Viz"
       ],
       "links": [
-        { "label": "GitHub →", "href": "https://github.com/rahul-sg/midterm-predictor" }
+        { "label": "GitHub →", "href": "https://github.com/rahul-sg/midterm-predictor" },
+        { "label": "Live →", "href": "https://tinyurl.com/midtermpredictor" }
       ]
     }
   ],
