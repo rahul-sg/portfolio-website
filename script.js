@@ -99,13 +99,13 @@ const portfolioData = {
     {
       "index": "04",
       "title": "2026 Midterm Election Predictor",
-      "description": "AI/ML-powered prediction engine forecasting Senate, House, and Governor races using a weighted ensemble of polling, economic fundamentals, sentiment analysis, and campaign finance data. Full-stack app with an interactive map, scenario builder, daily win probability tracking, and live data ingestion from Reddit, NewsAPI, Google Trends, and FEC.",
+      "description": "Full-stack ML election forecasting app covering all 505 2026 US races (435 House, 34 Senate, 36 Governor). Ridge regression model trained on 2,245 historical results with live data pipelines for generic ballot polls (Wikipedia, 4h), FEC fundraising (daily bulk file), presidential approval, and BLS/FRED economic indicators. Features a 10,000-trial correlated Monte Carlo simulator, tipping-point analysis, interactive choropleth maps, shareable scenario builder, and 12+ pages including per-race deep-dives and a full model exploration tab. Deployed on AWS EC2 behind Caddy with Redis caching.",
       "tags": [
-        "Python",
-        "Full-Stack",
-        "Machine Learning",
-        "NLP",
-        "Data Viz"
+        "FastAPI",
+        "React + Vite",
+        "scikit-learn",
+        "Docker",
+        "AWS EC2"
       ],
       "links": [
         { "label": "GitHub →", "href": "https://github.com/rahul-sg/midterm-predictor" },
