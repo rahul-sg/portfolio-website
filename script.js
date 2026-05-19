@@ -111,6 +111,23 @@ const portfolioData = {
         { "label": "GitHub →", "href": "https://github.com/rahul-sg/midterm-predictor" },
         { "label": "Live →", "href": "https://tinyurl.com/midtermpredictor" }
       ]
+    },
+    {
+      "index": "05",
+      "title": "Touse",
+      "wip": true,
+      "description": "Full-stack USA housing market tool that shows what you can afford, where you can afford it, and where the market is heading. Affordability calculator (income, debt, credit score, down payment) filters an interactive Mapbox map to your budget. Per-metro market trend indicators and an ML-driven 12-month price forecast (Prophet → LightGBM) with confidence intervals integrate economic and political signals — mortgage rates, CPI, unemployment, zoning reform, and buyer credits — sourced from Zillow, FRED, BLS, BEA, Census ACS, HUD, and Congress.gov. Deployed with Docker Compose on AWS EC2 behind Caddy with Redis + Celery for caching and background ETL.",
+      "tags": [
+        "FastAPI",
+        "React + Vite + TS",
+        "LightGBM",
+        "PostgreSQL",
+        "Mapbox",
+        "AWS EC2"
+      ],
+      "links": [
+        { "label": "GitHub →", "href": "https://github.com/rahul-sg/Touse" }
+      ]
     }
   ],
   "experience": [
