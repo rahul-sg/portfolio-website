@@ -23,6 +23,7 @@ const portfolioData = {
         "PyTorch",
         "TensorFlow",
         "XGBoost",
+        "LightGBM",
         "LangChain",
         "LLM Evaluation",
         "RAG Systems",
@@ -35,10 +36,10 @@ const portfolioData = {
       "items": [
         "React",
         "Node.js",
-        "Flask",
+        "FastAPI",
         "REST APIs",
+        "PostgreSQL",
         "Supabase",
-        "DigitalOcean",
         "Docker",
         "AWS"
       ]
@@ -115,17 +116,17 @@ const portfolioData = {
     {
       "index": "05",
       "title": "Touse",
-      "wip": true,
-      "description": "Full-stack USA housing market tool that shows what you can afford, where you can afford it, and where the market is heading. Affordability calculator (income, debt, credit score, down payment) filters an interactive Mapbox map to your budget. Per-metro market trend indicators and an ML-driven 12-month price forecast (Prophet → LightGBM) with confidence intervals integrate economic and political signals — mortgage rates, CPI, unemployment, zoning reform, and buyer credits — sourced from Zillow, FRED, BLS, BEA, Census ACS, HUD, and Congress.gov. Deployed with Docker Compose on AWS EC2 behind Caddy with Redis + Celery for caching and background ETL.",
+      "description": "Full-stack USA housing affordability platform, live at touse.us. Computes your real max home price across 6 loan types (conventional, FHA, VA, USDA, ARM 5/1, jumbo) using live Freddie Mac mortgage rates, and scores your readiness 0–100 across DTI, down payment, credit, and savings cushion with a concrete action plan. Save and compare unlimited buy/rent scenarios; an interactive map (MapLibre GL + OpenFreeMap) shows real geocoded listings filtered to your budget. Per-ZIP 12-month price forecasts use a two-stage ML pipeline: a global LightGBM panel (37 features — lagged ZHVI, FRED macro, Zillow metro supply/rent, election cycle) anchors the endpoint; per-ZIP Prophet models shape the monthly path with 80% confidence bands and rate-scenario overlays. Background ETL via Celery + Redis ingests Zillow ZHVI (~15.8M rows across 3 home types), Freddie Mac PMMS, FRED, BEA, and RapidAPI listings on a weekly/monthly cadence. Full auth flow (JWT, email verification, password reset via Resend), Sentry error monitoring, and PostHog analytics. Deployed with Docker Compose behind Caddy.",
       "tags": [
         "FastAPI",
         "React + Vite + TS",
-        "LightGBM",
+        "LightGBM + Prophet",
         "PostgreSQL",
-        "Mapbox",
-        "AWS EC2"
+        "MapLibre GL",
+        "Docker + Caddy"
       ],
       "links": [
+        { "label": "Live →", "href": "https://touse.us" },
         { "label": "GitHub →", "href": "https://github.com/rahul-sg/Touse" }
       ]
     }
