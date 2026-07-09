@@ -1,9 +1,9 @@
 const portfolioData = {
   "hero": {
-    "headline": "I turn models into products people actually use.",
-    "subtext": "Data Science and Finance at UC San Diego. I like owning a problem end to end — the data cleaning, the model, and the interface someone actually clicks. Right now: LLM evaluation at Honda Research and forecasting work at Eurofins."
+    "headline": "I build machine-learning products end to end.",
+    "subtext": "Data Science and Finance at UC San Diego. I like owning the whole problem: the data cleaning, the model, and the interface someone actually clicks. Right now I'm doing LLM evaluation at Honda Research and forecasting at Eurofins."
   },
-  "about": "I'm a Data Science and Finance student at UC San Diego, graduating in 2026 with Provost Honors. Most of what I build sits between research and a working product: an LLM-evaluation framework at Honda Research Labs, revenue forecasting at Eurofins, and side projects — a housing-affordability tool and a 2026 election model — that are deployed and used by people I've never met, not just handed in for a grade. I'm at my best when something needs both the modeling and the engineering to actually ship. The Finance minor keeps me honest about whether a number means anything before it goes on a dashboard, and thirteen years of competitive swimming taught me how to keep grinding at something long after it stops being fun.",
+  "about": "I'm a Data Science and Finance student at UC San Diego (Provost Honors, graduating 2026). Most of what I build sits between research and a real product: LLM evaluation at Honda Research, forecasting at Eurofins, and side projects like Touse and a 2026 election model that are live and actually used. Thirteen years of competitive swimming taught me how to grind on the unglamorous parts.",
   "skills": [
     {
       "category": "Languages",
@@ -61,7 +61,7 @@ const portfolioData = {
     {
       "index": "01",
       "title": "Touse",
-      "description": "Full-stack USA housing affordability platform, live at touse.us. Calculates your real max home price across 6 loan types using live Freddie Mac rates, scores your readiness 0–100 (DTI, down payment, credit, savings cushion), and lets you save and compare unlimited buy/rent scenarios. An interactive map shows real geocoded listings filtered to your budget, and a two-stage ML pipeline (global LightGBM panel + per-ZIP Prophet) delivers 12-month price forecasts with 80% confidence bands. Backed by Zillow ZHVI, FRED, BEA, and RapidAPI with weekly/monthly Celery ETL jobs.",
+      "description": "Housing-affordability app, live at touse.us. It computes your real max home price across six loan types and forecasts ZIP-level prices a year out with a two-stage LightGBM and Prophet pipeline, fed by weekly ETL from Zillow, FRED, and BEA.",
       "tags": [
         "FastAPI",
         "React + Vite + TS",
@@ -78,7 +78,7 @@ const portfolioData = {
     {
       "index": "02",
       "title": "Enterprise LLM Evaluation Framework — Honda Research Institute & 99P Labs",
-      "description": "My UCSD capstone with Honda Research Institute and 99P Labs, where I led the evaluation research. A framework that scores LLM output across five quality dimensions — accuracy, coherence, relevance, safety, and user alignment — using an LLM for the first-pass scoring and human reviewers for ground truth. A trend-aware stopping controller ends each run once scores stabilize, so no compute is wasted chasing noise. Built in Python with LangChain and RAG and wrapped in a Streamlit app with interactive diagnostics. It held up at 0.96 average and 4.7/5 inter-rater agreement across 7 cross-domain lecture datasets.",
+      "description": "The evaluation framework from my Honda Research capstone. It scores LLM output on five quality dimensions, pairing an automated LLM first pass with human review for ground truth, and hit 0.96 average agreement across seven datasets. More on it just below.",
       "tags": [
         "Python",
         "LLM Evaluation",
@@ -92,7 +92,7 @@ const portfolioData = {
     {
       "index": "03",
       "title": "2026 Midterm Election Predictor",
-      "description": "Full-stack ML election forecasting app covering all 505 2026 US races (435 House, 34 Senate, 36 Governor). Ridge regression model trained on 2,245 historical results with live data pipelines for generic ballot polls (Wikipedia, 4h), FEC fundraising (daily bulk file), presidential approval, and BLS/FRED economic indicators. Features a 10,000-trial correlated Monte Carlo simulator, tipping-point analysis, interactive choropleth maps, shareable scenario builder, and 12+ pages including per-race deep-dives and a full model exploration tab. Deployed on AWS EC2 behind Caddy with Redis caching.",
+      "description": "Forecasts all 505 races in the 2026 US midterms with a ridge-regression model and a 10,000-run Monte Carlo simulation. Live pipelines pull polls, fundraising, approval, and economic data; the site has choropleth maps, tipping-point analysis, and per-race deep-dives. Runs on AWS EC2 behind Caddy with Redis caching.",
       "tags": [
         "FastAPI",
         "React + Vite",
@@ -108,7 +108,7 @@ const portfolioData = {
     {
       "index": "04",
       "title": "PicksIQ",
-      "description": "A full-stack sports analytics platform that predicts player props in real time and surfaces the ones with positive expected value. Live API pipelines pull in game and player data, feed a feature pipeline, and an XGBoost model turns it into probabilities and EV estimates that update as the lines move. The React front end lets users browse props, filter by matchup, and see where the model disagrees with the market. It grew to 1,000+ active users, which mostly meant keeping the data pipelines reliable and the predictions fast enough to be useful during live games.",
+      "description": "Sports analytics app that predicts player props in real time and flags the ones with positive expected value. An XGBoost model runs on live API data behind a React front end, and it grew to 1,000+ users.",
       "tags": [
         "React",
         "XGBoost",
@@ -122,7 +122,7 @@ const portfolioData = {
     {
       "index": "05",
       "title": "CitMit: Expedite City Construction Plan-Checking Time",
-      "description": "An AI compliance tool that checks city construction plans against building regulations, built during my time with UC Berkeley Haas and UCSD's Blackstone Launchpad. I built the end-to-end PDF pipeline — chunking documents, generating embeddings, and running similarity search against the regulations — with GPT-4 doing the actual plan-checking through prompt engineering and fine-tuning. Deployed on DigitalOcean with Supabase behind 10+ React pages I designed in Figma: multi-step forms, file uploads, and interactive results. It cut estimated review time by roughly half.",
+      "description": "AI tool that checks city construction plans against building code, cutting estimated review time by about half. I built the PDF-to-embeddings pipeline, the GPT-4 checking logic, and 10+ React pages I designed in Figma. Built at the UC Berkeley Haas and UCSD Blackstone Launchpad.",
       "tags": [
         "GPT-4",
         "Embeddings",
@@ -168,7 +168,7 @@ const portfolioData = {
     }
   ],
   "contact": {
-    "note": "I'm looking for full-time Data Science, ML, or AI roles starting in 2026 — remote, hybrid, or onsite, wherever the work is interesting. If you're hiring or just want to talk through a problem, email is the fastest way to reach me.",
+    "note": "I'm looking for full-time Data Science, ML, or AI roles starting in 2026, remote or onsite. If you're hiring or just want to talk through a problem, email is the fastest way to reach me.",
     "links": [
       {
         "label": "rahul_sen_gupta@yahoo.com",
@@ -219,7 +219,7 @@ const portfolioData = {
   "recognition": [
     {
       "title": "Provost Honors",
-      "detail": "UC San Diego — academic excellence in Data Science & Finance",
+      "detail": "UC San Diego, for academic excellence in Data Science & Finance",
       "year": "2024–2026"
     },
     {
@@ -242,32 +242,32 @@ const portfolioData = {
     {
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3 2 8.5 12 14l10-5.5L12 3Z\"/><path d=\"M2 15.5 12 21l10-5.5\"/><path d=\"M2 12 12 17.5 22 12\"/></svg>",
       "title": "Multimodal AI",
-      "description": "How vision-language models fuse image and text — and, more interesting to me, where they quietly fall apart."
+      "description": "How vision-language models combine image and text."
     },
     {
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 3v18h18\"/><path d=\"M7 14l4-5 3 3 5-7\"/></svg>",
       "title": "Time Series",
-      "description": "Prophet and neural forecasters, pushing past the ARIMA and tree models I already use at work."
+      "description": "Prophet and neural forecasters, beyond the ARIMA and tree models I use at work."
     },
     {
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"5\" cy=\"6\" r=\"2.2\"/><circle cx=\"19\" cy=\"6\" r=\"2.2\"/><circle cx=\"12\" cy=\"18\" r=\"2.2\"/><path d=\"M6.8 7.3 10.4 16M17.2 7.3 13.6 16M7 6h10\"/></svg>",
       "title": "Graph Neural Networks",
-      "description": "Using graph structure for problems I'd normally flatten into a table and lose information."
+      "description": "Using graph structure for problems that don't fit neatly in a table."
     },
     {
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 12h4l3 8 4-16 3 8h4\"/></svg>",
       "title": "Real-time Systems",
-      "description": "Streaming pipelines, and keeping latency low enough that a prediction still arrives in time to matter."
+      "description": "Streaming pipelines and low-latency inference."
     },
     {
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 18a8 8 0 1 1 16 0\"/><path d=\"M12 13l3.5-3.5\"/><circle cx=\"12\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>",
       "title": "AI Evaluation",
-      "description": "A continuation of the Honda work — how you actually measure whether a model is any good."
+      "description": "Building on the Honda work: how to measure whether a model is any good."
     },
     {
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3l7 3v5c0 4.4-3 8.3-7 9.5C8 19.3 5 15.4 5 11V6l7-3Z\"/><path d=\"M9.2 11.8 11.2 13.8 15 10\"/></svg>",
       "title": "AI Safety & Alignment",
-      "description": "Robustness and interpretability: making models you'd trust enough to leave running in production."
+      "description": "Robustness and interpretability for production models."
     }
   ],
   "aboutCards": [
@@ -406,16 +406,18 @@ portfolioData.experience.forEach((item) => {
 });
 
 const metricsList = document.getElementById("metrics-list");
-portfolioData.metrics.forEach((metric) => {
-  const card = document.createElement("div");
-  card.className = "metric-card";
-  card.innerHTML = `
-    <div class="metric-value">${metric.value}</div>
-    <div class="metric-label">${metric.label}</div>
-    <p class="metric-description">${metric.description}</p>
-  `;
-  metricsList.appendChild(card);
-});
+if (metricsList) {
+  portfolioData.metrics.forEach((metric) => {
+    const card = document.createElement("div");
+    card.className = "metric-card";
+    card.innerHTML = `
+      <div class="metric-value">${metric.value}</div>
+      <div class="metric-label">${metric.label}</div>
+      <p class="metric-description">${metric.description}</p>
+    `;
+    metricsList.appendChild(card);
+  });
+}
 
 const achievementsList = document.getElementById("achievements-list");
 portfolioData.recognition.forEach((achievement) => {
