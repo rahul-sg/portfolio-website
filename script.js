@@ -1,9 +1,9 @@
 const portfolioData = {
   "hero": {
-    "headline": "Building AI and data products that turn complex signals into decisions.",
-    "subtext": "Data Science @ UC San Diego. I bridge the gap between data science and engineering, turning research and raw data into production-ready AI systems."
+    "headline": "I turn models into products people actually use.",
+    "subtext": "Data Science and Finance at UC San Diego. I like owning a problem end to end — the data cleaning, the model, and the interface someone actually clicks. Right now: LLM evaluation at Honda Research and forecasting work at Eurofins."
   },
-  "about": "I'm Rahul Sengupta — a Data Science and Finance graduate from UC San Diego, where I earned Provost Honors, with a drive for building things that actually work. From enterprise LLM evaluation at Honda Research Labs to real-time forecasting for Eurofins, I've consistently shipped production systems that reduce uncertainty and accelerate decisions. I care about the full stack: the model, the interface, and the story the data tells.",
+  "about": "I'm a Data Science and Finance student at UC San Diego, graduating in 2026 with Provost Honors. Most of what I build sits between research and a working product: an LLM-evaluation framework at Honda Research Labs, revenue forecasting at Eurofins, and side projects — a housing-affordability tool and a 2026 election model — that are deployed and used by people I've never met, not just handed in for a grade. I'm at my best when something needs both the modeling and the engineering to actually ship. The Finance minor keeps me honest about whether a number means anything before it goes on a dashboard, and thirteen years of competitive swimming taught me how to keep grinding at something long after it stops being fun.",
   "skills": [
     {
       "category": "Languages",
@@ -72,8 +72,8 @@ const portfolioData = {
     },
     {
       "index": "02",
-      "title": "Enterprise LLM Evaluation Framework",
-      "description": "Scalable evaluation framework across 5 quality dimensions using LLM-as-judge + human validation. Achieved 0.96 avg score and 4.7/5 inter-rater agreement across 7 cross-domain datasets at Honda Research.",
+      "title": "Enterprise LLM Evaluation Framework — Honda Research Institute & 99P Labs",
+      "description": "Scalable evaluation framework across 5 quality dimensions using LLM-as-judge + human validation. Achieved 0.96 avg score and 4.7/5 inter-rater agreement across 7 cross-domain datasets.",
       "tags": [
         "Python",
         "LLM Evaluation",
@@ -164,7 +164,7 @@ const portfolioData = {
     }
   ],
   "contact": {
-    "note": "Actively looking for Data Science, ML Engineering, and AI roles. Open to remote, hybrid, or onsite — anywhere. If you're building something in AI or data, I'd love to hear about it.",
+    "note": "I'm looking for full-time Data Science, ML, or AI roles starting in 2026 — remote, hybrid, or onsite, wherever the work is interesting. If you're hiring or just want to talk through a problem, email is the fastest way to reach me.",
     "links": [
       {
         "label": "rahul_sen_gupta@yahoo.com",
@@ -236,34 +236,34 @@ const portfolioData = {
   ],
   "learning": [
     {
-      "icon": "🤖",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3 2 8.5 12 14l10-5.5L12 3Z\"/><path d=\"M2 15.5 12 21l10-5.5\"/><path d=\"M2 12 12 17.5 22 12\"/></svg>",
       "title": "Multimodal AI",
-      "description": "Vision language models and cross-modal reasoning architectures"
+      "description": "How vision-language models fuse image and text — and, more interesting to me, where they quietly fall apart."
     },
     {
-      "icon": "📊",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 3v18h18\"/><path d=\"M7 14l4-5 3 3 5-7\"/></svg>",
       "title": "Time Series",
-      "description": "Advanced ARIMA, Prophet, and neural forecasting at scale"
+      "description": "Prophet and neural forecasters, pushing past the ARIMA and tree models I already use at work."
     },
     {
-      "icon": "🔗",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"5\" cy=\"6\" r=\"2.2\"/><circle cx=\"19\" cy=\"6\" r=\"2.2\"/><circle cx=\"12\" cy=\"18\" r=\"2.2\"/><path d=\"M6.8 7.3 10.4 16M17.2 7.3 13.6 16M7 6h10\"/></svg>",
       "title": "Graph Neural Networks",
-      "description": "Knowledge graphs and network-based prediction systems"
+      "description": "Using graph structure for problems I'd normally flatten into a table and lose information."
     },
     {
-      "icon": "⚡",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 12h4l3 8 4-16 3 8h4\"/></svg>",
       "title": "Real-time Systems",
-      "description": "Streaming data pipelines with sub-second latency optimization"
+      "description": "Streaming pipelines, and keeping latency low enough that a prediction still arrives in time to matter."
     },
     {
-      "icon": "🧪",
-      "title": "AI Evaluation Science",
-      "description": "Automated and human-in-the-loop frameworks for model quality"
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 18a8 8 0 1 1 16 0\"/><path d=\"M12 13l3.5-3.5\"/><circle cx=\"12\" cy=\"18\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg>",
+      "title": "AI Evaluation",
+      "description": "A continuation of the Honda work — how you actually measure whether a model is any good."
     },
     {
-      "icon": "🔐",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3l7 3v5c0 4.4-3 8.3-7 9.5C8 19.3 5 15.4 5 11V6l7-3Z\"/><path d=\"M9.2 11.8 11.2 13.8 15 10\"/></svg>",
       "title": "AI Safety & Alignment",
-      "description": "Robustness, interpretability, and responsible AI deployment"
+      "description": "Robustness and interpretability: making models you'd trust enough to leave running in production."
     }
   ],
   "aboutCards": [
@@ -302,20 +302,20 @@ const portfolioData = {
   ],
   "throughline": [
     {
-      "phase": "Observe",
-      "description": "Capture signals across data streams, user behavior, and domain context before assumptions take over"
+      "phase": "Understand the problem",
+      "description": "Start with whoever actually has the problem and the raw data — not with a model. Most of the work is figuring out what's really being asked."
     },
     {
-      "phase": "Reason",
-      "description": "Extract structure from noise: feature engineering, pattern recognition, anomaly detection"
+      "phase": "Baseline first",
+      "description": "A simple model I trust beats a complex one I don't. I start with something basic that works, then earn every bit of added complexity."
     },
     {
-      "phase": "Predict",
-      "description": "Build models that anticipate outcomes with confidence intervals, not false certainty"
+      "phase": "Make it usable",
+      "description": "Wrap the model in an API and an interface, so it's something you can click — not a notebook only I can run."
     },
     {
-      "phase": "Deliver",
-      "description": "Ship interfaces and systems that turn predictions into action, at scale"
+      "phase": "Ship and maintain",
+      "description": "Deploy it, put it in front of real users, and keep fixing what breaks. A model that isn't running isn't finished."
     }
   ]
 };
@@ -464,7 +464,7 @@ if (throughlineGrid) {
         <h3 class="step-phase">${item.phase}</h3>
         <p class="step-description">${item.description}</p>
       </div>
-      ${index < portfolioData.throughline.length - 1 ? '<div class="throughline-arrow">→</div>' : ''}
+      ${index < portfolioData.throughline.length - 1 ? '<div class="throughline-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>' : ''}
     `;
     throughlineGrid.appendChild(col);
   });
@@ -484,305 +484,73 @@ portfolioData.contact.links.forEach((link) => {
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// ── Cursor spotlight ──────────────────────────────────────────────────────────
-(function () {
-  const spotlight = document.createElement("div");
-  spotlight.id = "cursor-spotlight";
-  document.body.appendChild(spotlight);
-
-  let mx = -9999, my = -9999;
-  document.addEventListener("mousemove", (e) => {
-    mx = e.clientX;
-    my = e.clientY;
-    spotlight.style.transform = `translate(${mx}px, ${my}px)`;
-    spotlight.style.opacity = "1";
-  });
-  document.addEventListener("mouseleave", () => {
-    spotlight.style.opacity = "0";
-  });
-})();
-// ─────────────────────────────────────────────────────────────────────────────
-
 const siteHeader = document.querySelector(".site-header");
 const scrollRailProgress = document.getElementById("scroll-rail-progress");
-const transitionSection = document.getElementById("transition");
-const transitionOrbit = document.querySelector(".transition-scroll-orbit");
-const heroSection = document.getElementById("home");
-const aboutSection = document.getElementById("about");
 
-const updateSectionOverlays = () => {
-  const overlays = document.querySelectorAll(".section-overlay");
-  overlays.forEach((overlay) => {
-    // Find the next section after this overlay
-    let nextSection = overlay.nextElementSibling;
-    while (nextSection && !nextSection.id) {
-      nextSection = nextSection.nextElementSibling;
-    }
-
-    if (!nextSection) return;
-
-    const sectionTop = nextSection.offsetTop;
-    const sectionBottom = sectionTop + nextSection.offsetHeight;
-    const viewportCenter = window.scrollY + window.innerHeight / 2;
-    const sectionCenter = (sectionTop + sectionBottom) / 2;
-
-    // Calculate opacity based on proximity to section center
-    // Peak opacity when section is centered in viewport
-    const distance = Math.abs(viewportCenter - sectionCenter);
-    const fadeDistance = window.innerHeight;
-    let opacity = Math.max(0, 1 - distance / fadeDistance);
-    opacity = opacity * 0.15; // Cap at 15% for subtle effect
-
-    overlay.style.opacity = opacity;
-  });
-};
-
-const updateTransitionOrbit = () => {
-  if (!transitionOrbit || !transitionSection) return;
-
-  const maxScrollable = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  const progress = maxScrollable > 0 ? window.scrollY / maxScrollable : 0;
-
-  const sectionTop = transitionSection.offsetTop;
-  const sectionBottom = sectionTop + transitionSection.offsetHeight;
-  const viewportCenter = window.scrollY + window.innerHeight * 0.5;
-  const distance = Math.abs(viewportCenter - (sectionTop + transitionSection.offsetHeight * 0.5));
-  const fadeDistance = window.innerHeight * 0.9;
-  const localProgress = Math.min(1, Math.max(0, (window.scrollY - sectionTop + window.innerHeight) / (transitionSection.offsetHeight + window.innerHeight)));
-  const active = viewportCenter >= sectionTop - window.innerHeight * 0.5 && viewportCenter <= sectionBottom + window.innerHeight * 0.5;
-
-  transitionOrbit.style.setProperty("--transition-progress", String(localProgress));
-  transitionOrbit.style.opacity = active ? String(Math.max(0.18, 1 - distance / fadeDistance)) : "0.06";
-};
-
-window.addEventListener("scroll", () => {
-  if (!siteHeader) {
-    return;
+// ── Header state + left scroll-progress rail ─────────────────────────────────
+const updateScrollUI = () => {
+  if (siteHeader) {
+    siteHeader.classList.toggle("scrolled", window.scrollY > 24);
   }
-
-  siteHeader.classList.toggle("scrolled", window.scrollY > 24);
-
   if (scrollRailProgress) {
     const maxScrollable =
       document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const progress = maxScrollable > 0 ? (window.scrollY / maxScrollable) * 100 : 0;
     scrollRailProgress.style.height = `${Math.min(100, Math.max(0, progress))}%`;
   }
+};
 
-  updateTransitionOrbit();
-  updateSectionOverlays();
-});
+window.addEventListener("scroll", updateScrollUI, { passive: true });
+window.addEventListener("resize", updateScrollUI);
+updateScrollUI();
 
-if (scrollRailProgress) {
-  const maxScrollable =
-    document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  const progress = maxScrollable > 0 ? (window.scrollY / maxScrollable) * 100 : 0;
-  scrollRailProgress.style.height = `${Math.min(100, Math.max(0, progress))}%`;
-}
-
-updateTransitionOrbit();
-updateSectionOverlays();
-
-window.addEventListener("resize", () => {
-  updateTransitionOrbit();
-  updateSectionOverlays();
-});
-
-// Wrap each .section in a .section-wrap so sticky stacking works.
-// Alternate even-indexed sections to put the header on the right.
-// Append a .section-gap at the end of each wrapper — this is the themed
-// transition zone that shows before proximity scroll-snap pulls the next section in.
+// ── Alternate section layout (header left / right) ───────────────────────────
 document.querySelectorAll(".section").forEach((section, i) => {
-  const wrap = document.createElement("div");
-  wrap.className = "section-wrap" + (i % 2 === 1 ? " section-wrap--alt" : "");
-  section.parentNode.insertBefore(wrap, section);
-  wrap.appendChild(section);
-
-  const gap = document.createElement("div");
-  gap.className = "section-gap";
-  wrap.appendChild(gap);
+  if (i % 2 === 1) section.classList.add("section--alt");
 });
 
-// Reveal hero content immediately
-const revealElements = document.querySelectorAll(".reveal");
-revealElements.forEach((el) => el.classList.add("visible"));
-
-// ── Starfield ────────────────────────────────────────────────────────────────
-(function () {
-  const canvas = document.createElement("canvas");
-  canvas.id = "starfield-canvas";
-  document.body.insertBefore(canvas, document.body.firstChild);
-  const ctx = canvas.getContext("2d");
-
-  const STAR_COUNT = 220;
-  let stars = [];
-
-  function resize() {
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-
-  function initStars() {
-    stars = Array.from({ length: STAR_COUNT }, () => ({
-      x:       Math.random() * canvas.width,
-      y:       Math.random() * canvas.height,
-      r:       Math.random() * 1.5 + 0.3,
-      alpha:   Math.random() * 0.55 + 0.3,
-      speed:   Math.random() * 0.004 + 0.001,
-      phase:   Math.random() * Math.PI * 2,
-    }));
-  }
-
-  function draw(t) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    stars.forEach((s) => {
-      const twinkle = s.alpha + Math.sin(t * s.speed * 60 + s.phase) * 0.18;
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(220, 200, 255, ${Math.max(0, Math.min(1, twinkle))})`;
-      ctx.fill();
-    });
-    requestAnimationFrame(draw);
-  }
-
-  resize();
-  initStars();
-  requestAnimationFrame(draw);
-  window.addEventListener("resize", () => { resize(); initStars(); });
-})();
-// ─────────────────────────────────────────────────────────────────────────────
-
-// ── Background snowy owl visuals ─────────────────────────────────────────────
-const owlSVG = `<svg viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <radialGradient id="bodyGrad" cx="50%" cy="40%" r="55%">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="60%" stop-color="#e8e4f0"/>
-      <stop offset="100%" stop-color="#c8c0d8"/>
-    </radialGradient>
-    <radialGradient id="headGrad" cx="50%" cy="35%" r="55%">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="70%" stop-color="#ede8f8"/>
-      <stop offset="100%" stop-color="#d0c8e0"/>
-    </radialGradient>
-    <radialGradient id="eyeGrad" cx="35%" cy="35%" r="60%">
-      <stop offset="0%" stop-color="#f5c842"/>
-      <stop offset="45%" stop-color="#e09820"/>
-      <stop offset="100%" stop-color="#7a4800"/>
-    </radialGradient>
-    <radialGradient id="faceGrad" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#f0e8d8"/>
-      <stop offset="100%" stop-color="#d8ccc0"/>
-    </radialGradient>
-  </defs>
-
-  <!-- Body -->
-  <ellipse cx="60" cy="122" rx="34" ry="46" fill="url(#bodyGrad)"/>
-
-  <!-- Body dark barring / feather pattern -->
-  <ellipse cx="60" cy="122" rx="34" ry="46" fill="none" stroke="#9080a8" stroke-width="0.4" opacity="0.3"/>
-  <!-- Feather barring rows -->
-  <path d="M30,100 Q45,96 60,100 Q75,96 90,100" fill="none" stroke="#7060a0" stroke-width="0.7" opacity="0.25"/>
-  <path d="M28,110 Q45,106 60,110 Q75,106 92,110" fill="none" stroke="#7060a0" stroke-width="0.7" opacity="0.25"/>
-  <path d="M27,120 Q44,116 60,120 Q76,116 93,120" fill="none" stroke="#7060a0" stroke-width="0.7" opacity="0.22"/>
-  <path d="M28,130 Q45,126 60,130 Q75,126 92,130" fill="none" stroke="#7060a0" stroke-width="0.7" opacity="0.20"/>
-  <path d="M30,140 Q46,136 60,140 Q74,136 90,140" fill="none" stroke="#7060a0" stroke-width="0.7" opacity="0.18"/>
-  <path d="M33,150 Q47,146 60,150 Q73,146 87,150" fill="none" stroke="#7060a0" stroke-width="0.7" opacity="0.15"/>
-  <!-- Chest speckles -->
-  <ellipse cx="52" cy="108" rx="2.5" ry="1.5" fill="#6050a0" opacity="0.18" transform="rotate(-10 52 108)"/>
-  <ellipse cx="60" cy="104" rx="2" ry="1.2" fill="#6050a0" opacity="0.15"/>
-  <ellipse cx="68" cy="108" rx="2.5" ry="1.5" fill="#6050a0" opacity="0.18" transform="rotate(10 68 108)"/>
-  <ellipse cx="48" cy="118" rx="2" ry="1.3" fill="#6050a0" opacity="0.14" transform="rotate(-8 48 118)"/>
-  <ellipse cx="63" cy="115" rx="2" ry="1.2" fill="#6050a0" opacity="0.13"/>
-  <ellipse cx="72" cy="118" rx="2" ry="1.3" fill="#6050a0" opacity="0.14" transform="rotate(8 72 118)"/>
-  <ellipse cx="55" cy="128" rx="1.8" ry="1.1" fill="#6050a0" opacity="0.12"/>
-  <ellipse cx="65" cy="128" rx="1.8" ry="1.1" fill="#6050a0" opacity="0.12"/>
-
-  <!-- Wing left -->
-  <path d="M28,90 Q14,100 12,130 Q14,155 30,162 Q40,158 42,148 Q30,140 30,122 Q30,108 38,98 Z" fill="#d8d0e8"/>
-  <path d="M29,95 Q18,108 17,128" fill="none" stroke="#9080b8" stroke-width="0.8" opacity="0.4"/>
-  <path d="M30,105 Q20,116 19,134" fill="none" stroke="#9080b8" stroke-width="0.8" opacity="0.35"/>
-  <path d="M31,115 Q22,124 21,140" fill="none" stroke="#9080b8" stroke-width="0.8" opacity="0.3"/>
-  <!-- Wing right -->
-  <path d="M92,90 Q106,100 108,130 Q106,155 90,162 Q80,158 78,148 Q90,140 90,122 Q90,108 82,98 Z" fill="#d8d0e8"/>
-  <path d="M91,95 Q102,108 103,128" fill="none" stroke="#9080b8" stroke-width="0.8" opacity="0.4"/>
-  <path d="M90,105 Q100,116 101,134" fill="none" stroke="#9080b8" stroke-width="0.8" opacity="0.35"/>
-  <path d="M89,115 Q98,124 99,140" fill="none" stroke="#9080b8" stroke-width="0.8" opacity="0.3"/>
-
-  <!-- Head -->
-  <circle cx="60" cy="50" r="30" fill="url(#headGrad)"/>
-
-  <!-- Head barring -->
-  <path d="M35,42 Q48,38 60,42 Q72,38 85,42" fill="none" stroke="#8070b0" stroke-width="0.6" opacity="0.22"/>
-  <path d="M33,52 Q47,48 60,52 Q73,48 87,52" fill="none" stroke="#8070b0" stroke-width="0.6" opacity="0.20"/>
-  <path d="M37,62 Q49,58 60,62 Q71,58 83,62" fill="none" stroke="#8070b0" stroke-width="0.6" opacity="0.18"/>
-
-  <!-- Left ear tuft -->
-  <polygon points="42,27 38,10 48,24" fill="#e8e0f0"/>
-  <polygon points="42,27 39,12 45,22" fill="#c0b8d0" opacity="0.5"/>
-  <!-- Right ear tuft -->
-  <polygon points="78,27 82,10 72,24" fill="#e8e0f0"/>
-  <polygon points="78,27 81,12 75,22" fill="#c0b8d0" opacity="0.5"/>
-
-  <!-- Facial disc (heart-shaped frame) -->
-  <path d="M60,78 Q42,72 38,58 Q36,44 48,40 Q54,38 60,44 Q66,38 72,40 Q84,44 82,58 Q78,72 60,78 Z" fill="url(#faceGrad)" opacity="0.7"/>
-  <path d="M60,78 Q42,72 38,58 Q36,44 48,40 Q54,38 60,44 Q66,38 72,40 Q84,44 82,58 Q78,72 60,78 Z" fill="none" stroke="#b8a8c8" stroke-width="0.8" opacity="0.5"/>
-
-  <!-- Left eye outer ring -->
-  <circle cx="50" cy="50" r="10" fill="#1a1230"/>
-  <!-- Left eye iris -->
-  <circle cx="50" cy="50" r="8" fill="url(#eyeGrad)"/>
-  <!-- Left pupil -->
-  <circle cx="50" cy="50" r="4.5" fill="#0a0818"/>
-  <!-- Left eye gleam -->
-  <circle cx="52.5" cy="47.5" r="2" fill="white" opacity="0.9"/>
-  <circle cx="48" cy="52" r="0.8" fill="white" opacity="0.4"/>
-
-  <!-- Right eye outer ring -->
-  <circle cx="70" cy="50" r="10" fill="#1a1230"/>
-  <!-- Right eye iris -->
-  <circle cx="70" cy="50" r="8" fill="url(#eyeGrad)"/>
-  <!-- Right pupil -->
-  <circle cx="70" cy="50" r="4.5" fill="#0a0818"/>
-  <!-- Right eye gleam -->
-  <circle cx="72.5" cy="47.5" r="2" fill="white" opacity="0.9"/>
-  <circle cx="68" cy="52" r="0.8" fill="white" opacity="0.4"/>
-
-  <!-- Beak -->
-  <path d="M60,58 L55,66 Q58,70 60,68 Q62,70 65,66 Z" fill="#c89030"/>
-  <path d="M60,58 L60,68" fill="none" stroke="#a07020" stroke-width="0.6" opacity="0.7"/>
-
-  <!-- Talons left -->
-  <line x1="48" y1="165" x2="36" y2="175" stroke="#c8c0d0" stroke-width="2.2" stroke-linecap="round"/>
-  <line x1="48" y1="165" x2="42" y2="177" stroke="#c8c0d0" stroke-width="2.2" stroke-linecap="round"/>
-  <line x1="48" y1="165" x2="50" y2="178" stroke="#c8c0d0" stroke-width="2.2" stroke-linecap="round"/>
-  <line x1="48" y1="165" x2="56" y2="174" stroke="#c8c0d0" stroke-width="2.2" stroke-linecap="round"/>
-  <!-- Talons right -->
-  <line x1="72" y1="165" x2="64" y2="174" stroke="#c8c0d0" stroke-width="2.2" stroke-linecap="round"/>
-  <line x1="72" y1="165" x2="70" y2="178" stroke="#c8c0d0" stroke-width="2.2" stroke-linecap="round"/>
-  <line x1="72" y1="165" x2="78" y2="177" stroke="#c8c0d0" stroke-width="2.2" stroke-linecap="round"/>
-  <line x1="72" y1="165" x2="84" y2="175" stroke="#c8c0d0" stroke-width="2.2" stroke-linecap="round"/>
-</svg>`;
-
-const owlConfigs = [
-  { top: '6%',  right: '5%',  width: 300, opacity: 0.042, dur: '14s', delay: '0s'   },
-  { top: '36%', left: '2%',   width: 190, opacity: 0.030, dur: '19s', delay: '-6s'  },
-  { top: '68%', right: '10%', width: 240, opacity: 0.036, dur: '16s', delay: '-10s' },
-  { top: '52%', left: '16%',  width: 140, opacity: 0.024, dur: '22s', delay: '-4s'  },
-];
-
-owlConfigs.forEach((cfg) => {
-  const el = document.createElement("div");
-  el.className = "bg-owl";
-  el.innerHTML = owlSVG;
-  el.style.width  = cfg.width + "px";
-  el.style.height = Math.round(cfg.width * 180 / 120) + "px";
-  el.style.opacity = cfg.opacity;
-  el.style.setProperty("--owl-dur",   cfg.dur);
-  el.style.setProperty("--owl-delay", cfg.delay);
-  if (cfg.top)   el.style.top   = cfg.top;
-  if (cfg.left)  el.style.left  = cfg.left;
-  if (cfg.right) el.style.right = cfg.right;
-  document.body.appendChild(el);
+// ── Staggered reveal for card groups ─────────────────────────────────────────
+// Tag each card in a group with .reveal and an incremental delay so groups
+// cascade in as they scroll into view instead of all appearing at once.
+[
+  "#about-cards",
+  "#skills-body",
+  "#projects-grid",
+  ".honda-visual",
+  "#throughline-grid",
+  "#experience-list",
+  "#metrics-list",
+  "#achievements-list",
+  "#learning-list",
+].forEach((selector) => {
+  const group = document.querySelector(selector);
+  if (!group) return;
+  Array.from(group.children).forEach((child, i) => {
+    child.classList.add("reveal");
+    child.style.transitionDelay = `${Math.min(i * 0.06, 0.36)}s`;
+  });
 });
-// ─────────────────────────────────────────────────────────────────────────────
+
+// ── Scroll reveal: subtle fade + rise via IntersectionObserver ───────────────
+const revealTargets = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+  );
+
+  revealTargets.forEach((el) => revealObserver.observe(el));
+
+  // Reveal above-the-fold hero content immediately (no flash on load).
+  document.querySelectorAll(".hero .reveal").forEach((el) => el.classList.add("is-visible"));
+} else {
+  revealTargets.forEach((el) => el.classList.add("is-visible"));
+}

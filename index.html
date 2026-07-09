@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -41,7 +41,7 @@
       <section class="hero" id="home">
         <div class="container hero-layout">
           <div class="hero-content reveal">
-            <p class="eyebrow">AVAILABLE · DATA SCIENCE · ML ENGINEERING · AI</p>
+            <p class="eyebrow">DATA SCIENCE &amp; FINANCE · UCSD '26 · OPEN TO WORK</p>
             <h1 id="hero-headline">Building software that turns ideas into useful products.</h1>
             <p id="hero-subtext">
               I design and ship end-to-end experiences across web, product, and systems work.
@@ -65,6 +65,12 @@
             />
           </figure>
           </div>
+          <a class="scroll-cue" href="#about" aria-label="Scroll to content">
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
         </section>
 
       <section class="marquee-wrap" aria-label="Skills marquee">
@@ -88,34 +94,10 @@
         </div>
       </section>
 
-      <section class="transition-section" id="transition">
-        <div class="transition-stars" aria-hidden="true"></div>
-        <div class="transition-nebula" aria-hidden="true"></div>
-        <div class="transition-orbits" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="transition-core" aria-hidden="true"></div>
-        <div class="transition-scroll-orbit" aria-hidden="true">
-          <span class="transition-scroll-node"></span>
-        </div>
-        <div class="transition-content">
-          <div class="scroll-hint-simple">
-            <span class="scroll-hint-label">Scroll</span>
-            <svg class="scroll-hint-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </div>
-      </section>
-
-
-      <div class="section-overlay" data-text="driven"></div>
       <section class="section container reveal" id="about">
         <div class="section-head">
           <p class="eyebrow">ABOUT</p>
-          <h2>Focused on <span class="accent-text">clear products</span> and real-world outcomes.</h2>
+          <h2>I like the <span class="accent-text">whole build</span>, not just the model.</h2>
         </div>
         <div class="about-body">
           <p id="about-text" class="section-copy"></p>
@@ -126,45 +108,43 @@
       <section class="section container reveal" id="skills">
         <div class="section-head">
           <p class="eyebrow">SKILLS</p>
-          <h2>Core tools I build with.</h2>
+          <h2>The tools I <span class="accent-text">actually reach for</span>.</h2>
         </div>
         <div class="skills-body" id="skills-body"></div>
       </section>
 
-      <div class="section-overlay" data-text="interactive"></div>
       <section class="section container reveal" id="projects">
         <div class="section-head">
           <p class="eyebrow">SELECTED WORK</p>
-          <h2>Projects with <span class="accent-text">measurable impact.</span></h2>
+          <h2>Things I've built and <span class="accent-text">shipped.</span></h2>
         </div>
         <div id="projects-grid" class="project-grid"></div>
       </section>
 
-      <div class="section-overlay" data-text="research"></div>
       <section class="section container reveal" id="honda">
         <div class="section-head">
-          <p class="eyebrow">FEATURED PROJECT</p>
-          <h2>Enterprise LLM <span class="accent-text">Evaluation Framework</span></h2>
+          <p class="eyebrow">CAPSTONE · HONDA RESEARCH LABS</p>
+          <h2>An <span class="accent-text">LLM evaluation</span> framework, from research to running.</h2>
         </div>
         <div class="honda-showcase">
           <div class="honda-description">
-            <p class="honda-lead">Led evaluation strategy research and built a scalable framework for enterprise AI systems at Honda Research Labs.</p>
+            <p class="honda-lead">My UCSD capstone, done with Honda Research Labs and 99P Labs. I led the evaluation research and built the framework we used to score model output — one of twelve students picked for the project.</p>
             <div class="honda-highlights">
               <div class="honda-highlight-item">
-                <h4>5 Quality Dimensions</h4>
-                <p>Multi-axis evaluation across accuracy, coherence, relevance, safety, and user alignment</p>
+                <h4>Five things we actually measured</h4>
+                <p>Accuracy, coherence, relevance, safety, and whether the answer matched what the user was really asking.</p>
               </div>
               <div class="honda-highlight-item">
-                <h4>LLM-as-Judge + Human Validation</h4>
-                <p>Hybrid scoring system combining AI evaluation with human expert review for ground truth</p>
+                <h4>LLM first pass, humans as ground truth</h4>
+                <p>An LLM did the initial scoring at scale; human reviewers set the ground truth we checked it against.</p>
               </div>
               <div class="honda-highlight-item">
-                <h4>0.96 Score / 4.7/5 Agreement</h4>
-                <p>High inter-rater consistency across 7 cross-domain lecture datasets</p>
+                <h4>0.96 average, 4.7/5 human agreement</h4>
+                <p>Held up consistently across seven cross-domain lecture datasets, not just the one it was tuned on.</p>
               </div>
               <div class="honda-highlight-item">
-                <h4>Trend-Aware Stopping Controller</h4>
-                <p>Smart termination logic to optimize evaluation efficiency without compromising reliability</p>
+                <h4>Knowing when to stop</h4>
+                <p>A controller that ended a run once scores stabilized, so we weren't burning compute chasing noise.</p>
               </div>
             </div>
             <p class="honda-tech"><strong>Stack:</strong> Python, LangChain, Streamlit, RAG Systems, Statistical Analysis</p>
@@ -192,8 +172,8 @@
 
       <section class="section container reveal" id="throughline">
         <div class="section-head">
-          <p class="eyebrow">MY APPROACH</p>
-          <h2>Transforming <span class="accent-text">complexity into clarity</span> and scale</h2>
+          <p class="eyebrow">HOW I WORK</p>
+          <h2>How I take a project from <span class="accent-text">idea to shipped</span>.</h2>
         </div>
         <div class="throughline-grid" id="throughline-grid"></div>
       </section>
@@ -201,34 +181,31 @@
       <section class="section container reveal" id="experience">
         <div class="section-head">
           <p class="eyebrow">EXPERIENCE</p>
-          <h2>Roles and milestones.</h2>
+          <h2>Where I've <span class="accent-text">worked</span>.</h2>
         </div>
         <div id="experience-list" class="timeline"></div>
       </section>
 
-      <div class="section-overlay" data-text="impact"></div>
       <section class="section container reveal" id="impact">
         <div class="section-head">
-          <p class="eyebrow">METRICS</p>
-          <h2>Building <span class="accent-text">at scale</span> with measurable results.</h2>
+          <p class="eyebrow">BY THE NUMBERS</p>
+          <h2>A few numbers I'm <span class="accent-text">proud of</span>.</h2>
         </div>
         <div class="metrics-grid" id="metrics-list"></div>
       </section>
 
-      <div class="section-overlay" data-text="recognized"></div>
       <section class="section container reveal" id="recognition">
         <div class="section-head">
           <p class="eyebrow">RECOGNITION</p>
-          <h2>Awards and <span class="accent-text">achievements</span>.</h2>
+          <h2>Honors and <span class="accent-text">recognition</span>.</h2>
         </div>
         <ul class="achievements-list" id="achievements-list"></ul>
       </section>
 
-      <div class="section-overlay" data-text="exploring"></div>
       <section class="section container reveal" id="learning">
         <div class="section-head">
-          <p class="eyebrow">CURRENTLY EXPLORING</p>
-          <h2>Technologies and <span class="accent-text">ideas</span> I'm diving into.</h2>
+          <p class="eyebrow">LEARNING NOW</p>
+          <h2>What I'm <span class="accent-text">digging into</span> lately.</h2>
         </div>
         <div class="learning-grid" id="learning-list"></div>
       </section>
@@ -236,7 +213,7 @@
       <section class="section container reveal" id="contact">
         <div class="section-head">
           <p class="eyebrow">CONTACT</p>
-          <h2>Let's work together.</h2>
+          <h2>Get in <span class="accent-text">touch</span>.</h2>
         </div>
         <div class="contact-card">
           <p id="contact-note">
