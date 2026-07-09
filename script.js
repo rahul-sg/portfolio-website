@@ -60,61 +60,6 @@ const portfolioData = {
   "projects": [
     {
       "index": "01",
-      "title": "PicksIQ",
-      "description": "Full-stack sports analytics platform using XGBoost for real-time player prop predictions and expected-value insights. Reached 1,000+ active users through live API data pipelines.",
-      "tags": [
-        "React",
-        "XGBoost",
-        "Data Engineering",
-        "API Pipelines"
-      ],
-      "link": "https://tinyurl.com/picksiq-github"
-    },
-    {
-      "index": "02",
-      "title": "Enterprise LLM Evaluation Framework — Honda Research Institute & 99P Labs",
-      "description": "Scalable evaluation framework across 5 quality dimensions using LLM-as-judge + human validation. Achieved 0.96 avg score and 4.7/5 inter-rater agreement across 7 cross-domain datasets.",
-      "tags": [
-        "Python",
-        "LLM Evaluation",
-        "Streamlit",
-        "RAG"
-      ],
-      "link": "https://tinyurl.com/honda-ucsd-capstone"
-    },
-    {
-      "index": "03",
-      "title": "CitMit: Expedite City Construction Plan-Checking Time",
-      "description": "GPT-4 powered compliance workflow with fine-tuning, prompt engineering, and vector embeddings for regulatory document checks. Reduced estimated review time by 50%. I also designed the product website (see Figma).",
-      "tags": [
-        "GPT-4",
-        "Embeddings",
-        "Supabase",
-        "DigitalOcean"
-      ],
-      "links": [
-        { "label": "GitHub →", "href": "https://github.com/YashRavipati1/CitmitAI" },
-        { "label": "Figma →", "href": "https://tinyurl.com/citmit-figma" }
-      ]
-    },
-    {
-      "index": "04",
-      "title": "2026 Midterm Election Predictor",
-      "description": "Full-stack ML election forecasting app covering all 505 2026 US races (435 House, 34 Senate, 36 Governor). Ridge regression model trained on 2,245 historical results with live data pipelines for generic ballot polls (Wikipedia, 4h), FEC fundraising (daily bulk file), presidential approval, and BLS/FRED economic indicators. Features a 10,000-trial correlated Monte Carlo simulator, tipping-point analysis, interactive choropleth maps, shareable scenario builder, and 12+ pages including per-race deep-dives and a full model exploration tab. Deployed on AWS EC2 behind Caddy with Redis caching.",
-      "tags": [
-        "FastAPI",
-        "React + Vite",
-        "scikit-learn",
-        "Docker",
-        "AWS EC2"
-      ],
-      "links": [
-        { "label": "GitHub →", "href": "https://github.com/rahul-sg/midterm-predictor" },
-        { "label": "Live →", "href": "https://tinyurl.com/midtermpredictor" }
-      ]
-    },
-    {
-      "index": "05",
       "title": "Touse",
       "description": "Full-stack USA housing affordability platform, live at touse.us. Calculates your real max home price across 6 loan types using live Freddie Mac rates, scores your readiness 0–100 (DTI, down payment, credit, savings cushion), and lets you save and compare unlimited buy/rent scenarios. An interactive map shows real geocoded listings filtered to your budget, and a two-stage ML pipeline (global LightGBM panel + per-ZIP Prophet) delivers 12-month price forecasts with 80% confidence bands. Backed by Zillow ZHVI, FRED, BEA, and RapidAPI with weekly/monthly Celery ETL jobs.",
       "tags": [
@@ -126,8 +71,67 @@ const portfolioData = {
         "Docker + Caddy"
       ],
       "links": [
-        { "label": "Live →", "href": "https://touse.us" },
-        { "label": "GitHub →", "href": "https://github.com/rahul-sg/Touse" }
+        { "label": "GitHub →", "href": "https://github.com/rahul-sg/Touse" },
+        { "label": "Live →", "href": "https://touse.us" }
+      ]
+    },
+    {
+      "index": "02",
+      "title": "Enterprise LLM Evaluation Framework — Honda Research Institute & 99P Labs",
+      "description": "My UCSD capstone with Honda Research Institute and 99P Labs, where I led the evaluation research. A framework that scores LLM output across five quality dimensions — accuracy, coherence, relevance, safety, and user alignment — using an LLM for the first-pass scoring and human reviewers for ground truth. A trend-aware stopping controller ends each run once scores stabilize, so no compute is wasted chasing noise. Built in Python with LangChain and RAG and wrapped in a Streamlit app with interactive diagnostics. It held up at 0.96 average and 4.7/5 inter-rater agreement across 7 cross-domain lecture datasets.",
+      "tags": [
+        "Python",
+        "LLM Evaluation",
+        "Streamlit",
+        "RAG"
+      ],
+      "links": [
+        { "label": "GitHub →", "href": "https://tinyurl.com/honda-ucsd-capstone" }
+      ]
+    },
+    {
+      "index": "03",
+      "title": "2026 Midterm Election Predictor",
+      "description": "Full-stack ML election forecasting app covering all 505 2026 US races (435 House, 34 Senate, 36 Governor). Ridge regression model trained on 2,245 historical results with live data pipelines for generic ballot polls (Wikipedia, 4h), FEC fundraising (daily bulk file), presidential approval, and BLS/FRED economic indicators. Features a 10,000-trial correlated Monte Carlo simulator, tipping-point analysis, interactive choropleth maps, shareable scenario builder, and 12+ pages including per-race deep-dives and a full model exploration tab. Deployed on AWS EC2 behind Caddy with Redis caching.",
+      "tags": [
+        "FastAPI",
+        "React + Vite",
+        "scikit-learn",
+        "Docker",
+        "AWS EC2"
+      ],
+      "links": [
+        { "label": "GitHub →", "href": "https://github.com/rahul-sg/midterm-predictor" },
+        { "label": "Live →", "href": "https://tinyurl.com/midterm-predictor" }
+      ]
+    },
+    {
+      "index": "04",
+      "title": "PicksIQ",
+      "description": "A full-stack sports analytics platform that predicts player props in real time and surfaces the ones with positive expected value. Live API pipelines pull in game and player data, feed a feature pipeline, and an XGBoost model turns it into probabilities and EV estimates that update as the lines move. The React front end lets users browse props, filter by matchup, and see where the model disagrees with the market. It grew to 1,000+ active users, which mostly meant keeping the data pipelines reliable and the predictions fast enough to be useful during live games.",
+      "tags": [
+        "React",
+        "XGBoost",
+        "Data Engineering",
+        "API Pipelines"
+      ],
+      "links": [
+        { "label": "GitHub →", "href": "https://tinyurl.com/picksiq-github" }
+      ]
+    },
+    {
+      "index": "05",
+      "title": "CitMit: Expedite City Construction Plan-Checking Time",
+      "description": "An AI compliance tool that checks city construction plans against building regulations, built during my time with UC Berkeley Haas and UCSD's Blackstone Launchpad. I built the end-to-end PDF pipeline — chunking documents, generating embeddings, and running similarity search against the regulations — with GPT-4 doing the actual plan-checking through prompt engineering and fine-tuning. Deployed on DigitalOcean with Supabase behind 10+ React pages I designed in Figma: multi-step forms, file uploads, and interactive results. It cut estimated review time by roughly half.",
+      "tags": [
+        "GPT-4",
+        "Embeddings",
+        "Supabase",
+        "DigitalOcean"
+      ],
+      "links": [
+        { "label": "GitHub →", "href": "https://github.com/YashRavipati1/CitmitAI" },
+        { "label": "Figma →", "href": "https://tinyurl.com/citmit-figma" }
       ]
     }
   ],
