@@ -125,10 +125,10 @@ body::before {
 }
 
 .brand {
-  color: var(--text);
+  color: var(--gold);
   text-decoration: none;
   font-family: var(--serif);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 1.15rem;
   letter-spacing: 0.02em;
 }

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="13" fill="#0a0a0b"/>
+  <rect x="1.75" y="1.75" width="60.5" height="60.5" rx="11.25" fill="none" stroke="#c9a24e" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="32" y="34" text-anchor="middle" dominant-baseline="central"
+    font-family="Georgia, 'Times New Roman', serif" font-weight="600" font-size="33"
+    fill="#e0be74">RS</text>
+</svg>

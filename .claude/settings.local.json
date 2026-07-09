@@ -10,7 +10,9 @@
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=1500,1180 --virtual-time-budget=8000 --screenshot=/private/tmp/claude-501/-Users-rahulsengupta-Desktop-My-Documents-Programming-Personal-Projects-Portfolio-Website/c13dcdec-52ff-47a4-8fd2-61aa9b4af42f/scratchpad/fonts.png file:///private/tmp/claude-501/-Users-rahulsengupta-Desktop-My-Documents-Programming-Personal-Projects-Portfolio-Website/c13dcdec-52ff-47a4-8fd2-61aa9b4af42f/scratchpad/fonts.html)",
       "Bash(open /private/tmp/claude-501/-Users-rahulsengupta-Desktop-My-Documents-Programming-Personal-Projects-Portfolio-Website/c13dcdec-52ff-47a4-8fd2-61aa9b4af42f/scratchpad/fonts.html)",
       "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless --disable-gpu --hide-scrollbars --force-device-scale-factor=1 --window-size=1500,1180 --virtual-time-budget=8000 --screenshot=/private/tmp/claude-501/-Users-rahulsengupta-Desktop-My-Documents-Programming-Personal-Projects-Portfolio-Website/c13dcdec-52ff-47a4-8fd2-61aa9b4af42f/scratchpad/fonts2.png file:///private/tmp/claude-501/-Users-rahulsengupta-Desktop-My-Documents-Programming-Personal-Projects-Portfolio-Website/c13dcdec-52ff-47a4-8fd2-61aa9b4af42f/scratchpad/fonts2.html)",
-      "Bash(open /private/tmp/claude-501/-Users-rahulsengupta-Desktop-My-Documents-Programming-Personal-Projects-Portfolio-Website/c13dcdec-52ff-47a4-8fd2-61aa9b4af42f/scratchpad/fonts2.html)"
+      "Bash(open /private/tmp/claude-501/-Users-rahulsengupta-Desktop-My-Documents-Programming-Personal-Projects-Portfolio-Website/c13dcdec-52ff-47a4-8fd2-61aa9b4af42f/scratchpad/fonts2.html)",
+      "Bash(sips --version)",
+      "Bash(python3 - __TRACKED_VAR__/fav64.png __TRACKED_VAR__/favicon.ico)"
     ],
     "additionalDirectories": [
       "/private/tmp/claude-501/-Users-rahulsengupta-Desktop-My-Documents-Programming-Personal-Projects-Portfolio-Website/c13dcdec-52ff-47a4-8fd2-61aa9b4af42f/scratchpad"
