@@ -1,216 +1,469 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rahul Sengupta | Portfolio</title>
+    <title>Rahul Sengupta</title>
+    <meta name="description" content="Rahul Sengupta, AI/ML Software Engineer. I build systems end to end, from the data pipeline and the model through the service, interface, and deployment." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Rahul Sengupta" />
+    <meta property="og:description" content="Rahul Sengupta, AI/ML Software Engineer. I build systems end to end, from the data pipeline and the model through the service, interface, and deployment." />
+    <meta property="og:image" content="images/og-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-    <meta
-      name="description"
-      content="Portfolio of Rahul Sengupta: projects, experience, and contact."
-    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Source+Sans+3:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
+    <script>
+      // Applied before first paint so a returning dark-mode reader never sees a flash.
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
   </head>
   <body>
-    <div class="scroll-rail" aria-hidden="true">
-      <span class="scroll-rail-progress" id="scroll-rail-progress"></span>
-    </div>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="masthead">
+      <div class="wrap masthead-inner">
+        <div class="masthead-text">
+          <h1>Rahul Sengupta</h1>
+          <p class="standfirst">
+            AI/ML Software Engineer. I build systems end to end, from the data pipeline and the
+            model through the service, the interface, and the deployment that keeps it running.
+          </p>
+          <div class="masthead-contact">
+            <p class="panel-label">Contact</p>
+            <ul class="masthead-links">
+              <li><a href="mailto:rahul_sen_gupta@yahoo.com">rahul_sen_gupta@yahoo.com</a></li>
+              <li><a href="https://github.com/rahul-sg" target="_blank" rel="noopener">GitHub</a></li>
+              <li><a href="https://linkedin.com/in/rahul-sg" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="Rahul_S_Resume_Final.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute; (PDF)</a></li>
+            </ul>
+          </div>
+        </div>
 
-    <header class="site-header" id="top">
-      <div class="container nav-wrap">
-        <a class="brand" href="#top">RS.</a>
-        <nav class="nav-links" aria-label="Primary navigation">
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Work</a>
-          <a href="#experience">Experience</a>
-          <a href="#contact">Contact</a>
-        </nav>
+        <img class="portrait" src="headshot.jpg" alt="Rahul Sengupta" width="200" height="200" />
+      </div>
+
+      <div class="wrap masthead-facts-wrap">
+        <dl class="masthead-facts">
+          <div><dt>Focus</dt><dd>Machine learning systems, end to end</dd></div>
+          <div><dt>Studying</dt><dd>M.S. Computer Science, Georgia Tech</dd></div>
+          <div><dt>Based in</dt><dd>San Francisco Bay Area</dd></div>
+        </dl>
       </div>
     </header>
 
-    <main>
-      <section class="hero" id="home">
-        <div class="container hero-layout">
-          <div class="hero-content reveal">
-            <p class="eyebrow">DATA SCIENCE &amp; FINANCE · UCSD '26 · OPEN TO WORK</p>
-            <h1 id="hero-headline">Building software that turns ideas into useful products.</h1>
-            <p id="hero-subtext">
-              I design and ship end-to-end experiences across web, product, and systems work.
+    <nav class="subnav" aria-label="Sections">
+      <div class="wrap subnav-inner">
+        <a href="#work">Work</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#writing">Writing</a>
+        <a href="#tools">Tools</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-toggle" type="button" id="theme-toggle"
+                aria-label="Switch between light and dark">
+          <span class="theme-toggle-label">Dark</span>
+        </button>
+      </div>
+    </nav>
+
+    <main id="main">
+      <section class="section wrap intro-grid" id="about">
+        <div class="prose">
+          <p>
+            I am an AI/ML Software Engineer, working full time while doing a master's in Computer
+            Science at Georgia Tech with a machine learning specialisation. The projects below are
+            a forecasting service, an LLM evaluation framework, a static analysis tool, and an
+            election model. They look unrelated, and in subject matter they are. What they have in
+            common is that none of them was finished when the model worked.
+          </p>
+          <p>
+            Each one needed the ingestion, the model, the service, the interface, and the
+            deployment to be right together, and I would rather own that whole path than a slice of
+            it. That is not a preference for breadth for its own sake. Nearly every bug I have had
+            to chase lived in the seams between those layers rather than inside the model, and a
+            forecast is only as good as the ETL that feeds it and the cache that serves it. The
+            same is true of the work I do day to day, which is where most of what I learn now comes
+            from, alongside the graduate coursework.
+          </p>
+          <p>
+            If there is a throughline, it is measurement. The evaluation framework exists to work
+            out whether a model's output is any good; Touse publishes its realised forecast error
+            rather than only a backtest; Cartographer marks every edge as extracted or inferred and
+            ships a view of what it could not determine. I am more interested in knowing when a
+            system is wrong than in the number it reports when everything goes well.
+          </p>
+        </div>
+
+        <aside class="intro-aside">
+          <h2 class="aside-title">Across the stack</h2>
+          <dl class="aside-list">
+            <div>
+              <dt>Data</dt>
+              <dd>Ingestion, ETL, scheduling, and the checks that catch a bad feed before a model
+                ever sees it</dd>
+            </div>
+            <div>
+              <dt>Models</dt>
+              <dd>Forecasting, LLM systems, and classical ML, picked to fit the problem rather than
+                the fashion</dd>
+            </div>
+            <div>
+              <dt>Services</dt>
+              <dd>APIs, backends, and the cloud infrastructure they run on</dd>
+            </div>
+            <div>
+              <dt>Delivery</dt>
+              <dd>The interface someone actually uses, and the deployment that keeps it alive</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
+
+      <section class="section wrap" id="work">
+        <h2 class="section-title">Selected work</h2>
+
+        <article class="project work-item">
+          <div class="project-aside">
+            <p class="project-index">01</p>
+            <dl class="facts">
+              <div><dt>Context</dt><dd>Personal, solo</dd></div>
+              <div><dt>Role</dt><dd>Everything</dd></div>
+              <div><dt>When</dt><dd>2025 to 2026</dd></div>
+              <div><dt>Status</dt><dd>Source open; host paused</dd></div>
+            </dl>
+            <dl class="keyfigs">
+              <div><dt>37</dt><dd>panel features</dd></div>
+              <div><dt>15.8M</dt><dd>ZHVI rows</dd></div>
+              <div><dt>12 mo</dt><dd>forecast horizon</dd></div>
+            </dl>
+          </div>
+          <div class="project-body">
+            <h3><a href="projects/touse.html">Touse</a></h3>
+            <p class="work-sub">Housing affordability and ZIP-level price forecasting</p>
+            <p class="work-summary">A housing tool that computes a real maximum home price across six loan types and projects ZIP-level prices twelve months out. A global LightGBM panel sets the endpoint and a per-ZIP Prophet model shapes the path, with realized accuracy tracked and published.</p>
+            <p class="stack"><span class="stack-label">Stack</span> FastAPI &middot; React, Vite, TypeScript &middot; LightGBM &middot; Prophet &middot; TreeSHAP &middot; PostgreSQL &middot; Redis &middot; Celery &middot; MapLibre GL &middot; Docker &middot; Caddy &middot; AWS EC2</p>
+            <p class="project-links">
+              <a class="work-more" href="projects/touse.html">Read more</a>
+              <a href="https://github.com/rahul-sg/Touse" target="_blank" rel="noopener">Source</a>
             </p>
-            <div class="hero-meta" aria-label="Quick profile details">
-              <span>Currently @ Eurofins USA</span>
-              <span>Based in Bay Area, CA</span>
-              <span>UCSD Data Science '26</span>
-            </div>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#projects">View Work</a>
-              <a class="btn btn-ghost" href="#contact">Get in Touch</a>
-            </div>
-          </div>
-          <figure class="hero-photo-wrap reveal" aria-label="Rahul Sengupta headshot">
-            <img
-              class="hero-photo"
-              src="headshot.jpg"
-              alt="Portrait of Rahul Sengupta"
-              loading="eager"
-            />
-          </figure>
-          </div>
-          <a class="scroll-cue" href="#about" aria-label="Scroll to content">
-            <span>Scroll</span>
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 5v14M5 13l7 7 7-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </section>
-
-      <section class="marquee-wrap" aria-label="Skills marquee">
-        <div class="marquee-track">
-          <span>Python</span>
-          <span>LLM Evaluation</span>
-          <span>XGBoost</span>
-          <span>RAG Systems</span>
-          <span>AWS</span>
-          <span>Power BI</span>
-          <span>React</span>
-          <span>Data Engineering</span>
-          <span>Python</span>
-          <span>LLM Evaluation</span>
-          <span>XGBoost</span>
-          <span>RAG Systems</span>
-          <span>AWS</span>
-          <span>Power BI</span>
-          <span>React</span>
-          <span>Data Engineering</span>
-        </div>
-      </section>
-
-      <section class="section container reveal" id="about">
-        <div class="section-head">
-          <p class="eyebrow">ABOUT</p>
-          <h2>I like the <span class="accent-text">whole build</span>, not just the model.</h2>
-        </div>
-        <div class="about-body">
-          <p id="about-text" class="section-copy"></p>
-          <div class="about-cards" id="about-cards"></div>
-        </div>
-      </section>
-
-      <section class="section container reveal" id="skills">
-        <div class="section-head">
-          <p class="eyebrow">SKILLS</p>
-          <h2>Tools I <span class="accent-text">work with</span>.</h2>
-        </div>
-        <div class="skills-body" id="skills-body"></div>
-      </section>
-
-      <section class="section container reveal" id="projects">
-        <div class="section-head">
-          <p class="eyebrow">SELECTED WORK</p>
-          <h2>Things I've <span class="accent-text">built</span>.</h2>
-        </div>
-        <div id="projects-grid" class="project-grid"></div>
-      </section>
-
-      <section class="section container reveal" id="honda">
-        <div class="section-head">
-          <p class="eyebrow">CAPSTONE · HONDA RESEARCH LABS</p>
-          <h2>An <span class="accent-text">LLM evaluation</span> framework.</h2>
-        </div>
-        <div class="honda-showcase">
-          <div class="honda-description">
-            <p class="honda-lead">My UCSD capstone, done with Honda Research Labs and 99P Labs. I led the evaluation research and built the framework we used to score model output, and was one of twelve students picked for the project.</p>
-            <div class="honda-highlights">
-              <div class="honda-highlight-item">
-                <h4>Five things we actually measured</h4>
-                <p>Accuracy, coherence, relevance, safety, and how well answers matched user intent.</p>
-              </div>
-              <div class="honda-highlight-item">
-                <h4>LLM first pass, humans as ground truth</h4>
-                <p>An LLM did the initial scoring at scale; human reviewers set the ground truth we checked it against.</p>
-              </div>
-              <div class="honda-highlight-item">
-                <h4>0.96 average, 4.7/5 human agreement</h4>
-                <p>Held up across seven cross-domain lecture datasets.</p>
-              </div>
-              <div class="honda-highlight-item">
-                <h4>Knowing when to stop</h4>
-                <p>A controller that ended a run once scores stabilized, to avoid wasting compute on noise.</p>
-              </div>
-            </div>
-            <p class="honda-tech"><strong>Stack:</strong> Python, LangChain, Streamlit, RAG Systems, Statistical Analysis</p>
-            <a class="honda-article-link" href="https://medium.com/99p-labs/iterative-refinement-of-llm-as-judge-framework-0819fe352575" target="_blank" rel="noreferrer">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              Published on Medium · 99P Labs
+            <a class="work-thumb" href="projects/touse.html">
+              <img src="images/touse-map.jpg" alt="" loading="lazy" />
             </a>
           </div>
-          <div class="honda-visual">
-            <div class="honda-stat">
-              <div class="stat-number">7</div>
-              <div class="stat-label">Datasets<br>Evaluated</div>
-            </div>
-            <div class="honda-stat">
-              <div class="stat-number">0.96</div>
-              <div class="stat-label">Avg<br>Score</div>
-            </div>
-            <div class="honda-stat">
-              <div class="stat-number">5</div>
-              <div class="stat-label">Quality<br>Dimensions</div>
-            </div>
+        </article>
+
+        <article class="project work-item">
+          <div class="project-aside">
+            <p class="project-index">02</p>
+            <dl class="facts">
+              <div><dt>Context</dt><dd>Personal, solo</dd></div>
+              <div><dt>Role</dt><dd>Everything</dd></div>
+              <div><dt>When</dt><dd>2026</dd></div>
+              <div><dt>Status</dt><dd>Open source, v1.1</dd></div>
+            </dl>
+            <dl class="keyfigs">
+              <div><dt>5</dt><dd>layers joined</dd></div>
+              <div><dt>126</dt><dd>tests</dd></div>
+              <div><dt>0</dt><dd>dependencies</dd></div>
+            </dl>
           </div>
+          <div class="project-body">
+            <h3><a href="projects/cartographer.html">Cartographer</a></h3>
+            <p class="work-sub">Mapping a codebase you did not write</p>
+            <p class="work-summary">A static analysis tool that maps a multi-repo, multi-service estate and joins five normally separate layers into one graph, then exposes it to a browser, a CLI, and to Claude over MCP. Zero dependencies, no network calls, and every edge marked as extracted or inferred.</p>
+            <p class="stack"><span class="stack-label">Stack</span> Python 3.8+ standard library only &middot; hand-rolled force, 3D, and diagram renderers &middot; MCP server over stdio exposing 14 tools &middot; 126 Python tests plus a renderer smoke suite across roughly 1,500 camera states</p>
+            <p class="project-links">
+              <a class="work-more" href="projects/cartographer.html">Read more</a>
+              <a href="https://github.com/rahul-sg/codebase-cartographer" target="_blank" rel="noopener">Source</a>
+            </p>
+            <a class="work-thumb" href="projects/cartographer.html">
+              <img src="images/cartographer-map.jpg" alt="" loading="lazy" />
+            </a>
+          </div>
+        </article>
+
+        <article class="project work-item">
+          <div class="project-aside">
+            <p class="project-index">03</p>
+            <dl class="facts">
+              <div><dt>Context</dt><dd>UCSD capstone</dd></div>
+              <div><dt>Role</dt><dd>Led evaluation research; four-person team</dd></div>
+              <div><dt>When</dt><dd>Sep 2025 to Mar 2026</dd></div>
+              <div><dt>Status</dt><dd>Paper and source public</dd></div>
+            </dl>
+            <dl class="keyfigs">
+              <div><dt>0.845</dt><dd>grand mean score</dd></div>
+              <div><dt>7/7</dt><dd>lectures improved</dd></div>
+              <div><dt>0.81</dt><dd>spearman vs human</dd></div>
+            </dl>
+          </div>
+          <div class="project-body">
+            <h3><a href="projects/llm-evaluation.html">LLM Evaluation Framework</a></h3>
+            <p class="work-sub">Honda Research Institute and 99P Labs, 2025 to 2026</p>
+            <p class="work-summary">A reference-free evaluator for LLM summaries: a domain-aware rubric judge paired with deterministic signals, refined in a loop that decides for itself when to stop. Grand mean 0.845 across seven lectures and three seeds, and 0.81 Spearman against human faithfulness labels.</p>
+            <p class="stack"><span class="stack-label">Stack</span> Python &middot; GPT-5 as generator and judge &middot; domain-aware rubric bank &middot; Chain-of-Density refinement &middot; Streamlit diagnostics &middot; multi-seed robustness and policy ablation harness</p>
+            <p class="project-links">
+              <a class="work-more" href="projects/llm-evaluation.html">Read more</a>
+              <a href="https://github.com/rahul-sg/HondaResearchLabs_DSC180A-Eval-Systems-Of-NextGen-LLMs/blob/main/artifacts/Q2/Iterative_Refinement_NextGen_LLMs.pdf" target="_blank" rel="noopener">Paper (PDF)</a>
+              <a href="https://medium.com/99p-labs/iterative-refinement-of-llm-as-judge-framework-0819fe352575" target="_blank" rel="noopener">Write-up on 99P Labs</a>
+              <a href="https://github.com/rahul-sg/HondaResearchLabs_DSC180A-Eval-Systems-Of-NextGen-LLMs" target="_blank" rel="noopener">Source</a>
+            </p>
+            <a class="work-thumb" href="projects/llm-evaluation.html">
+              <img src="images/llm-eval-dashboard.jpg" alt="" loading="lazy" />
+            </a>
+          </div>
+        </article>
+
+        <article class="project work-item">
+          <div class="project-aside">
+            <p class="project-index">04</p>
+            <dl class="facts">
+              <div><dt>Context</dt><dd>Personal, solo</dd></div>
+              <div><dt>Role</dt><dd>Everything</dd></div>
+              <div><dt>When</dt><dd>2025 to 2026</dd></div>
+              <div><dt>Status</dt><dd>Source open; host paused</dd></div>
+            </dl>
+            <dl class="keyfigs">
+              <div><dt>505</dt><dd>races forecast</dd></div>
+              <div><dt>2,240</dt><dd>training results</dd></div>
+              <div><dt>10k</dt><dd>simulations</dd></div>
+            </dl>
+          </div>
+          <div class="project-body">
+            <h3><a href="projects/midterm-forecast.html">2026 Midterm Forecast</a></h3>
+            <p class="work-sub">505 races, with a correlated simulation</p>
+            <p class="work-summary">Forecasts every one of the 505 races in the 2026 US midterms with a Ridge model trained on 2,240 real district results, and simulates chamber control 10,000 times with a shared national swing error rather than treating races as independent.</p>
+            <p class="stack"><span class="stack-label">Stack</span> FastAPI &middot; scikit-learn &middot; React and Vite &middot; Docker &middot; AWS EC2 behind Caddy &middot; 23 tests with network sources patched</p>
+            <p class="project-links">
+              <a class="work-more" href="projects/midterm-forecast.html">Read more</a>
+              <a href="https://github.com/rahul-sg/midterm-predictor" target="_blank" rel="noopener">Source</a>
+            </p>
+            <a class="work-thumb" href="projects/midterm-forecast.html">
+              <img src="images/midterm-dashboard.jpg" alt="" loading="lazy" />
+            </a>
+          </div>
+        </article>
+      </section>
+
+      <section class="section wrap" id="also">
+        <h2 class="section-title">Also built</h2>
+        <div class="prose">
+          <dl class="minor-list">
+            <div>
+              <dt>PicksIQ</dt>
+              <dd>
+                Sports analytics app predicting player props from live API data with an XGBoost
+                model behind a React front end, which reached roughly 1,000 users. A team project,
+                so the repository is not mine to publish.
+              </dd>
+            </div>
+            <div>
+              <dt>Sports picks aggregator</dt>
+              <dd>
+                A live fan-in feed. Reddit, Twitter/X, and Discord sources each run as an async
+                task inside FastAPI, normalize into a shared record, and broadcast to a Next.js
+                front end over a WebSocket with client-side reconnect.
+                <a href="https://github.com/rahul-sg/sports-data-consolidation" target="_blank" rel="noopener">Source</a>
+              </dd>
+            </div>
+            <div>
+              <dt>CitMit</dt>
+              <dd>
+                AI plan-checking for city construction submittals, built at the UC Berkeley Haas
+                and UCSD Blackstone Launchpad programs. See Experience below. The repository
+                belongs to the team.
+              </dd>
+            </div>
+          </dl>
         </div>
       </section>
 
-      <section class="section container reveal" id="experience">
-        <div class="section-head">
-          <p class="eyebrow">EXPERIENCE</p>
-          <h2>Where I've <span class="accent-text">worked</span>.</h2>
-        </div>
-        <div id="experience-list" class="timeline"></div>
-      </section>
-
-      <section class="section container reveal" id="recognition">
-        <div class="section-head">
-          <p class="eyebrow">RECOGNITION</p>
-          <h2>Honors and <span class="accent-text">recognition</span>.</h2>
-        </div>
-        <ul class="achievements-list" id="achievements-list"></ul>
-      </section>
-
-      <section class="section container reveal" id="learning">
-        <div class="section-head">
-          <p class="eyebrow">LEARNING NOW</p>
-          <h2>What I'm <span class="accent-text">exploring</span> now.</h2>
-        </div>
-        <div class="learning-grid" id="learning-list"></div>
-      </section>
-
-      <section class="section container reveal" id="contact">
-        <div class="section-head">
-          <p class="eyebrow">CONTACT</p>
-          <h2>Get in <span class="accent-text">touch</span>.</h2>
-        </div>
-        <div class="contact-card">
-          <p id="contact-note">
-            I'm looking for full-time Data Science, ML, or AI roles starting in 2026, remote or onsite. If you're hiring or just want to talk through a problem, email is the fastest way to reach me.
+      <section class="section wrap" id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="prose">
+          <dl class="edu-list">
+            <div>
+              <dt>Georgia Institute of Technology</dt>
+              <dd>
+                M.S. Computer Science, machine learning specialisation. In progress.
+                Coursework in machine learning, deep learning and neural networks,
+                reinforcement learning, systems design for cloud architecture, and
+                high performance computing.
+              </dd>
+            </div>
+            <div>
+              <dt>University of California, San Diego</dt>
+              <dd>
+                B.S. Data Science, minor in Finance from the Rady School of Management.
+                Provost Honors. Capstone with Honda Research Institute and 99P Labs. Fellow of the
+                UC Berkeley Haas and UCSD Blackstone Launchpad entrepreneurship program, 2023 to
+                2024. Brother of the Chi Lambda chapter of Phi Gamma Delta (FIJI).
+              </dd>
+            </div>
+          </dl>
+          <p class="edu-aside">
+            Away from a keyboard: thirteen years of competitive swimming and water polo,
+            which is where I learned to keep working at the unglamorous part of a problem
+            long after it stopped being interesting.
           </p>
-          <div class="contact-links" id="contact-links"></div>
+        </div>
+      </section>
+
+      <section class="section wrap" id="experience">
+        <h2 class="section-title">Experience</h2>
+
+        <article class="role">
+          <div class="project-aside">
+            <p class="role-dates">Jun 2025 to Jun 2026</p>
+          </div>
+          <div class="project-body">
+            <h3>Finance &amp; Data Science Intern</h3>
+            <p class="role-org">Eurofins USA &middot; San Diego, CA (remote)</p>
+            <ul>
+              <li>Built quarterly revenue forecasting models with Random Forest and XGBoost across 45+ business units, cutting normalised RMSE from 0.94 to 0.72, a 23% reduction in error against the previous baseline.</li>
+              <li>Shipped five real-time Power BI dashboards for operational KPIs, used by leadership for quarterly sales planning.</li>
+              <li>Automated data ingestion, cutting manual reporting effort by roughly 60% across finance and operations.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="role">
+          <div class="project-aside">
+            <p class="role-dates">Sep 2025 to Mar 2026</p>
+          </div>
+          <div class="project-body">
+            <h3>AI Research &amp; Evaluation Engineer</h3>
+            <p class="role-org">Honda Research Institute &amp; 99P Labs &middot; San Diego, CA (hybrid)</p>
+            <ul>
+              <li>Led evaluation-strategy research and designed a reference-free LLM-as-judge framework with domain-aware rubrics and hybrid deterministic scoring.</li>
+              <li>Built a lever-based stopping controller that ends a refinement run on a decision table over quality, deterministic, and trend signals instead of a fixed iteration count.</li>
+              <li>Reached a grand mean score of 0.845 across seven datasets and three seeds, and validated it against a 50-sample human faithfulness set at 0.81 Spearman.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="role">
+          <div class="project-aside">
+            <p class="role-dates">Sep 2023 to Sep 2024</p>
+          </div>
+          <div class="project-body">
+            <h3>AI Developer Intern</h3>
+            <p class="role-org">CitMit AI &middot; UC Berkeley Haas &amp; UCSD Blackstone Launchpad</p>
+            <ul>
+              <li>Built an AI compliance system checking construction plans against building code, using GPT-4, prompt engineering, fine-tuning, and vector embeddings, cutting estimated review time by about half.</li>
+              <li>Architected the PDF processing pipeline (chunking, embeddings, similarity search), deployed on DigitalOcean with Supabase.</li>
+              <li>Designed and built 10+ React pages from Figma: multi-step forms, file uploads, and interactive visualizations.</li>
+            </ul>
+          </div>
+        </article>
+      </section>
+
+      <section class="section wrap" id="writing">
+        <h2 class="section-title">Writing</h2>
+        <div class="prose">
+          <ul class="link-list">
+            <li>
+              <a href="https://medium.com/99p-labs/iterative-refinement-of-llm-as-judge-framework-0819fe352575" target="_blank" rel="noopener">Iterative Refinement of an LLM-as-Judge Framework</a>
+              <span class="note">99P Labs, 2026 &middot; with A. Medidi, Z. Thomason, and Z. Qi</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section wrap" id="tools">
+        <h2 class="section-title">Tools</h2>
+        <div class="prose">
+          <dl class="tools-list">
+            <div>
+              <dt>Languages</dt>
+              <dd>Python, Java, TypeScript, SQL, R
+                <span class="tools-where">Python and SQL across everything here; Java and TypeScript in current professional work</span>
+              </dd>
+            </div>
+            <div>
+              <dt>Machine learning</dt>
+              <dd>LightGBM, Prophet, scikit-learn, XGBoost, SHAP
+                <span class="tools-where">the Touse panel model, the midterm Ridge model, revenue forecasting at Eurofins</span>
+              </dd>
+            </div>
+            <div>
+              <dt>LLM systems</dt>
+              <dd>Gemini, Vertex AI, GPT-4 and GPT-5, LangChain, RAG, embeddings, prompt engineering, LLM-as-judge evaluation
+                <span class="tools-where">the Honda capstone, an MCP server in Cartographer, and current professional work</span>
+              </dd>
+            </div>
+            <div>
+              <dt>Cloud</dt>
+              <dd>Google Cloud with Vertex AI, AWS EC2, Azure App Service, Docker, Caddy
+                <span class="tools-where">deploying and operating my own services, and current professional work</span>
+              </dd>
+            </div>
+            <div>
+              <dt>Backend</dt>
+              <dd>FastAPI, Spring Boot, Celery, PostgreSQL, Redis, REST APIs
+                <span class="tools-where">Touse and the midterm forecast in production; Java services in current professional work</span>
+              </dd>
+            </div>
+            <div>
+              <dt>Frontend</dt>
+              <dd>Angular, React, TypeScript, Vite, MapLibre GL
+                <span class="tools-where">Angular in current professional work; React for Touse and the midterm forecast</span>
+              </dd>
+            </div>
+            <div>
+              <dt>Practice</dt>
+              <dd>End-to-end SDLC, Git and code review, CI/CD, unit and integration testing, observability and monitoring
+                <span class="tools-where">how the day-to-day work runs, and the habit behind Cartographer's 126-test suite</span>
+              </dd>
+            </div>
+            <div>
+              <dt>Learning now</dt>
+              <dd>PyTorch, deep learning and neural networks, reinforcement learning, systems design for cloud architecture, high performance computing
+                <span class="tools-where">graduate coursework at Georgia Tech, not yet something I have shipped</span>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="section wrap" id="contact">
+        <h2 class="section-title">Contact</h2>
+        <div class="prose">
+          <p>
+            I am working full time as an AI/ML Software Engineer and finishing a master's at
+            Georgia Tech, and I am open to talking about roles where I own the system rather than
+            one slice of it, on something that has to run in production rather than stay in a
+            notebook. Remote or onsite. Email is the fastest way to reach me, and I am glad to walk
+            through any of the code above, including the parts that did not work.
+          </p>
+          <ul class="link-list">
+            <li><a href="mailto:rahul_sen_gupta@yahoo.com">rahul_sen_gupta@yahoo.com</a></li>
+            <li><a href="https://github.com/rahul-sg" target="_blank" rel="noopener">github.com/rahul-sg</a></li>
+            <li><a href="https://linkedin.com/in/rahul-sg" target="_blank" rel="noopener">linkedin.com/in/rahul-sg</a></li>
+            <li><a href="Rahul_S_Resume_Final.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute; (PDF)</a></li>
+          </ul>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer container">
-      <p id="footer-text">© <span id="year"></span> Rahul Sengupta</p>
+    <footer class="site-footer">
+      <div class="wrap site-footer-inner">
+        <p>Rahul Sengupta</p>
+        <p class="site-footer-links">
+          <a href="mailto:rahul_sen_gupta@yahoo.com">Email</a>
+          <a href="https://github.com/rahul-sg" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com/in/rahul-sg" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="Rahul_S_Resume_Final.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute;</a>
+        </p>
+      </div>
     </footer>
 
     <script src="script.js"></script>

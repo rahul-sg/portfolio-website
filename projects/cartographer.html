@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cartographer &middot; Rahul Sengupta</title>
+    <meta name="description" content="A dependency-free static analysis tool that joins symbol, module, service, data, and behavioural layers of a multi-repo estate into one graph." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Cartographer &middot; Rahul Sengupta" />
+    <meta property="og:description" content="A dependency-free static analysis tool that joins symbol, module, service, data, and behavioural layers of a multi-repo estate into one graph." />
+    <meta property="og:image" content="../images/og-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script>
+      // Applied before first paint so a returning dark-mode reader never sees a flash.
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav class="subnav" aria-label="Sections">
+      <div class="wrap subnav-inner">
+        <a class="subnav-brand" href="../index.html">Rahul Sengupta</a>
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#writing">Writing</a>
+        <a href="../index.html#tools">Tools</a>
+        <a href="../index.html#contact">Contact</a>
+        <button class="theme-toggle" type="button" id="theme-toggle"
+                aria-label="Switch between light and dark">
+          <span class="theme-toggle-label">Dark</span>
+        </button>
+      </div>
+    </nav>
+
+    <main id="main">
+      <article class="section wrap project project-page">
+        <div class="project-aside">
+          <p class="project-index">02 / 04</p>
+          <dl class="facts">
+            <div><dt>Context</dt><dd>Personal, solo</dd></div>
+            <div><dt>Role</dt><dd>Everything</dd></div>
+            <div><dt>When</dt><dd>2026</dd></div>
+            <div><dt>Status</dt><dd>Open source, v1.1</dd></div>
+          </dl>
+          <dl class="keyfigs">
+            <div><dt>5</dt><dd>layers joined</dd></div>
+            <div><dt>126</dt><dd>tests</dd></div>
+            <div><dt>0</dt><dd>dependencies</dd></div>
+          </dl>
+          <p class="aside-back"><a href="../index.html#work">All work</a></p>
+        </div>
+
+        <div class="project-body">
+          <header class="page-head">
+            <h1>Cartographer</h1>
+            <p class="page-sub">Mapping a codebase you did not write</p>
+          </header>
+
+          <p class="lead">A static analysis tool that maps a multi-repo, multi-service estate and joins five normally separate layers into one graph, then exposes it to a browser, a CLI, and to Claude over MCP. Python standard library only, with no network calls in any code path.</p>
+          <figure class="shot">
+            <a href="../images/cartographer-map.jpg" target="_blank" rel="noopener">
+              <img src="../images/cartographer-map.jpg" alt="The estate view of a five-repository system. 53 nodes drawn with 65 more rolled up inside them; colour is repository, and every edge type can be switched off independently." loading="lazy" />
+            </a>
+            <figcaption>The estate view of a five-repository system. 53 nodes drawn with 65 more rolled up inside them; colour is repository, and every edge type can be switched off independently.</figcaption>
+          </figure>
+          <figure class="shot">
+            <a href="../images/cartographer-coverage.jpg" target="_blank" rel="noopener">
+              <img src="../images/cartographer-coverage.jpg" alt="The Coverage view, which is the part I care most about: 208 edges read from source against 12 that are only name matches, and a list of what the scan could not establish, phrased as questions to bring to a teammate." loading="lazy" />
+            </a>
+            <figcaption>The Coverage view, which is the part I care most about: 208 edges read from source against 12 that are only name matches, and a list of what the scan could not establish, phrased as questions to bring to a teammate.</figcaption>
+          </figure>
+
+            <h2>The problem it exists for</h2>
+            <p>No AST crosses a process boundary. A perfect symbol graph of <code>order-svc</code> will never show that it calls <code>pricing-svc</code>, because that edge exists only as the string <code>PRICING_SERVICE_URL</code> in a YAML file. Conversely, a service map knows nothing about functions, and neither one knows that two services quietly write to the same table.</p>
+
+            <h2>Five layers, joined</h2>
+            <p>Symbols come from source across nine languages. Modules come from Maven, Gradle, npm, and Go manifests. Services come from config, single-page-app proxy files, specs, and optional runtime traces. Data comes from migration SQL and the SQL embedded in hand-written DAOs. Behaviour, meaning hotspots, change coupling, and ownership, comes from git history.</p>
+            <p>Every symbol carries its service, which is what makes the join useful: a change to one method can be followed out through its repository and across a service boundary to the consumers. The individual techniques are all borrowed. The join is the contribution.</p>
+            <figure class="diagram">
+              <svg viewBox="0 0 740 292" role="img" aria-label="Five layers most tools keep separate, joined because every node carries the service it belongs to."><defs><marker id="dg-a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="dg-head" d="M0 1 L7 4 L0 7 z"/></marker></defs><path class="dg-spine" d="M120 33 V285"/><text class="dg-layer dg-layer--accent" x="0" y="150">Service</text><text class="dg-src" x="0" y="168">identity, carried</text><text class="dg-src" x="0" y="184">on every node</text><rect class="dg-box" x="150" y="12" width="590" height="42" rx="4"/><text class="dg-layer" x="166" y="38">Symbol</text><text class="dg-t" text-anchor="start" x="260" y="38">classes, functions, calls, imports</text><text class="dg-src" text-anchor="end" x="726" y="38">source, 9 languages</text><path class="dg-arr" d="M120 33 H146"/><rect class="dg-box" x="150" y="66" width="590" height="42" rx="4"/><text class="dg-layer" x="166" y="92">Module</text><text class="dg-t" text-anchor="start" x="260" y="92">services vs shared libraries, build deps</text><text class="dg-src" text-anchor="end" x="726" y="92">Maven, Gradle, npm, Go</text><path class="dg-arr" d="M120 87 H146"/><rect class="dg-box" x="150" y="120" width="590" height="42" rx="4"/><text class="dg-layer" x="166" y="146">Service</text><text class="dg-t" text-anchor="start" x="260" y="146">who calls whom, routes, events</text><text class="dg-src" text-anchor="end" x="726" y="146">config, proxies, specs, traces</text><path class="dg-arr" d="M120 141 H146"/><rect class="dg-box" x="150" y="174" width="590" height="42" rx="4"/><text class="dg-layer" x="166" y="200">Data</text><text class="dg-t" text-anchor="start" x="260" y="200">tables, readers, writers</text><text class="dg-src" text-anchor="end" x="726" y="200">migration SQL, DAO SQL</text><path class="dg-arr" d="M120 195 H146"/><rect class="dg-box" x="150" y="228" width="590" height="42" rx="4"/><text class="dg-layer" x="166" y="254">Behavioural</text><text class="dg-t" text-anchor="start" x="260" y="254">hotspots, coupling, ownership</text><text class="dg-src" text-anchor="end" x="726" y="254">git history</text><path class="dg-arr" d="M120 249 H146"/></svg>
+              <figcaption>Five layers most tools keep separate, joined because every node carries the service it belongs to.</figcaption>
+            </figure>
+
+            <h2>Uncertainty as a feature</h2>
+            <p>Every edge is marked <code>EXTRACTED</code>, meaning read from source, config, a spec, or a trace, or <code>INFERRED</code>, meaning name-matched and therefore a lead rather than a fact. That distinction is visible everywhere, including in the UI, and a dedicated Coverage view lists what the scan could not establish.</p>
+            <p>A map that hides its own gaps is worse than one that admits them, because you eventually repeat it in front of someone who knows better.</p>
+
+            <h2>Making a 145,000-node graph legible</h2>
+            <p>A real estate produces on the order of 145,000 nodes. Drawn at once, that is not slow so much as illegible, and nobody learns anything from a grey hairball. So the graph collapses to whichever level you are looking at and rolls edges up with counts.</p>
+            <p>Measured on a 39,796-node graph, the estate view renders 26 readable nodes with 39,770 rolled up inside them, in 0.39 seconds. Nothing is discarded: a service-to-service arrow expands back into the individual calls that justify it.</p>
+
+            <h2>Constraints that shaped it</h2>
+            <p>Zero dependencies, Python 3.8 standard library only, and no server, because in regulated environments the reason good tooling does not get adopted is procurement rather than capability.</p>
+            <p>The force simulation, the 3D projection, and the diagram layout are hand-rolled rather than pulled from a CDN, since an outbound request simply fails on a locked-down machine. A test asserts that no asset references an external host.</p>
+            <figure class="code-figure">
+              <pre><code>$ ./install.sh                # verify it runs here (~10s)
+$ cartographer init --root .  # discover repos, modules, proxies
+$ cartographer scan           # build the graph
+$ cartographer ui             # explore it, loopback only
+
+$ cartographer impact OrderService.submit
+$ cartographer audit          # what the extractors MISSED</code></pre>
+              <figcaption>The whole surface. No install step, because there is nothing to install.</figcaption>
+            </figure>
+
+            <h2>What it is actually good at</h2>
+            <p>Finding coupling nobody documented: two services writing one table, a <code>CREATE TABLE</code> in one repository whose only writer lives in another, files in different repositories that change together in the same commits, which is a real dependency that no import graph contains.</p>
+            <p>And answering what breaks if I change this, across layers, with the exact file and line behind every claim, and reviewers drawn from who actually touched the code rather than from an org chart.</p>
+
+            <h2>What building it taught me</h2>
+            <p>The two worst bugs in the tool were silent recall failures: extractors quietly missing things while reporting success. That is why it ships an <code>audit</code> command comparing raw source against what was extracted, because a tool that maps a codebase has to be able to check its own coverage.</p>
+            <p>Related, and more general: several of my early assertions passed against deliberately broken code, because they measured something adjacent to the property they claimed to check. A new assertion is worth nothing until you have watched it fail.</p>
+
+            <h2>Honest limits</h2>
+            <p>The symbol backend is regex-based, roughly 70% recall against a real parser, and <code>calls</code> edges are name-matched rather than scope-resolved, which is why they are marked <code>INFERRED</code>. Dynamic dispatch, reflection, and dependency-injection wiring are invisible to static scanning, so <code>scan</code> accepts runtime traces as the answer to all three.</p>
+            <p>It is not state of the art at any single layer, and it says so. Techniques are cited where used: personalised-PageRank repo maps from aider, churn and change coupling from Adam Tornhill's work, provenance marking from Graphify. Absence of an edge is not proof of independence, and the tool says that everywhere too.</p>
+
+          <p class="stack"><span class="stack-label">Stack</span> Python 3.8+ standard library only &middot; hand-rolled force, 3D, and diagram renderers &middot; MCP server over stdio exposing 14 tools &middot; 126 Python tests plus a renderer smoke suite across roughly 1,500 camera states</p>
+            <p class="project-links">
+              <a href="https://github.com/rahul-sg/codebase-cartographer" target="_blank" rel="noopener">Source</a>
+            </p>
+        </div>
+      </article>
+
+      <nav class="wrap pager" aria-label="Other projects">
+        <a class="pager-link pager-prev" href="touse.html">
+          <span class="pager-label">Previous</span>
+          <span class="pager-name">Touse</span>
+        </a>
+        <a class="pager-link pager-next" href="llm-evaluation.html">
+          <span class="pager-label">Next</span>
+          <span class="pager-name">LLM Evaluation Framework</span>
+        </a>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer-inner">
+        <p>Rahul Sengupta</p>
+        <p class="site-footer-links">
+          <a href="mailto:rahul_sen_gupta@yahoo.com">Email</a>
+          <a href="https://github.com/rahul-sg" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com/in/rahul-sg" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="../Rahul_S_Resume_Final.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute;</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>

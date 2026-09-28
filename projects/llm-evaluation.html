@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LLM Evaluation Framework &middot; Rahul Sengupta</title>
+    <meta name="description" content="A reference-free LLM-as-judge pipeline with domain-aware rubrics, lever-based dynamic stopping, and human faithfulness calibration." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="LLM Evaluation Framework &middot; Rahul Sengupta" />
+    <meta property="og:description" content="A reference-free LLM-as-judge pipeline with domain-aware rubrics, lever-based dynamic stopping, and human faithfulness calibration." />
+    <meta property="og:image" content="../images/og-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script>
+      // Applied before first paint so a returning dark-mode reader never sees a flash.
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav class="subnav" aria-label="Sections">
+      <div class="wrap subnav-inner">
+        <a class="subnav-brand" href="../index.html">Rahul Sengupta</a>
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#writing">Writing</a>
+        <a href="../index.html#tools">Tools</a>
+        <a href="../index.html#contact">Contact</a>
+        <button class="theme-toggle" type="button" id="theme-toggle"
+                aria-label="Switch between light and dark">
+          <span class="theme-toggle-label">Dark</span>
+        </button>
+      </div>
+    </nav>
+
+    <main id="main">
+      <article class="section wrap project project-page">
+        <div class="project-aside">
+          <p class="project-index">03 / 04</p>
+          <dl class="facts">
+            <div><dt>Context</dt><dd>UCSD capstone</dd></div>
+            <div><dt>Role</dt><dd>Led evaluation research; four-person team</dd></div>
+            <div><dt>When</dt><dd>Sep 2025 to Mar 2026</dd></div>
+            <div><dt>Status</dt><dd>Paper and source public</dd></div>
+          </dl>
+          <dl class="keyfigs">
+            <div><dt>0.845</dt><dd>grand mean score</dd></div>
+            <div><dt>7/7</dt><dd>lectures improved</dd></div>
+            <div><dt>0.81</dt><dd>spearman vs human</dd></div>
+          </dl>
+          <p class="aside-back"><a href="../index.html#work">All work</a></p>
+        </div>
+
+        <div class="project-body">
+          <header class="page-head">
+            <h1>LLM Evaluation Framework</h1>
+            <p class="page-sub">Honda Research Institute and 99P Labs, 2025 to 2026</p>
+          </header>
+
+          <p class="lead">An evaluation framework for LLM-generated summaries, built to be reference-free and domain-aware rather than dependent on a gold answer. I led the evaluation research on a four-person capstone with Honda Research Institute and 99P Labs, as one of twelve students selected for the programme.</p>
+          <figure class="shot">
+            <a href="../images/llm-eval-dashboard.jpg" target="_blank" rel="noopener">
+              <img src="../images/llm-eval-dashboard.jpg" alt="The per-run dashboard: the final score, the stop state, how many iterations it took, the domain the judge routed to, and the gap between the two scorers. A run that stalls looks different from one that converges, and the dashboard says which happened." loading="lazy" />
+            </a>
+            <figcaption>The per-run dashboard: the final score, the stop state, how many iterations it took, the domain the judge routed to, and the gap between the two scorers. A run that stalls looks different from one that converges, and the dashboard says which happened.</figcaption>
+          </figure>
+
+            <h2>The problem with the usual metrics</h2>
+            <p>ROUGE, BLEU, and BERTScore reward surface similarity to a reference. They do not see whether a summary is factually grounded in the source, whether it covers what matters, or whether it is structured the way a reader in that domain expects. For summarisation of dense technical material, those are the only things that matter.</p>
+            <p>Human review measures the right thing but does not scale, and it is expensive enough that it stops being run. So the question is not whether to use an LLM as a judge, but how to make an LLM judge you can actually trust.</p>
+
+            <h2>The loop</h2>
+            <p>A judge scores the current summary against a rubric selected for the detected domain, deterministic signals are computed from the slides themselves, and a controller decides whether the run has converged. If not, the summary is refined and a pairwise comparison decides whether the rewrite actually replaces the current best, which stops a bad rewrite from propagating.</p>
+            <p>Scoring is hybrid on purpose. The rubric judge catches the things only a language model notices, and the deterministic signals, such as length error, section coverage, and lexical grounding against the slide text, catch the things a language model will happily agree with itself about.</p>
+            <figure class="diagram">
+              <svg viewBox="0 0 740 312" role="img" aria-label="The controller decides when to stop rather than running a fixed number of rounds, with a floor of four iterations and a hard ceiling of twelve. The best-of-last-3 safeguard stops one weak final rewrite from becoming the answer."><defs><marker id="dg-a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="dg-head" d="M0 1 L7 4 L0 7 z"/></marker></defs><text class="dg-band" x="0" y="12">GENERATE</text><rect class="dg-box" x="0" y="26" width="150" height="48" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="75" y="54">Lecture slides</tspan></text><path class="dg-arr" d="M154 50 L182 50" marker-end="url(#dg-a)"/><rect class="dg-box" x="186" y="26" width="160" height="48" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="266" y="47">Initial summary</tspan><tspan x="266" y="62">S0</tspan></text><path class="dg-arr" d="M350 50 H420 V96" marker-end="url(#dg-a)"/><rect class="dg-loop" x="0" y="96" width="740" height="120" rx="6"/><text class="dg-band" x="14" y="114">REFINEMENT LOOP</text><rect class="dg-box" x="14" y="140" width="150" height="52" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="89" y="163">Domain-aware</tspan><tspan x="89" y="178">rubric judge</tspan></text><path class="dg-arr" d="M168 166 L192 166" marker-end="url(#dg-a)"/><rect class="dg-box" x="196" y="140" width="140" height="52" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="266" y="163">Deterministic</tspan><tspan x="266" y="178">signals</tspan></text><path class="dg-arr" d="M340 166 L364 166" marker-end="url(#dg-a)"/><rect class="dg-box" x="368" y="140" width="150" height="52" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="443" y="163">Refine, then</tspan><tspan x="443" y="178">pairwise select</tspan></text><path class="dg-arr" d="M522 166 L546 166" marker-end="url(#dg-a)"/><rect class="dg-box dg-box--accent" x="550" y="140" width="176" height="52" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="638" y="163">Lever stopping</tspan><tspan x="638" y="178">controller</tspan></text><path class="dg-arr dg-arr--dash" d="M638 140 V122 H89 V134" marker-end="url(#dg-a)"/><text class="dg-src" text-anchor="middle" x="363" y="114">not converged yet</text><path class="dg-arr" d="M638 192 V232 H400 V252" marker-end="url(#dg-a)"/><text class="dg-src" x="648" y="212">stop</text><rect class="dg-box" x="320" y="252" width="160" height="48" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="400" y="280">Best of last 3</tspan></text><path class="dg-arr" d="M484 276 L508 276" marker-end="url(#dg-a)"/><rect class="dg-box" x="512" y="252" width="200" height="48" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="612" y="273">final.txt and result.json</tspan><tspan x="612" y="288">with every iteration kept</tspan></text></svg>
+              <figcaption>The controller decides when to stop rather than running a fixed number of rounds, with a floor of four iterations and a hard ceiling of twelve. The best-of-last-3 safeguard stops one weak final rewrite from becoming the answer.</figcaption>
+            </figure>
+
+            <h2>Knowing when to stop</h2>
+            <p>Iterative refinement raises a question nobody asks until the compute bill arrives: when is a run finished? Rather than a fixed number of rounds, a decision table runs over several signals, including the composite quality score, the deterministic signals, and the trend across iterations. It enforces a minimum of four iterations before it is allowed to stop and a hard maximum of twelve so a run cannot loop away.</p>
+            <p>It reports a stop state rather than a bare number: <code>pass</code>, <code>borderline</code>, or <code>stalled</code>. A run that plateaued at a mediocre score is a different result from one that converged, and collapsing them into a single figure hides the case you most need to see. At the end, a best-of-last-three safeguard picks the final summary, because the last rewrite is not reliably the best one.</p>
+            <figure class="code-figure">
+              <pre><code>Final Score (0-1)   0.831
+Stop State          stalled
+Iterations          4
+Detected Domain     BUSINESS
+Scorer Delta |C-M|  0.001</code></pre>
+              <figcaption>One run's stop record. The controller reports <em>why</em> it stopped, not just that it did, which is what makes a stalled run distinguishable from a converged one.</figcaption>
+            </figure>
+
+            <h2>What it scored</h2>
+            <p>Across seven cross-domain lecture sets and three random seeds, the grand mean final score is 0.845 with a standard deviation of 0.017. The tuned policy beat the legacy one on all seven lectures, averaging 0.076 higher. The hardest set was the theory-heavy humanities lecture at 0.825, which is the result I would have predicted and was glad to see the system agree with.</p>
+            <p>For validation I built a human-labelled faithfulness set, 50 samples across all seven lectures, and measured how well the automated score tracked it. Spearman against human faithfulness is 0.808, and against the hallucination signal it is -0.692, in the direction you would want. That correlation, not the score itself, is the number that says whether the evaluator works.</p>
+
+            <h2>Why the headline number went down</h2>
+            <p>An earlier version of this system reported an average final score of 0.962 against human reference summaries. The later reference-free pipeline reports 0.845, and the drop is the point rather than a regression.</p>
+            <p>The first number was measured against a gold summary on an easier task. The second is measured without a reference, on a harder rubric, with a hallucination penalty applied and robustness checked across seeds. A number that falls when you make the measurement honest is the number worth reporting.</p>
+
+            <h2>Honest limits</h2>
+            <p>Seven lectures are not enough for strong statistical claims about domain behaviour or stopping stability, so the results are descriptive evidence rather than a benchmark.</p>
+            <p>The same model family generates and judges. That risks style alignment between generator and evaluator and probably inflates rubric scores relative to what an independent model or a human would give. It is the single biggest threat to the result and the first thing I would change, by swapping in a judge from a different family and re-running the calibration.</p>
+            <p>The hallucination signal is a lexical grounding heuristic, so it can penalise a faithful but heavily paraphrased summary. It is a risk flag, not a measurement of fabrication, and the calibration work exists precisely because it needed one.</p>
+
+          <p class="stack"><span class="stack-label">Stack</span> Python &middot; GPT-5 as generator and judge &middot; domain-aware rubric bank &middot; Chain-of-Density refinement &middot; Streamlit diagnostics &middot; multi-seed robustness and policy ablation harness</p>
+            <p class="project-links">
+              <a href="https://github.com/rahul-sg/HondaResearchLabs_DSC180A-Eval-Systems-Of-NextGen-LLMs/blob/main/artifacts/Q2/Iterative_Refinement_NextGen_LLMs.pdf" target="_blank" rel="noopener">Paper (PDF)</a>
+              <a href="https://medium.com/99p-labs/iterative-refinement-of-llm-as-judge-framework-0819fe352575" target="_blank" rel="noopener">Write-up on 99P Labs</a>
+              <a href="https://github.com/rahul-sg/HondaResearchLabs_DSC180A-Eval-Systems-Of-NextGen-LLMs" target="_blank" rel="noopener">Source</a>
+            </p>
+        </div>
+      </article>
+
+      <nav class="wrap pager" aria-label="Other projects">
+        <a class="pager-link pager-prev" href="cartographer.html">
+          <span class="pager-label">Previous</span>
+          <span class="pager-name">Cartographer</span>
+        </a>
+        <a class="pager-link pager-next" href="midterm-forecast.html">
+          <span class="pager-label">Next</span>
+          <span class="pager-name">2026 Midterm Forecast</span>
+        </a>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer-inner">
+        <p>Rahul Sengupta</p>
+        <p class="site-footer-links">
+          <a href="mailto:rahul_sen_gupta@yahoo.com">Email</a>
+          <a href="https://github.com/rahul-sg" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com/in/rahul-sg" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="../Rahul_S_Resume_Final.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute;</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>

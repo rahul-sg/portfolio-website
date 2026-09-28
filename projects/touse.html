@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Touse &middot; Rahul Sengupta</title>
+    <meta name="description" content="A housing affordability tool with a two-stage ZIP-level price forecast: a global LightGBM panel sets the endpoint, a per-ZIP Prophet model shapes the path." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Touse &middot; Rahul Sengupta" />
+    <meta property="og:description" content="A housing affordability tool with a two-stage ZIP-level price forecast: a global LightGBM panel sets the endpoint, a per-ZIP Prophet model shapes the path." />
+    <meta property="og:image" content="../images/og-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script>
+      // Applied before first paint so a returning dark-mode reader never sees a flash.
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav class="subnav" aria-label="Sections">
+      <div class="wrap subnav-inner">
+        <a class="subnav-brand" href="../index.html">Rahul Sengupta</a>
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#writing">Writing</a>
+        <a href="../index.html#tools">Tools</a>
+        <a href="../index.html#contact">Contact</a>
+        <button class="theme-toggle" type="button" id="theme-toggle"
+                aria-label="Switch between light and dark">
+          <span class="theme-toggle-label">Dark</span>
+        </button>
+      </div>
+    </nav>
+
+    <main id="main">
+      <article class="section wrap project project-page">
+        <div class="project-aside">
+          <p class="project-index">01 / 04</p>
+          <dl class="facts">
+            <div><dt>Context</dt><dd>Personal, solo</dd></div>
+            <div><dt>Role</dt><dd>Everything</dd></div>
+            <div><dt>When</dt><dd>2025 to 2026</dd></div>
+            <div><dt>Status</dt><dd>Source open; host paused</dd></div>
+          </dl>
+          <dl class="keyfigs">
+            <div><dt>37</dt><dd>panel features</dd></div>
+            <div><dt>15.8M</dt><dd>ZHVI rows</dd></div>
+            <div><dt>12 mo</dt><dd>forecast horizon</dd></div>
+          </dl>
+          <p class="aside-back"><a href="../index.html#work">All work</a></p>
+        </div>
+
+        <div class="project-body">
+          <header class="page-head">
+            <h1>Touse</h1>
+            <p class="page-sub">Housing affordability and ZIP-level price forecasting</p>
+          </header>
+
+          <p class="lead">A housing tool that computes what someone can actually afford across six loan types, and projects where prices in a given ZIP are heading twelve months out, with a confidence band and a published accuracy record.</p>
+          <figure class="shot">
+            <a href="../images/touse-map.jpg" target="_blank" rel="noopener">
+              <img src="../images/touse-map.jpg" alt="The map view: the ZIP panel carries the median value and its 3, 6, and 12 month trends, listings are filtered to the budget the affordability engine computed, and each pin is a home priced against it." loading="lazy" />
+            </a>
+            <figcaption>The map view: the ZIP panel carries the median value and its 3, 6, and 12 month trends, listings are filtered to the budget the affordability engine computed, and each pin is a home priced against it.</figcaption>
+          </figure>
+
+            <h2>The system</h2>
+            <p>Five cooperating processes run over PostgreSQL and Redis: a Caddy reverse proxy, a Vite single-page app, a FastAPI backend, a Celery worker, and a Celery Beat scheduler. ETL jobs collect market data on each source's own publication cadence and write to Postgres, and the API serves it read-mostly. Zillow's ZHVI series alone is roughly 15.8 million rows across three home types, and the ZIP centroid table is about 41,000.</p>
+
+            <h2>What it computes</h2>
+            <p>A maximum home price across six loan types, conventional, FHA, VA, USDA, 5/1 ARM, and jumbo, against the live 30-year rate from Freddie Mac's weekly survey. A readiness score built on debt-to-income that includes the projected mortgage rather than only current obligations. And a twelve-month price projection for a given ZIP with an 80% band.</p>
+
+            <h2>The forecast, in two stages</h2>
+            <p>A global LightGBM panel model predicts each ZIP's twelve-month-forward price growth from 37 features: lagged local prices and growth rates, US macro series from FRED and Freddie Mac, metro-level supply and rent from Zillow, and election-cycle and seasonality terms, with ZIP and home type passed as categoricals. That sets the endpoint.</p>
+            <p>A per-ZIP Prophet model then shapes the monthly path toward that endpoint, blended to the LightGBM anchor with a weight that decays from 0.30 near-term to 0.15 at month twelve, so the anchor dominates the level throughout.</p>
+            <figure class="diagram">
+              <svg viewBox="0 0 740 330" role="img" aria-label="The panel model sets where prices land. Prophet shapes how they get there. The dashed edge is the anchor the path is blended toward."><defs><marker id="dg-a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="dg-head" d="M0 1 L7 4 L0 7 z"/></marker></defs><text class="dg-band" x="0" y="12">STAGE 1, OFFLINE (MONTHLY)</text><rect class="dg-box" x="0" y="26" width="150" height="30" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="75" y="46">Zillow ZHVI</tspan></text><rect class="dg-box" x="0" y="62" width="150" height="30" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="75" y="82">FRED, Freddie Mac</tspan></text><rect class="dg-box" x="0" y="98" width="150" height="30" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="75" y="118">Metro supply, rent</tspan></text><path class="dg-arr" d="M154 41 H173.0 V77 H192" marker-end="url(#dg-a)"/><path class="dg-arr" d="M154 77 H173.0 V77 H192" marker-end="url(#dg-a)"/><path class="dg-arr" d="M154 113 H173.0 V77 H192" marker-end="url(#dg-a)"/><rect class="dg-box" x="196" y="50" width="150" height="54" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="271" y="74">Panel</tspan><tspan x="271" y="89">zip x type x month</tspan></text><path class="dg-arr" d="M350 77 L378 77" marker-end="url(#dg-a)"/><rect class="dg-box" x="382" y="50" width="158" height="54" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="461" y="74">LightGBM</tspan><tspan x="461" y="89">37 features</tspan></text><path class="dg-arr" d="M544 77 L572 77" marker-end="url(#dg-a)"/><rect class="dg-box dg-box--accent" x="576" y="50" width="164" height="54" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="658" y="74">Endpoint anchor</tspan><tspan x="658" y="89">12-month growth</tspan></text><text class="dg-band" x="0" y="180">STAGE 2, ON DEMAND (PER ZIP)</text><rect class="dg-box" x="196" y="194" width="150" height="54" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="271" y="218">History for</tspan><tspan x="271" y="233">this zip and type</tspan></text><path class="dg-arr" d="M350 221 L378 221" marker-end="url(#dg-a)"/><rect class="dg-box" x="382" y="194" width="158" height="54" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="461" y="218">Prophet</tspan><tspan x="461" y="233">monthly path</tspan></text><path class="dg-arr" d="M544 221 L572 221" marker-end="url(#dg-a)"/><rect class="dg-box dg-box--accent" x="576" y="194" width="164" height="54" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="658" y="218">Blend toward</tspan><tspan x="658" y="233">anchor, 0.30 to 0.15</tspan></text><path class="dg-arr dg-arr--dash" d="M658 104 V194" marker-end="url(#dg-a)"/><rect class="dg-box" x="382" y="280" width="358" height="44" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="561" y="306">12-month forecast with an 80% band</tspan></text><path class="dg-arr" d="M658 248 L658 276" marker-end="url(#dg-a)"/></svg>
+              <figcaption>The panel model sets where prices land. Prophet shapes how they get there. The dashed edge is the anchor the path is blended toward.</figcaption>
+            </figure>
+
+            <h2>Why two models instead of one</h2>
+            <p>The two questions have different shapes. Where prices land in a year is structural, and benefits from seeing every ZIP at once: rate regimes, supply dynamics, regional momentum. How prices get there month by month is local, and benefits from a model fit to one ZIP's own seasonality and noise.</p>
+            <p>Anchoring heavily to the panel endpoint also suppresses Prophet's known failure mode, which is extrapolating a recent slope linearly after a boom.</p>
+            <figure class="code-figure">
+              <pre><code>LGBMRegressor(
+    n_estimators=250,       # typed panel is ~3x larger
+    learning_rate=0.05,
+    num_leaves=63,
+    min_child_samples=100,  # guards against tiny-ZIP overfit
+    reg_lambda=0.1,
+    subsample=0.7,          # row bagging
+    subsample_freq=1,
+    feature_fraction=0.9,   # column bagging
+)</code></pre>
+              <figcaption>Production panel hyperparameters. The raised <code>min_child_samples</code> is the guard against a ZIP with barely any history dominating its own leaf.</figcaption>
+            </figure>
+
+            <h2>Leakage discipline</h2>
+            <p>Lag features are computed within each <code>(zip, home_type)</code> group, so a condo's history can never leak into a single-family lag for the same ZIP. Macro series are joined as-of and backward, so only values published at or before time <em>t</em> are visible when training at <em>t</em>.</p>
+            <p>Metro supply is joined same-month on purpose: supply at <em>t</em> and price growth from <em>t</em> to <em>t+12</em> are contemporaneous, so relative to the target it is not future information.</p>
+
+            <h2>Holding the forecast accountable</h2>
+            <p>Every served forecast writes a row recording what was predicted and when the horizon ends. A daily job backfills the actual price once that horizon arrives and computes signed and absolute error, so the site can publish realized accuracy per ZIP rather than only a backtest number.</p>
+            <p>Every training run is logged with its panel size, feature count, and duration. Per-ZIP drivers come from TreeSHAP, so a forecast can be interrogated instead of taken on faith.</p>
+
+            <h2>Operations</h2>
+            <p>Celery Beat matches each source's real publication schedule: Freddie Mac weekly after the Thursday rate release, FRED weekly, Zillow monthly on the 15th, with the panel retraining on the 16th and cached Prophet trajectories refreshed two hours later. A daily freshness check alerts if any dataset passes its staleness threshold. Every ETL write is an upsert on a composite key, so a rerun is a no-op rather than a duplicate.</p>
+
+            <h2>Status</h2>
+            <p>I built, deployed, and operated this on a single EC2 instance behind Caddy with automatic TLS. The instance is currently shut down and the source is private. I am happy to walk through the code or the model.</p>
+
+          <p class="stack"><span class="stack-label">Stack</span> FastAPI &middot; React, Vite, TypeScript &middot; LightGBM &middot; Prophet &middot; TreeSHAP &middot; PostgreSQL &middot; Redis &middot; Celery &middot; MapLibre GL &middot; Docker &middot; Caddy &middot; AWS EC2</p>
+            <p class="project-links">
+              <a href="https://github.com/rahul-sg/Touse" target="_blank" rel="noopener">Source</a>
+              <span class="note">Live deployment paused to save hosting cost; the source and the write-up below cover it in full.</span>
+            </p>
+        </div>
+      </article>
+
+      <nav class="wrap pager" aria-label="Other projects">
+        <span></span>
+        <a class="pager-link pager-next" href="cartographer.html">
+          <span class="pager-label">Next</span>
+          <span class="pager-name">Cartographer</span>
+        </a>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer-inner">
+        <p>Rahul Sengupta</p>
+        <p class="site-footer-links">
+          <a href="mailto:rahul_sen_gupta@yahoo.com">Email</a>
+          <a href="https://github.com/rahul-sg" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com/in/rahul-sg" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="../Rahul_S_Resume_Final.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute;</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>

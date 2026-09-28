@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2026 Midterm Forecast &middot; Rahul Sengupta</title>
+    <meta name="description" content="A Ridge model over 2,240 real district results forecasting all 505 races in the 2026 US midterms, with a correlated Monte Carlo seat distribution." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="2026 Midterm Forecast &middot; Rahul Sengupta" />
+    <meta property="og:description" content="A Ridge model over 2,240 real district results forecasting all 505 races in the 2026 US midterms, with a correlated Monte Carlo seat distribution." />
+    <meta property="og:image" content="../images/og-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script>
+      // Applied before first paint so a returning dark-mode reader never sees a flash.
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav class="subnav" aria-label="Sections">
+      <div class="wrap subnav-inner">
+        <a class="subnav-brand" href="../index.html">Rahul Sengupta</a>
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#writing">Writing</a>
+        <a href="../index.html#tools">Tools</a>
+        <a href="../index.html#contact">Contact</a>
+        <button class="theme-toggle" type="button" id="theme-toggle"
+                aria-label="Switch between light and dark">
+          <span class="theme-toggle-label">Dark</span>
+        </button>
+      </div>
+    </nav>
+
+    <main id="main">
+      <article class="section wrap project project-page">
+        <div class="project-aside">
+          <p class="project-index">04 / 04</p>
+          <dl class="facts">
+            <div><dt>Context</dt><dd>Personal, solo</dd></div>
+            <div><dt>Role</dt><dd>Everything</dd></div>
+            <div><dt>When</dt><dd>2025 to 2026</dd></div>
+            <div><dt>Status</dt><dd>Source open; host paused</dd></div>
+          </dl>
+          <dl class="keyfigs">
+            <div><dt>505</dt><dd>races forecast</dd></div>
+            <div><dt>2,240</dt><dd>training results</dd></div>
+            <div><dt>10k</dt><dd>simulations</dd></div>
+          </dl>
+          <p class="aside-back"><a href="../index.html#work">All work</a></p>
+        </div>
+
+        <div class="project-body">
+          <header class="page-head">
+            <h1>2026 Midterm Forecast</h1>
+            <p class="page-sub">505 races, with a correlated simulation</p>
+          </header>
+
+          <p class="lead">A forecast for all 505 races in the 2026 US midterms, 435 House, 34 Senate, and 36 Governor, with predicted margins, 80% intervals, and a Monte Carlo seat distribution, fed by live polling, fundraising, and economic pipelines.</p>
+          <figure class="shot">
+            <a href="../images/midterm-dashboard.jpg" target="_blank" rel="noopener">
+              <img src="../images/midterm-dashboard.jpg" alt="Chamber projections with control probabilities, from the live model." loading="lazy" />
+            </a>
+            <figcaption>Chamber projections with control probabilities, from the live model.</figcaption>
+          </figure>
+          <figure class="shot">
+            <a href="../images/midterm-scenario.jpg" target="_blank" rel="noopener">
+              <img src="../images/midterm-scenario.jpg" alt="The scenario builder re-runs all 10,000 trials against whatever national conditions you set, and encodes them in the URL so a scenario is a link." loading="lazy" />
+            </a>
+            <figcaption>The scenario builder re-runs all 10,000 trials against whatever national conditions you set, and encodes them in the URL so a scenario is a link.</figcaption>
+          </figure>
+
+            <h2>The model</h2>
+            <p>Ridge regression on 2,240 real district-level results: 2,115 from the MIT Election Data and Science Lab covering every House district across the 2006, 2010, 2014, 2018, and 2022 cycles, plus 125 hand-curated competitive Senate and Governor races.</p>
+            <p>The eight features are partisan lean, its square, lean interacted with incumbency, incumbency, the live generic ballot margin, presidential approval, unemployment, and a presidential-year term. Training is restricted to contested races, so uncontested districts cannot teach the model to be confident about nothing. Five-fold cross-validated MAE is 7.95 points, with a 6.87-point residual standard deviation calibrated on competitive races.</p>
+
+            <h2>One input deliberately kept out of the regression</h2>
+            <p>Fundraising advantage is applied as a bounded post-hoc adjustment, capped at plus or minus 3 points, rather than as a Ridge feature. The reason is a data problem, not a modelling preference: the historical training set has no fundraising records, so including it as a feature produces near-zero training variance and a coefficient inflated far beyond what the data supports.</p>
+            <p>A bounded adjustment you can reason about is better than a learned weight you cannot defend.</p>
+
+            <h2>Correlated simulation</h2>
+            <p>The seat distribution comes from 10,000 trials in which a shared national swing error, sigma of 2 points, is applied across every race, plus an independent per-race error drawn from that race's own interval.</p>
+            <p>Treating races as fully independent produces tails that are far too thin, which is precisely how a forecast ends up confidently wrong about control of a chamber.</p>
+
+            <h2>Live inputs</h2>
+            <p>Generic ballot polls and candidate names are scraped from Wikipedia every four hours, weighted by pollster grade. FEC fundraising comes from the <code>weball26</code> bulk file daily, no API key required. Unemployment comes from the BLS API, with GDP and consumer sentiment from FRED and seeded fallbacks when a source is unreachable.</p>
+            <p>The candidate scraper returns a name only when exactly one candidate has declared for a party's primary, so a contested primary shows TBD rather than a guess.</p>
+
+            <h2>What the site does with it</h2>
+            <p>Per-race pages showing the model inputs behind each prediction. A tipping-point view computing each race's marginal contribution to majority probability across simulations. A scenario builder that re-runs the full simulation for any set of national conditions and encodes its state in the URL, so a scenario is shareable. And a backtest tab with per-cycle accuracy and the biggest misses.</p>
+
+            <h2>Status</h2>
+            <p>Deployed on a t3.micro behind Caddy. The instance is shut down to save hosting cost, and the source is open. The suite is 23 tests with the Wikipedia and FEC scrapers patched, so no test touches the network.</p>
+
+          <p class="stack"><span class="stack-label">Stack</span> FastAPI &middot; scikit-learn &middot; React and Vite &middot; Docker &middot; AWS EC2 behind Caddy &middot; 23 tests with network sources patched</p>
+            <p class="project-links">
+              <a href="https://github.com/rahul-sg/midterm-predictor" target="_blank" rel="noopener">Source</a>
+              <span class="note">Live deployment paused to save hosting cost; the source and the write-up below cover it in full.</span>
+            </p>
+        </div>
+      </article>
+
+      <nav class="wrap pager" aria-label="Other projects">
+        <a class="pager-link pager-prev" href="llm-evaluation.html">
+          <span class="pager-label">Previous</span>
+          <span class="pager-name">LLM Evaluation Framework</span>
+        </a>
+        <span></span>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer-inner">
+        <p>Rahul Sengupta</p>
+        <p class="site-footer-links">
+          <a href="mailto:rahul_sen_gupta@yahoo.com">Email</a>
+          <a href="https://github.com/rahul-sg" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com/in/rahul-sg" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="../Rahul_S_Resume_Final.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute;</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>
