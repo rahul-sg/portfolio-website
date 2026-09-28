@@ -48,6 +48,20 @@ Changing any of the following means editing all six files:
 Project pages use `../` prefixes for assets and `projects/<slug>.html` links to
 each other; the index uses no prefix.
 
+## Deploying to GitHub Pages
+
+The repo is served from a project path (`/portfolio-website/`), and every asset
+reference is relative, so it works from a subpath without changes.
+
+**Bump `ASSET_V` whenever `styles.css` or `script.js` changes.** Those files are
+linked as `styles.css?v=N`. Without the version, a browser that cached an older
+`styles.css` at the same URL keeps serving it against the new markup, and the
+page renders as unstyled HTML on a stale background. That is a real failure mode
+this site already hit once, and a hard refresh only fixes it for whoever does it.
+
+`.nojekyll` is present so Pages publishes the files as-is instead of running
+them through Jekyll.
+
 ## Typefaces
 
 The IBM Plex superfamily throughout: Plex Serif for headings and lead text, Plex
