@@ -86,29 +86,20 @@
             is that none of them was finished when the model worked.
           </p>
           <p>
-            Each one needed the ingestion, the model, the service, the interface, and the
-            deployment to be right together, and I would rather own that whole path than a slice of
-            it. That is not breadth for its own sake. Nearly every bug I have had to chase lived in
-            the seams between those layers rather than inside the model, and a forecast is only as
-            good as the ETL that feeds it and the cache that serves it. Several of these have real
-            users, which is where that lesson actually came from: a system that only has to work on
-            my own machine never teaches it.
+            The bugs I remember all lived in the seams: the ETL that feeds a forecast, the cache
+            that serves it, the deployment that has to stay up at three in the morning. Several of
+            these have real users, which is where that lesson came from, because a system that only
+            has to work on my own machine never teaches it. Most of what I learn now comes from
+            pointing three things at each other: graduate coursework, the production systems I work
+            on day to day, and whatever I am building on my own.
           </p>
           <p>
-            Most of what I learn now arrives from three directions at once, and I am deliberate
-            about pointing them at each other: the graduate coursework, the production systems I
-            work on day to day, and whatever I am building on my own. A technique from a course is
-            worth more once I have had to operate it, and a problem at work usually turns out to
-            have a name in the literature.
-          </p>
-          <p>
-            If there is a throughline in the work, it is measurement. The evaluation framework
-            exists to work out whether a model's output is any good. The records search refuses to
-            answer rather than return its best guess, because a confident wrong answer costs more
-            than no answer. Touse publishes its realised forecast error rather than only a
-            backtest. Cartographer marks every edge as extracted or inferred and ships a view of
-            what it could not determine. I am more interested in knowing when a system is wrong
-            than in the number it reports when everything goes well.
+            If there is a throughline, it is measurement. The records search refuses to answer
+            rather than return its best guess, because a confident wrong answer costs more than no
+            answer. Touse publishes its realised forecast error rather than only a backtest.
+            Cartographer marks every edge as extracted or inferred and ships a view of what it
+            could not determine. I am more interested in knowing when a system is wrong than in
+            the number it reports when everything goes well.
           </p>
         </div>
 
