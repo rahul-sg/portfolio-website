@@ -4,20 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rahul Sengupta</title>
-    <meta name="description" content="Rahul Sengupta, AI/ML Software Engineer. I build systems end to end, from the data pipeline and the model through the service, interface, and deployment." />
+    <meta name="description" content="Rahul Sengupta, AI/ML Software Engineer. I build machine learning systems that run in production, where most of the work sits around the model rather than in it." />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Rahul Sengupta" />
-    <meta property="og:description" content="Rahul Sengupta, AI/ML Software Engineer. I build systems end to end, from the data pipeline and the model through the service, interface, and deployment." />
+    <meta property="og:description" content="Rahul Sengupta, AI/ML Software Engineer. I build machine learning systems that run in production, where most of the work sits around the model rather than in it." />
     <meta property="og:image" content="images/og-card.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico?v=2" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=2" />
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg?v=8" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico?v=8" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=8" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=8" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=2" />
+    <link rel="stylesheet" href="styles.css?v=8" />
     <script>
       // Applied before first paint so a returning dark-mode reader never sees a flash.
       try {
@@ -33,8 +33,8 @@
         <div class="masthead-text">
           <h1>Rahul Sengupta</h1>
           <p class="standfirst">
-            AI/ML Software Engineer. I build systems end to end, from the data pipeline and the
-            model through the service, the interface, and the deployment that keeps it running.
+            AI/ML Software Engineer. I build machine learning systems that run in production,
+            where most of the work sits around the model rather than in it.
           </p>
           <div class="masthead-contact">
             <p class="panel-label">Contact</p>
@@ -52,7 +52,7 @@
 
       <div class="wrap masthead-facts-wrap">
         <dl class="masthead-facts">
-          <div><dt>Focus</dt><dd>Machine learning systems, end to end</dd></div>
+          <div><dt>Focus</dt><dd>Machine learning systems in production</dd></div>
           <div><dt>Studying</dt><dd>M.S. Computer Science, Georgia Tech</dd></div>
           <div><dt>Based in</dt><dd>San Francisco Bay Area</dd></div>
         </dl>
@@ -78,27 +78,37 @@
       <section class="section wrap intro-grid" id="about">
         <div class="prose">
           <p>
-            I am an AI/ML Software Engineer, working full time while doing a master's in Computer
-            Science at Georgia Tech with a machine learning specialisation. The projects below are
-            a forecasting service, an LLM evaluation framework, a static analysis tool, and an
-            election model. They look unrelated, and in subject matter they are. What they have in
-            common is that none of them was finished when the model worked.
+            I am an AI/ML Software Engineer, working full time while finishing a master's in
+            Computer Science at Georgia Tech with a machine learning specialisation. The projects
+            below are a search system used daily inside a city government, a housing forecasting
+            service I deployed and operated myself, an LLM evaluation framework, a static analysis
+            tool, and an election model. The subject matter has nothing in common. What they share
+            is that none of them was finished when the model worked.
           </p>
           <p>
             Each one needed the ingestion, the model, the service, the interface, and the
             deployment to be right together, and I would rather own that whole path than a slice of
-            it. That is not a preference for breadth for its own sake. Nearly every bug I have had
-            to chase lived in the seams between those layers rather than inside the model, and a
-            forecast is only as good as the ETL that feeds it and the cache that serves it. The
-            same is true of the work I do day to day, which is where most of what I learn now comes
-            from, alongside the graduate coursework.
+            it. That is not breadth for its own sake. Nearly every bug I have had to chase lived in
+            the seams between those layers rather than inside the model, and a forecast is only as
+            good as the ETL that feeds it and the cache that serves it. Several of these have real
+            users, which is where that lesson actually came from: a system that only has to work on
+            my own machine never teaches it.
           </p>
           <p>
-            If there is a throughline, it is measurement. The evaluation framework exists to work
-            out whether a model's output is any good; Touse publishes its realised forecast error
-            rather than only a backtest; Cartographer marks every edge as extracted or inferred and
-            ships a view of what it could not determine. I am more interested in knowing when a
-            system is wrong than in the number it reports when everything goes well.
+            Most of what I learn now arrives from three directions at once, and I am deliberate
+            about pointing them at each other: the graduate coursework, the production systems I
+            work on day to day, and whatever I am building on my own. A technique from a course is
+            worth more once I have had to operate it, and a problem at work usually turns out to
+            have a name in the literature.
+          </p>
+          <p>
+            If there is a throughline in the work, it is measurement. The evaluation framework
+            exists to work out whether a model's output is any good. The records search refuses to
+            answer rather than return its best guess, because a confident wrong answer costs more
+            than no answer. Touse publishes its realised forecast error rather than only a
+            backtest. Cartographer marks every edge as extracted or inferred and ships a view of
+            what it could not determine. I am more interested in knowing when a system is wrong
+            than in the number it reports when everything goes well.
           </p>
         </div>
 
@@ -134,6 +144,36 @@
           <div class="project-aside">
             <p class="project-index">01</p>
             <dl class="facts">
+              <div><dt>Client</dt><dd>City of Cupertino</dd></div>
+              <div><dt>Role</dt><dd>Built and shipped it</dd></div>
+              <div><dt>When</dt><dd>2026</dd></div>
+              <div><dt>Status</dt><dd>In daily use by City staff</dd></div>
+            </dl>
+            <dl class="keyfigs">
+              <div><dt>1.2M</dt><dd>pages indexed</dd></div>
+              <div><dt>100%</dt><dd>recall@1, gold set</dd></div>
+              <div><dt>1.4s</dt><dd>median search</dd></div>
+            </dl>
+          </div>
+          <div class="project-body">
+            <h3><a href="projects/records-search.html">Public Records Search</a></h3>
+            <p class="work-sub">Semantic search over a municipal archive, for the City of Cupertino</p>
+            <p class="work-summary">Search and question answering across the City of Cupertino's public records repository: roughly 1.2 million pages, every record type, 1953 to today. Hybrid vector and keyword retrieval with a calibrated relevance gate, relationship graphs built automatically per record type, and plain-English questions answered with citations. It replaced a system that held a single record type and nine years of data; this one spans more than 20 record types across seventy years, and indexes new documents the moment they are filed.</p>
+            <p class="stack"><span class="stack-label">Stack</span> Python and FastAPI &middot; Azure OpenAI embeddings and GPT &middot; Azure AI Search &middot; cross-encoder reranking &middot; BM25 &middot; Laserfiche as system of record &middot; Azure App Service with Entra ID &middot; CI/CD with Application Insights</p>
+            <p class="project-links">
+              <a class="work-more" href="projects/records-search.html">Read more</a>
+              <a href="https://records-search-cupertino-b3e5gqf9e3aqh0em.westus2-01.azurewebsites.net/" target="_blank" rel="noopener">Internal deployment</a>
+            </p>
+            <a class="work-thumb" href="projects/records-search.html">
+              <img src="images/records-search.jpg" alt="" loading="lazy" />
+            </a>
+          </div>
+        </article>
+
+        <article class="project work-item">
+          <div class="project-aside">
+            <p class="project-index">02</p>
+            <dl class="facts">
               <div><dt>Context</dt><dd>Personal, solo</dd></div>
               <div><dt>Role</dt><dd>Everything</dd></div>
               <div><dt>When</dt><dd>2025 to 2026</dd></div>
@@ -162,7 +202,7 @@
 
         <article class="project work-item">
           <div class="project-aside">
-            <p class="project-index">02</p>
+            <p class="project-index">03</p>
             <dl class="facts">
               <div><dt>Context</dt><dd>Personal, solo</dd></div>
               <div><dt>Role</dt><dd>Everything</dd></div>
@@ -192,7 +232,7 @@
 
         <article class="project work-item">
           <div class="project-aside">
-            <p class="project-index">03</p>
+            <p class="project-index">04</p>
             <dl class="facts">
               <div><dt>Context</dt><dd>UCSD capstone</dd></div>
               <div><dt>Role</dt><dd>Led evaluation research; four-person team</dd></div>
@@ -224,7 +264,7 @@
 
         <article class="project work-item">
           <div class="project-aside">
-            <p class="project-index">04</p>
+            <p class="project-index">05</p>
             <dl class="facts">
               <div><dt>Context</dt><dd>Personal, solo</dd></div>
               <div><dt>Role</dt><dd>Everything</dd></div>
@@ -282,6 +322,18 @@
                 belongs to the team.
               </dd>
             </div>
+            <div>
+              <dt>Recipe ratings analysis</dt>
+              <dd>
+                The oldest work here, a 2024 course project at UCSD, kept because it is where the
+                statistics under everything above got built: a missingness analysis, a permutation
+                test on cooking time against rating, a logistic-regression baseline against a
+                random forest, and a fairness check comparing precision across simple and complex
+                recipes.
+                <a href="https://rahul-sg.github.io/recipes-ratings-analysis/" target="_blank" rel="noopener">Write-up</a>
+                <a href="https://github.com/rahul-sg/recipes-ratings-analysis" target="_blank" rel="noopener">Source</a>
+              </dd>
+            </div>
           </dl>
         </div>
       </section>
@@ -310,9 +362,11 @@
             </div>
           </dl>
           <p class="edu-aside">
-            Away from a keyboard: thirteen years of competitive swimming and water polo,
-            which is where I learned to keep working at the unglamorous part of a problem
-            long after it stopped being interesting.
+            Away from a keyboard: thirteen years of competitive swimming and water polo, which is
+            where I learned to keep working at the unglamorous part of a problem long after it
+            stopped being interesting. I camp, fish and hike, usually somewhere without signal.
+            And I follow the NFL, NBA and UFC closely enough that more than one of the projects
+            above started there.
           </p>
         </div>
       </section>
@@ -466,6 +520,6 @@
       </div>
     </footer>
 
-    <script src="script.js?v=2"></script>
+    <script src="script.js?v=8"></script>
   </body>
 </html>

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Public Records Search &middot; Rahul Sengupta</title>
+    <meta name="description" content="Hybrid vector and keyword search over 1.2 million pages of City of Cupertino public records, with per-record-type relationship graphs, a calibrated relevance gate, and real-time ingestion from Laserfiche." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Public Records Search &middot; Rahul Sengupta" />
+    <meta property="og:description" content="Hybrid vector and keyword search over 1.2 million pages of City of Cupertino public records, with per-record-type relationship graphs, a calibrated relevance gate, and real-time ingestion from Laserfiche." />
+    <meta property="og:image" content="../images/og-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=8" />
+    <link rel="icon" type="image/x-icon" href="../favicon.ico?v=8" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png?v=8" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css?v=8" />
+    <script>
+      // Applied before first paint so a returning dark-mode reader never sees a flash.
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav class="subnav" aria-label="Sections">
+      <div class="wrap subnav-inner">
+        <a class="subnav-brand" href="../index.html">Rahul Sengupta</a>
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#writing">Writing</a>
+        <a href="../index.html#tools">Tools</a>
+        <a href="../index.html#contact">Contact</a>
+        <button class="theme-toggle" type="button" id="theme-toggle"
+                aria-label="Switch between light and dark">
+          <span class="theme-toggle-label">Dark</span>
+        </button>
+      </div>
+    </nav>
+
+    <main id="main">
+      <article class="section wrap project project-page">
+        <div class="project-aside">
+          <p class="project-index">01 / 05</p>
+          <dl class="facts">
+            <div><dt>Client</dt><dd>City of Cupertino</dd></div>
+            <div><dt>Role</dt><dd>Built and shipped it</dd></div>
+            <div><dt>When</dt><dd>2026</dd></div>
+            <div><dt>Status</dt><dd>In daily use by City staff</dd></div>
+          </dl>
+          <dl class="keyfigs">
+            <div><dt>1.2M</dt><dd>pages indexed</dd></div>
+            <div><dt>100%</dt><dd>recall@1, gold set</dd></div>
+            <div><dt>1.4s</dt><dd>median search</dd></div>
+          </dl>
+          <p class="aside-back"><a href="../index.html#work">All work</a></p>
+        </div>
+
+        <div class="project-body">
+          <header class="page-head">
+            <h1>Public Records Search</h1>
+            <p class="page-sub">Semantic search over a municipal archive, for the City of Cupertino</p>
+          </header>
+
+          <p class="lead">A search and question-answering layer over the City of Cupertino's public records: roughly 1.2 million pages spanning 1953 to today, indexed from Laserfiche as documents are filed, queried in plain English, and in daily use by City staff.</p>
+          <figure class="shot">
+            <a href="../images/records-search.jpg" target="_blank" rel="noopener">
+              <img src="../images/records-search.jpg" alt="The start page. Sections carry their own record counts, the search box takes a plain-English question, and Needs attention surfaces agreements expiring inside 90 days and records that changed in Laserfiche this week." loading="lazy" />
+            </a>
+            <figcaption>The start page. Sections carry their own record counts, the search box takes a plain-English question, and Needs attention surfaces agreements expiring inside 90 days and records that changed in Laserfiche this week.</figcaption>
+          </figure>
+
+            <h2>The problem</h2>
+            <p>The city's records live in Laserfiche, which searches by keyword and metadata. That works if you already know roughly where a document lives. Staff answering a records request usually do not: they know the question, not the folder. The result was people paging through a document management system by hand, across a corpus far too large to scan.</p>
+            <p>The system it replaced narrowed the problem rather than solving it. It held one record type, agreements, and nine years of them, because ingesting a single year took five to eight hours. At that rate the rest of the archive was not a backlog, it was out of reach.</p>
+
+            <h2>Ingestion, and why the scope changed</h2>
+            <p>The same work now runs at about a second per page end to end. That is what moved the tool from nine years of one record type to the whole archive: seventy-five years of agreements ingest overnight rather than one year in a working day, and every other record series came within reach at the same time.</p>
+            <p>Almost all of that comes from two decisions rather than from tuning. Laserfiche has already OCR'd every scanned record, so nothing is re-OCR'd: the text and its metadata are read from the repository that produced them. And there are no per-document model calls in the hot path. What remains is embedding, which is the entire cost. Fetching 6,361 pages took 101 seconds while embedding them took 87 minutes, fifty times longer. That is worth measuring rather than assuming, because embedding is embarrassingly parallel, so wall-clock time is a function of how many workers it gets rather than of how much data there is. Every optimisation belongs in that one stage.</p>
+            <p>Indexing is continuous rather than batched. Laserfiche posts to the service whenever a document is filed or changed, handing over the file and the OCR'd metadata it already holds, and that record becomes searchable straight away rather than the following morning. A nightly reconciliation still runs against the full folder listing to catch anything that never fired an event, including deletions, so the index tracks the archive rather than drifting from it.</p>
+
+            <h2>Hybrid retrieval</h2>
+            <p>Four legs run per query and are fused by reciprocal rank. A vector leg handles the semantics, so a question about tree trimming still matches a document that only ever says arborist services. A BM25 keyword leg preserves phrases and identifiers, which is what municipal records are made of: contract numbers, parcel identifiers, proper nouns, dollar figures, exact dates. A filter leg guarantees that a record matching a stated filter is considered at all. And a relationship leg follows the graph described below.</p>
+            <p>At most three passages per record survive fusion, the best fifteen are reranked by a cross-encoder that reads query and passage together, and one row is returned per record. No single leg is sufficient: pure vector search quietly drops the exact identifier a records request usually hinges on, and pure keyword search cannot answer a question phrased the way a person would actually ask it.</p>
+            <figure class="diagram">
+              <svg viewBox="0 0 740 244" role="img" aria-label="Laserfiche pushes each document as it is filed, so indexing is continuous. A query fans out to vector and keyword search, then ranks within the record type."><defs><marker id="dg-a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="dg-head" d="M0 1 L7 4 L0 7 z"/></marker></defs><text class="dg-band" x="0" y="12">INGEST, ON FILING</text><rect class="dg-box" x="0" y="26" width="160" height="54" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="80" y="50">Document filed</tspan><tspan x="80" y="65">in Laserfiche</tspan></text><path class="dg-arr" d="M164 53 L192 53" marker-end="url(#dg-a)"/><rect class="dg-box" x="196" y="26" width="160" height="54" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="276" y="50">POST: file plus</tspan><tspan x="276" y="65">OCR metadata</tspan></text><path class="dg-arr" d="M360 53 L388 53" marker-end="url(#dg-a)"/><rect class="dg-box" x="392" y="26" width="160" height="54" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="472" y="50">Chunk and embed</tspan><tspan x="472" y="65">Azure OpenAI</tspan></text><path class="dg-arr" d="M556 53 L584 53" marker-end="url(#dg-a)"/><rect class="dg-box dg-box--accent" x="588" y="26" width="152" height="54" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="664" y="50">Azure AI Search</tspan><tspan x="664" y="65">vector store</tspan></text><text class="dg-band" x="0" y="140">QUERY</text><rect class="dg-box" x="0" y="154" width="140" height="54" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="70" y="178">Question in</tspan><tspan x="70" y="193">plain language</tspan></text><path class="dg-arr" d="M144 181 H165.0 V152 H186" marker-end="url(#dg-a)"/><path class="dg-arr" d="M144 181 H165.0 V210 H186" marker-end="url(#dg-a)"/><rect class="dg-box" x="190" y="130" width="150" height="44" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="265" y="156">Vector search</tspan></text><rect class="dg-box" x="190" y="188" width="150" height="44" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="265" y="214">Keyword search</tspan></text><path class="dg-arr" d="M344 152 H365.0 V181 H386" marker-end="url(#dg-a)"/><path class="dg-arr" d="M344 210 H365.0 V181 H386" marker-end="url(#dg-a)"/><rect class="dg-box dg-box--accent" x="390" y="154" width="160" height="54" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="470" y="178">Rank within</tspan><tspan x="470" y="193">record type</tspan></text><path class="dg-arr" d="M554 181 L582 181" marker-end="url(#dg-a)"/><rect class="dg-box" x="586" y="154" width="154" height="54" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="663" y="178">Ranked documents</tspan><tspan x="663" y="193">with provenance</tspan></text></svg>
+              <figcaption>Laserfiche pushes each document as it is filed, so indexing is continuous. A query fans out to vector and keyword search, then ranks within the record type.</figcaption>
+            </figure>
+
+            <h2>Relationship graphs, built per record type</h2>
+            <p>Records do not stand alone, and the useful question is usually about the link rather than the document. So when a new record type is ingested, the system builds a graph over it rather than treating it as a flat pile of text.</p>
+            <p>Council records are the clearest case. Each meeting is the root node, and the ordinances, resolutions, and memos it produced hang off it as typed edges, even though those documents live in entirely different folders of the repository. The minutes name what was adopted; an ordinance names what it amends and repeals. That is what lets a question like <em>minutes where council enacted the tobacco retail ordinance</em> resolve in two steps across two record types, when no single document contains the answer.</p>
+            <p>Agreements get the same treatment as chains rather than trees: an original and its amendments form a family, and the effective expiry is computed across the family rather than read off whichever document happened to surface first. Every record type has a structure of this kind, which is what makes the archive navigable instead of merely searchable.</p>
+
+            <h2>Making bland documents findable</h2>
+            <p>Every retrieval failure on real data had one shape: some passages sit close to everything. Indemnification clauses, budget books that mention every subject, campaign-finance forms identical but for a name. A relevance gate that asks whether any passage is near the query cannot work when some passages are near every query.</p>
+            <p>Rather than write a rule per record type, which would not survive the growth to dozens of series, each passage is scored for how distinctive it is, measured as its distance from the corpus centroid expressed as a percentile. Run over the archive it separated the series without being told anything about them: election records at 0.25, budgets at 0.58, agreements at 0.79, radio frequency reports at 0.91. The blandest documents scored 0.012, and they were exactly the ones that had been answering unrelated questions.</p>
+            <p>That drives one rule: distinctive documents are judged on their text, bland ones have to be identified by their metadata. A bland passage is not demoted outright, which would make those records unfindable, but only when nothing in its title or structured fields matches either. A new record series scores itself on the day it is added, with nothing to configure.</p>
+
+            <h2>Knowing when to answer nothing</h2>
+            <p>Vector distance alone cannot separate answerable queries from unanswerable ones on this corpus. Measured across 38 queries the two populations overlap outright: a real query about environmental impact peer review scored 0.989 while <em>the weather tomorrow</em> scored 0.837. Every threshold trades a real query for a nonsense one.</p>
+            <p>The cross-encoder can separate them, because it reads query and passage together and judges whether one answers the other. Calibrating its floor lifted rejection from 15% to 89% with no loss of recall. When nothing clears the floor the page says so rather than showing the nearest thing, which on a records system is the difference between a tool staff trust and one they double-check.</p>
+            <p>A second gate, on rank margin, was calibrated and then abandoned: at every threshold it discarded more real queries than nonsense ones. It is worth recording because measuring it was the only way to know that.</p>
+
+            <h2>What staff can ask</h2>
+            <p>Plain-language searches and exact identifiers both work, and filters are read out of the sentence and shown as chips that can be removed, so <em>agreements with PG&amp;E since 2020</em> becomes a record-type filter, a year filter, and a subject. Order words are treated as instructions rather than as terms to rank on: latest, original, earliest, expiring, up for renewal.</p>
+            <p>Beyond retrieval, questions are answered from the records and cited by page. Who held an office and when. When the council discussed something, as a timeline. A question about a single long record, read by chapter. And for anything genuinely out of scope, a plain refusal.</p>
+            <p>The start page also surfaces what nobody thought to ask for: agreements expiring in the next ninety days, by the term their amendments actually give them, and records new or changed in Laserfiche this week. A contract that lapses because nobody searched for it is a failure a search box alone cannot fix.</p>
+
+            <h2>How it is kept honest</h2>
+            <p>The rule is no query-by-query patches. A reported failure is traced to the class it belongs to, fixed there, and proved by the full suites before it ships, including the ones that look unrelated.</p>
+            <p>Sixteen offline suites run 788 checks with no index and no server. Against the live index, a gold set of 73 real queries holds 100% recall at rank 1 with an MRR of 1.000, 96.5% of unanswerable queries are rejected, and 91 of 91 real staff phrasings across 15 families return the right shape of result. The whole gate runs every morning after the nightly sync, not only on deploy.</p>
+            <p>Two habits came out of running it. Never explain a gate drop away: a recall figure that dipped to 98.6% looked like the index having grown overnight, and turned out to be a NameError swallowed by a deliberately broad exception handler. And thresholds are measured per corpus rather than set once, because a floor correct for the real records destroyed the synthetic regression set.</p>
+
+            <h2>Where it stands</h2>
+            <p>In production on Azure behind City single sign-on, with continuous deployment, application monitoring, and a daily evaluation pipeline. A search returns in about 1.4 seconds at the median and under 3 seconds at the 95th percentile, and an answer costs about a third of a cent.</p>
+            <p>Set against what it replaced: more than 20 record types rather than one, seventy years of data rather than nine, a question in plain English rather than keyword matching alone, and a new document searchable when it is filed rather than whenever the next load happened to run. It is in daily use inside the City, and the staff using it describe it as a substantial improvement on what they had before. Access is internal and requires a cupertino.gov sign-in.</p>
+
+          <p class="stack"><span class="stack-label">Stack</span> Python and FastAPI &middot; Azure OpenAI embeddings and GPT &middot; Azure AI Search &middot; cross-encoder reranking &middot; BM25 &middot; Laserfiche as system of record &middot; Azure App Service with Entra ID &middot; CI/CD with Application Insights</p>
+            <p class="project-links">
+              <a href="https://records-search-cupertino-b3e5gqf9e3aqh0em.westus2-01.azurewebsites.net/" target="_blank" rel="noopener">Internal deployment</a>
+              <span class="note">cupertino.gov sign-in required</span>
+            </p>
+        </div>
+      </article>
+
+      <nav class="wrap pager" aria-label="Other projects">
+        <span></span>
+        <a class="pager-link pager-next" href="touse.html">
+          <span class="pager-label">Next</span>
+          <span class="pager-name">Touse</span>
+        </a>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer-inner">
+        <p>Rahul Sengupta</p>
+        <p class="site-footer-links">
+          <a href="mailto:rahul_sen_gupta@yahoo.com">Email</a>
+          <a href="https://github.com/rahul-sg" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com/in/rahul-sg" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="../Rahul_S_Resume_Final.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute;</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="../script.js?v=8"></script>
+  </body>
+</html>
