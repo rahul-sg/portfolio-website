@@ -141,7 +141,7 @@ a:focus-visible,
 
 .masthead-inner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(9rem, 17vw, 12.5rem);
+  grid-template-columns: minmax(0, 1fr) clamp(11rem, 20vw, 14rem);
   align-items: start;
   gap: clamp(1.5rem, 4vw, 3.5rem);
 }
@@ -182,9 +182,9 @@ h1 {
   color: var(--ink-2);
 }
 
-/* Contact sits directly under the standfirst, as part of the same block. */
+/* Contact is the masthead's right column. Links stack rather than run across. */
 .masthead-contact {
-  margin-top: 1.7rem;
+  margin-top: 0.5rem;
 }
 
 .panel-label {
@@ -198,12 +198,12 @@ h1 {
 
 .masthead-links {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem 1.4rem;
+  flex-direction: column;
+  gap: 0.4rem;
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: 0.94rem;
+  font-size: 0.93rem;
 }
 
 /* The facts run the full width under both columns, which ties the two sides
@@ -1168,6 +1168,12 @@ code {
 
   .masthead-contact {
     margin-top: 1.6rem;
+  }
+
+  .masthead-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.4rem;
   }
 
   .edu-list > div {
