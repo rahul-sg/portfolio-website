@@ -10,14 +10,14 @@
     <meta property="og:description" content="Rahul Sengupta, AI/ML Software Engineer. I build machine learning systems that run in production, where most of the work sits around the model rather than in it." />
     <meta property="og:image" content="images/og-card.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg?v=10" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico?v=10" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=10" />
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=10" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg?v=11" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico?v=11" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=11" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=11" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=10" />
+    <link rel="stylesheet" href="styles.css?v=11" />
     <script>
       // Applied before first paint so a returning dark-mode reader never sees a flash.
       try {
@@ -80,9 +80,9 @@
             I am an AI/ML Software Engineer, working full time while finishing a master's in
             Computer Science at Georgia Tech with a machine learning specialisation. The projects
             below are a search system used daily inside a city government, a housing forecasting
-            service I deployed and operated myself, an LLM evaluation framework, a static analysis
-            tool, and an election model. The subject matter has nothing in common. What they share
-            is that none of them was finished when the model worked.
+            service I deployed and operated myself, an agent pipeline, an LLM evaluation framework,
+            a static analysis tool, and an election model. The subject matter has nothing in
+            common. What they share is that none of them was finished when the model worked.
           </p>
           <p>
             The bugs I remember all lived in the seams: the ETL that feeds a forecast, the cache
@@ -192,35 +192,6 @@
           <div class="project-aside">
             <p class="project-index">03</p>
             <dl class="facts">
-              <div><dt>Context</dt><dd>Personal, solo</dd></div>
-              <div><dt>Role</dt><dd>Everything</dd></div>
-              <div><dt>Status</dt><dd>Open source, v1.1</dd></div>
-            </dl>
-            <dl class="keyfigs">
-              <div><dt>5</dt><dd>layers joined</dd></div>
-              <div><dt>126</dt><dd>tests</dd></div>
-              <div><dt>0</dt><dd>dependencies</dd></div>
-            </dl>
-          </div>
-          <div class="project-body">
-            <h3><a href="projects/cartographer.html">Cartographer</a></h3>
-            <p class="work-sub">Mapping a codebase you did not write</p>
-            <p class="work-summary">A static analysis tool that maps a multi-repo, multi-service estate and joins five normally separate layers into one graph, then exposes it to a browser, a CLI, and to Claude over MCP. Zero dependencies, no network calls, and every edge marked as extracted or inferred.</p>
-            <p class="stack"><span class="stack-label">Stack</span> Python 3.8+ standard library only &middot; hand-rolled force, 3D, and diagram renderers &middot; MCP server over stdio exposing 14 tools &middot; 126 Python tests plus a renderer smoke suite across roughly 1,500 camera states</p>
-            <p class="project-links">
-              <a class="work-more" href="projects/cartographer.html">Read more</a>
-              <a href="https://github.com/rahul-sg/codebase-cartographer" target="_blank" rel="noopener">Source</a>
-            </p>
-            <a class="work-thumb" href="projects/cartographer.html">
-              <img src="images/cartographer-map.jpg" alt="" loading="lazy" />
-            </a>
-          </div>
-        </article>
-
-        <article class="project work-item">
-          <div class="project-aside">
-            <p class="project-index">04</p>
-            <dl class="facts">
               <div><dt>Context</dt><dd>UCSD capstone</dd></div>
               <div><dt>Role</dt><dd>Led evaluation research; four-person team</dd></div>
               <div><dt>Status</dt><dd>Paper and source public</dd></div>
@@ -250,7 +221,60 @@
 
         <article class="project work-item">
           <div class="project-aside">
+            <p class="project-index">04</p>
+            <dl class="facts">
+              <div><dt>Context</dt><dd>Personal, solo</dd></div>
+              <div><dt>Role</dt><dd>Everything</dd></div>
+              <div><dt>Status</dt><dd>In use; template de-identified</dd></div>
+            </dl>
+          </div>
+          <div class="project-body">
+            <h3><a href="projects/job-search-agent.html">Job Search Agent</a></h3>
+            <p class="work-sub">An agent pipeline that prepares applications but never sends them</p>
+            <p class="work-summary">A local agent pipeline that finds job postings, verifies every link by rendering it in a real browser, tailors a resume and cover letter per role, and drafts recruiter outreach, writing to a shared state file that a live dashboard polls. Four specialist stages run in sequence rather than as independent agents, and nothing is ever submitted without a human.</p>
+            <p class="stack"><span class="stack-label">Stack</span> Claude as orchestrator with sub-agents per stage &middot; browser automation for link verification &middot; Python standard-library server &middot; single-file dashboard, no build step &middot; Node and docx for document generation &middot; JSON as the shared state</p>
+            <p class="project-links">
+              <a class="work-more" href="projects/job-search-agent.html">Read more</a>
+              <a href="https://github.com/rahul-sg/job-search-agent-template" target="_blank" rel="noopener">Template</a>
+            </p>
+            <a class="work-thumb" href="projects/job-search-agent.html">
+              <img src="images/job-search-agent.jpg" alt="" loading="lazy" />
+            </a>
+          </div>
+        </article>
+
+        <article class="project work-item">
+          <div class="project-aside">
             <p class="project-index">05</p>
+            <dl class="facts">
+              <div><dt>Context</dt><dd>Personal, solo</dd></div>
+              <div><dt>Role</dt><dd>Everything</dd></div>
+              <div><dt>Status</dt><dd>Open source, v1.1</dd></div>
+            </dl>
+            <dl class="keyfigs">
+              <div><dt>5</dt><dd>layers joined</dd></div>
+              <div><dt>126</dt><dd>tests</dd></div>
+              <div><dt>0</dt><dd>dependencies</dd></div>
+            </dl>
+          </div>
+          <div class="project-body">
+            <h3><a href="projects/cartographer.html">Cartographer</a></h3>
+            <p class="work-sub">Mapping a codebase you did not write</p>
+            <p class="work-summary">A static analysis tool that maps a multi-repo, multi-service estate and joins five normally separate layers into one graph, then exposes it to a browser, a CLI, and to Claude over MCP. Zero dependencies, no network calls, and every edge marked as extracted or inferred.</p>
+            <p class="stack"><span class="stack-label">Stack</span> Python 3.8+ standard library only &middot; hand-rolled force, 3D, and diagram renderers &middot; MCP server over stdio exposing 14 tools &middot; 126 Python tests plus a renderer smoke suite across roughly 1,500 camera states</p>
+            <p class="project-links">
+              <a class="work-more" href="projects/cartographer.html">Read more</a>
+              <a href="https://github.com/rahul-sg/codebase-cartographer" target="_blank" rel="noopener">Source</a>
+            </p>
+            <a class="work-thumb" href="projects/cartographer.html">
+              <img src="images/cartographer-map.jpg" alt="" loading="lazy" />
+            </a>
+          </div>
+        </article>
+
+        <article class="project work-item">
+          <div class="project-aside">
+            <p class="project-index">06</p>
             <dl class="facts">
               <div><dt>Context</dt><dd>Personal, solo</dd></div>
               <div><dt>Role</dt><dd>Everything</dd></div>
@@ -505,6 +529,6 @@
       </div>
     </footer>
 
-    <script src="script.js?v=10"></script>
+    <script src="script.js?v=11"></script>
   </body>
 </html>

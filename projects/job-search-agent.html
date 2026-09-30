@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Search Agent &middot; Rahul Sengupta</title>
+    <meta name="description" content="A local agent pipeline: four sequential specialist stages that find job postings, verify every link by rendering it in a real browser, tailor a resume and cover letter, and draft recruiter outreach, with a human in the loop by design." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Job Search Agent &middot; Rahul Sengupta" />
+    <meta property="og:description" content="A local agent pipeline: four sequential specialist stages that find job postings, verify every link by rendering it in a real browser, tailor a resume and cover letter, and draft recruiter outreach, with a human in the loop by design." />
+    <meta property="og:image" content="../images/og-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=11" />
+    <link rel="icon" type="image/x-icon" href="../favicon.ico?v=11" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png?v=11" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=11" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css?v=11" />
+    <script>
+      // Applied before first paint so a returning dark-mode reader never sees a flash.
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav class="subnav" aria-label="Sections">
+      <div class="wrap subnav-inner">
+        <a class="subnav-brand" href="../index.html">Rahul Sengupta</a>
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#writing">Writing</a>
+        <a href="../index.html#tools">Tools</a>
+        <a href="../index.html#contact">Contact</a>
+        <button class="theme-toggle" type="button" id="theme-toggle"
+                aria-label="Switch between light and dark">
+          <span class="theme-toggle-label">Dark</span>
+        </button>
+      </div>
+    </nav>
+
+    <main id="main">
+      <article class="section wrap project project-page">
+        <div class="project-aside">
+          <p class="project-index">04 / 06</p>
+          <dl class="facts">
+            <div><dt>Context</dt><dd>Personal, solo</dd></div>
+            <div><dt>Role</dt><dd>Everything</dd></div>
+            <div><dt>Status</dt><dd>In use; template de-identified</dd></div>
+          </dl>
+          <p class="aside-back"><a href="../index.html#work">All work</a></p>
+        </div>
+
+        <div class="project-body">
+          <header class="page-head">
+            <h1>Job Search Agent</h1>
+            <p class="page-sub">An agent pipeline that prepares applications but never sends them</p>
+          </header>
+
+          <p class="lead">An agent pipeline that does the preparation work of a job search: finding postings, proving each one is still live, tailoring a resume and cover letter to it, and drafting outreach to a named recruiter. Everything runs locally, and the last step is always a person.</p>
+          <figure class="shot">
+            <a href="../images/job-search-agent.jpg" target="_blank" rel="noopener">
+              <img src="../images/job-search-agent.jpg" alt="The dashboard. Counters across the top track the funnel, and expanding a row shows the company blurb, what the role actually requires, the drafted outreach message, and the scoring notes that justify the tier it was given." loading="lazy" />
+            </a>
+            <figcaption>The dashboard. Counters across the top track the funnel, and expanding a row shows the company blurb, what the role actually requires, the drafted outreach message, and the scoring notes that justify the tier it was given.</figcaption>
+          </figure>
+
+            <h2>One orchestrator, not a swarm</h2>
+            <p>The obvious design is four agents running in parallel, and it is wrong here. Every stage depends on the one before it: a cover letter needs the job description, outreach needs the role and the company, and the tailored resume sets the framing the letter follows. All four also write the same state file, so independent agents would race on it and duplicate work.</p>
+            <p>So a single orchestrator moves through four specialist roles in sequence, spawning a focused sub-agent for a stage only when that stage benefits from a clean context, such as a resume pass that should not be distracted by search results. A pipeline is also much easier to debug than agents coordinating over messages, which matters when a scheduled run does something you did not expect and you are reading the state file afterwards to work out what.</p>
+            <p>State is written after every job rather than batched at the end, so the dashboard shows progress as it happens and an interrupted run keeps everything it had already finished.</p>
+            <figure class="diagram">
+              <svg viewBox="0 0 740 258" role="img" aria-label="Stages run in sequence over one shared state file rather than as independent agents, so nothing races on writes. The dashboard reads that same file, and the only write back into it from a human is the Applied toggle."><defs><marker id="dg-a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="dg-head" d="M0 1 L7 4 L0 7 z"/></marker></defs><text class="dg-band" x="0" y="12">ONE ORCHESTRATOR, FOUR STAGES IN SEQUENCE</text><rect class="dg-box" x="0" y="30" width="128" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="64" y="58">Job Finder</tspan></text><path class="dg-arr" d="M132 53 L156 53" marker-end="url(#dg-a)"/><rect class="dg-box" x="160" y="30" width="128" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="224" y="58">Resume Tailor</tspan></text><path class="dg-arr" d="M292 53 L316 53" marker-end="url(#dg-a)"/><rect class="dg-box" x="320" y="30" width="140" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="390" y="58">Cover Letter</tspan></text><path class="dg-arr" d="M464 53 L488 53" marker-end="url(#dg-a)"/><rect class="dg-box" x="492" y="30" width="150" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="567" y="50">Recruiter and</tspan><tspan x="567" y="65">outreach</tspan></text><path class="dg-arr" d="M64 80 V104" marker-end="url(#dg-a)"/><text class="dg-src" x="72" y="98">every candidate link opened in a real browser</text><rect class="dg-box dg-box--accent" x="0" y="112" width="300" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="150" y="140">Verify: rendered page, not a fetch</tspan></text><path class="dg-arr" d="M150 162 V188" marker-end="url(#dg-a)"/><rect class="dg-box dg-box--accent" x="0" y="196" width="300" height="50" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="150" y="218">state.json</tspan><tspan x="150" y="233">written after each job, not batched</tspan></text><path class="dg-arr" d="M304 221 H360" marker-end="url(#dg-a)"/><rect class="dg-box" x="364" y="196" width="180" height="50" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="454" y="218">Local dashboard</tspan><tspan x="454" y="233">polls every 5s</tspan></text><path class="dg-arr dg-arr--dash" d="M454 194 V170 H304" marker-end="url(#dg-a)"/><text class="dg-src" x="312" y="182">Applied toggle writes back</text><rect class="dg-box" x="560" y="196" width="180" height="50" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="650" y="218">You review and apply</tspan><tspan x="650" y="233">nothing auto-submits</tspan></text><path class="dg-arr" d="M548 221 H556" marker-end="url(#dg-a)"/></svg>
+              <figcaption>Stages run in sequence over one shared state file rather than as independent agents, so nothing races on writes. The dashboard reads that same file, and the only write back into it from a human is the Applied toggle.</figcaption>
+            </figure>
+
+            <h2>The verification problem, which is the interesting one</h2>
+            <p>A job pipeline that surfaces dead postings is worse than no pipeline, because it costs you the time it claimed to save. So every candidate link is verified before it is allowed into the state file.</p>
+            <p>The naive check is an HTTP fetch of the posting URL. That does not work, and finding out why was the most useful thing this project taught me. Some applicant tracking systems serve <em>stale cached SEO metadata</em> to simple fetches: a requisition that closed weeks ago still returns a full, legitimate-looking job description, title and responsibilities included. A fetch-based check passes it happily.</p>
+            <p>The only reliable signal is the rendered page. Verification opens the real URL in a browser, waits out any loading state, and requires job-specific content and a live apply action before accepting it. A redirect to a generic listings page, an error parameter appended to the URL, or a page carrying nothing but company boilerplate all mean the same thing: the requisition is gone, whatever the fetch said. Freshness is read the same way, from what the page itself renders rather than from an aggregator's claimed day count, which is frequently wrong.</p>
+
+            <h2>Showing its work</h2>
+            <p>A score is not useful if you cannot see how it was reached, so every row carries the reasoning behind it. A posting scored 93 and marked Tier 1 records why in plain terms: the stated requirement was a Bachelor's, Master's or PhD <em>or equivalent experience</em>, with no years-of-experience floor. The tier came from reading the actual minimum qualification rather than pattern-matching the title, which is the failure mode that fills these tools with jobs you cannot get.</p>
+            <p>The same row records the evidence from verification, quoted rather than summarised: the location, that the posting had been reposted 46 minutes earlier, and that over a hundred people had already clicked apply. That last detail is the kind of thing a summary would have thrown away, and it is exactly what tells you whether applying today is worth it.</p>
+            <p>The same principle decides what gets logged. A link that fails verification is recorded with a reason, because those are rare and usually mean something upstream changed. A posting that simply wants eight years of experience is dropped silently, because that case is constant and logging it would bury the failures that matter under noise.</p>
+
+            <h2>A bug worth keeping in the design</h2>
+            <p>Jobs were originally de-duplicated by a generated slug, which is the tidier-looking choice. Two genuinely different postings at the same company can slugify identically, and when that happened the pipeline treated the second as a duplicate and silently overwrote the first one's resume and cover letter.</p>
+            <p>De-duplication is now exact URL match only, and a file write checks for an existing name belonging to a different job before writing, appending a suffix rather than clobbering. The general lesson is the one worth keeping: a derived identifier is not an identity, and the failure mode of pretending otherwise is silent data loss rather than an error you would notice.</p>
+
+            <h2>The human stays in the loop, deliberately</h2>
+            <p>The pipeline never submits an application. It prepares materials and stops.</p>
+            <p>That is partly practical, since most applicant tracking systems want an account, custom screening answers, or a CAPTCHA, and a wrong auto-submission cannot be taken back. But it is also the right default for an agent acting on someone's behalf in a context that matters to them. If a form does need filling, it happens in a live session with a person watching, confirming before anything is sent.</p>
+            <p>A job moves through the funnel by a control on its own row, and those statuses are treated as owned by the person rather than the pipeline: once a job is marked applied, a later run will never quietly move it back.</p>
+
+            <h2>Honest output</h2>
+            <p>A run targets at least five verified postings and widens its search until it finds them, trying more keyword variants and more boards before settling. What it will not do is reach the number by relaxing verification or the matching rules. If a genuinely widened search turns up only three that survive, the run reports three and says so plainly in its finishing status.</p>
+            <p>That is the same instinct behind the rest of this page. A pipeline that quietly pads its results to hit a target is training you to stop trusting it, and a job search is already long enough without checking your own tools.</p>
+
+            <h2>Local by construction</h2>
+            <p>Nothing is hosted. A Python standard-library server serves a single-file dashboard and exposes one small write-back endpoint for the status control, the dashboard polls the state file every five seconds, and every resume, cover letter, and piece of profile data stays on the machine. There is no build step for the dashboard and nothing to install to run it.</p>
+            <p>All personalisation lives in one profile file rather than in the prompt or the code, which is what makes the pipeline reusable by someone in a different field without editing anything. That separation is also what let me de-identify the whole project into a template by swapping a single file.</p>
+
+          <p class="stack"><span class="stack-label">Stack</span> Claude as orchestrator with sub-agents per stage &middot; browser automation for link verification &middot; Python standard-library server &middot; single-file dashboard, no build step &middot; Node and docx for document generation &middot; JSON as the shared state</p>
+            <p class="project-links">
+              <a href="https://github.com/rahul-sg/job-search-agent-template" target="_blank" rel="noopener">Template</a>
+              <span class="note">My own instance runs locally against personal data; the published template is de-identified.</span>
+            </p>
+        </div>
+      </article>
+
+      <nav class="wrap pager" aria-label="Other projects">
+        <a class="pager-link pager-prev" href="llm-evaluation.html">
+          <span class="pager-label">Previous</span>
+          <span class="pager-name">LLM Evaluation Framework</span>
+        </a>
+        <a class="pager-link pager-next" href="cartographer.html">
+          <span class="pager-label">Next</span>
+          <span class="pager-name">Cartographer</span>
+        </a>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer-inner">
+        <p>Rahul Sengupta</p>
+        <p class="site-footer-links">
+          <a href="mailto:rahul_sen_gupta@yahoo.com">Email</a>
+          <a href="https://github.com/rahul-sg" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com/in/rahul-sg" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="../Rahul_S_Resume_Final.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute;</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="../script.js?v=11"></script>
+  </body>
+</html>
