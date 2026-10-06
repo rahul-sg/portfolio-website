@@ -81,8 +81,8 @@
             Computer Science at Georgia Tech with a machine learning specialisation. The projects
             below are a search system used daily inside a city government, a housing forecasting
             service I deployed and operated myself, a 3D football replay built from league
-            tracking data, an LLM evaluation framework, an agent pipeline, and a static analysis
-            tool. The subject matter has nothing in
+            tracking data, a car identifier that rebuilds your own car in 3D from a phone video,
+            an LLM evaluation framework, and a static analysis tool. The subject matter has nothing in
             common. What they share is that none of them was finished when the model worked.
           </p>
           <p>
@@ -222,6 +222,35 @@
           <div class="project-aside">
             <p class="project-index">04</p>
             <dl class="facts">
+              <div><dt>Context</dt><dd>Personal, solo</dd></div>
+              <div><dt>Role</dt><dd>Everything</dd></div>
+              <div><dt>Status</dt><dd>Open source</dd></div>
+            </dl>
+            <dl class="keyfigs">
+              <div><dt>81%</dt><dd>exact make and model, held out</dd></div>
+              <div><dt>5 cm</dt><dd>worst axis, 3D self-scaled</dd></div>
+              <div><dt>1,454</dt><dd>model families it can name</dd></div>
+            </dl>
+          </div>
+          <div class="project-body">
+            <h3><a href="projects/chassis.html">Chassis</a></h3>
+            <p class="work-sub">Naming a car from one photo, and rebuilding it in 3D at true size</p>
+            <p class="work-summary">A Mac app that identifies a car from a single photo against every model in the EPA&rsquo;s U.S. records, zero-shot, with a match percentage calibrated on 600 held-out photos so it can be read at face value. A thirty second walk-around video becomes a Gaussian-splat model standing at real size, scaled from the height the phone was held at when there is nothing in frame to measure against.</p>
+            <p class="stack"><span class="stack-label">Stack</span> React 18, TypeScript and three.js &middot; FastAPI with a disk-backed job queue &middot; SigLIP So400m, YOLO11, TripoSR &middot; pycolmap structure-from-motion &middot; Brush splat training &middot; EPA and NHTSA public data</p>
+            <p class="project-links">
+              <a class="work-more" href="projects/chassis.html">Read more</a>
+              <a href="https://github.com/rahul-sg/Chassis" target="_blank" rel="noopener">Source</a>
+            </p>
+            <a class="work-thumb" href="projects/chassis.html">
+              <img src="images/chassis-garage.jpg" alt="" loading="lazy" />
+            </a>
+          </div>
+        </article>
+
+        <article class="project work-item">
+          <div class="project-aside">
+            <p class="project-index">05</p>
+            <dl class="facts">
               <div><dt>Context</dt><dd>UCSD capstone</dd></div>
               <div><dt>Role</dt><dd>Led evaluation research; four-person team</dd></div>
               <div><dt>Status</dt><dd>Paper and source public</dd></div>
@@ -245,30 +274,6 @@
             </p>
             <a class="work-thumb" href="projects/llm-evaluation.html">
               <img src="images/llm-eval-dashboard.jpg" alt="" loading="lazy" />
-            </a>
-          </div>
-        </article>
-
-        <article class="project work-item">
-          <div class="project-aside">
-            <p class="project-index">05</p>
-            <dl class="facts">
-              <div><dt>Context</dt><dd>Personal, solo</dd></div>
-              <div><dt>Role</dt><dd>Everything</dd></div>
-              <div><dt>Status</dt><dd>In use; template de-identified</dd></div>
-            </dl>
-          </div>
-          <div class="project-body">
-            <h3><a href="projects/job-search-agent.html">Job Search Agent</a></h3>
-            <p class="work-sub">An agent pipeline that prepares applications but never sends them</p>
-            <p class="work-summary">A local agent pipeline that finds job postings, verifies every link by rendering it in a real browser, tailors a resume and cover letter per role, and drafts recruiter outreach, writing to a shared state file that a live dashboard polls. Four specialist stages run in sequence rather than as independent agents, and nothing is ever submitted without a human.</p>
-            <p class="stack"><span class="stack-label">Stack</span> Claude as orchestrator with sub-agents per stage &middot; browser automation for link verification &middot; Python standard-library server &middot; single-file dashboard, no build step &middot; Node and docx for document generation &middot; JSON as the shared state</p>
-            <p class="project-links">
-              <a class="work-more" href="projects/job-search-agent.html">Read more</a>
-              <a href="https://github.com/rahul-sg/job-search-agent-template" target="_blank" rel="noopener">Template</a>
-            </p>
-            <a class="work-thumb" href="projects/job-search-agent.html">
-              <img src="images/job-search-agent.jpg" alt="" loading="lazy" />
             </a>
           </div>
         </article>
@@ -330,6 +335,14 @@
                 AI plan-checking for city construction submittals, built at the UC Berkeley Haas
                 and UCSD Blackstone Launchpad programs. See Experience below. The repository
                 belongs to the team.
+              </dd>
+            </div>
+            <div>
+              <dt>Job Search Agent</dt>
+              <dd>
+                A local agent pipeline that finds job postings, verifies every link by rendering it in a real browser, tailors a resume and cover letter per role, and drafts recruiter outreach, writing to a shared state file that a live dashboard polls. Four specialist stages run in sequence rather than as independent agents, and nothing is ever submitted without a human.
+                <a href="projects/job-search-agent.html">Read more</a>
+                <a href="https://github.com/rahul-sg/job-search-agent-template" target="_blank" rel="noopener">Template</a>
               </dd>
             </div>
             <div>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chassis &middot; Rahul Sengupta</title>
+    <meta name="description" content="Identifies a car from one photo with a confidence number calibrated on held-out data, and rebuilds it as a Gaussian-splat 3D model scaled to within 5 cm of the real car from a phone video." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Chassis &middot; Rahul Sengupta" />
+    <meta property="og:description" content="Identifies a car from one photo with a confidence number calibrated on held-out data, and rebuilds it as a Gaussian-splat 3D model scaled to within 5 cm of the real car from a phone video." />
+    <meta property="og:image" content="../images/og-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=11" />
+    <link rel="icon" type="image/x-icon" href="../favicon.ico?v=11" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png?v=11" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=11" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css?v=11" />
+    <script>
+      // Applied before first paint so a returning dark-mode reader never sees a flash.
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav class="subnav" aria-label="Sections">
+      <div class="wrap subnav-inner">
+        <a class="subnav-brand" href="../index.html">Rahul Sengupta</a>
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#writing">Writing</a>
+        <a href="../index.html#tools">Tools</a>
+        <a href="../index.html#contact">Contact</a>
+        <button class="theme-toggle" type="button" id="theme-toggle"
+                aria-label="Switch between light and dark">
+          <span class="theme-toggle-label">Dark</span>
+        </button>
+      </div>
+    </nav>
+
+    <main id="main">
+      <article class="section wrap project project-page">
+        <div class="project-aside">
+          <p class="project-index">04 / 06</p>
+          <dl class="facts">
+            <div><dt>Context</dt><dd>Personal, solo</dd></div>
+            <div><dt>Role</dt><dd>Everything</dd></div>
+            <div><dt>Status</dt><dd>Open source</dd></div>
+          </dl>
+          <dl class="keyfigs">
+            <div><dt>81%</dt><dd>exact make and model, held out</dd></div>
+            <div><dt>5 cm</dt><dd>worst axis, 3D self-scaled</dd></div>
+            <div><dt>1,454</dt><dd>model families it can name</dd></div>
+          </dl>
+          <p class="aside-back"><a href="../index.html#work">All work</a></p>
+        </div>
+
+        <div class="project-body">
+          <header class="page-head">
+            <h1>Chassis</h1>
+            <p class="page-sub">Naming a car from one photo, and rebuilding it in 3D at true size</p>
+          </header>
+
+          <p class="lead">A Mac app that identifies a car from a single photo against every model in the EPA&rsquo;s U.S. records, with a match percentage calibrated on held-out photos so it can be read at face value, and that turns a thirty second walk-around video into a Gaussian-splat model standing at its real size.</p>
+          <figure class="shot">
+            <a href="../images/chassis-garage.jpg" target="_blank" rel="noopener">
+              <img src="../images/chassis-garage.jpg" alt="Two cars reconstructed from separate videos and placed by the pipeline rather than by hand. The Lexus comes out at 4.5 m and the Tanks and Temples test truck at 5.4 m, so parking them together is a check on the scaling as much as a way to look at them." loading="lazy" />
+            </a>
+            <figcaption>Two cars reconstructed from separate videos and placed by the pipeline rather than by hand. The Lexus comes out at 4.5 m and the Tanks and Temples test truck at 5.4 m, so parking them together is a check on the scaling as much as a way to look at them.</figcaption>
+          </figure>
+
+            <h2>What it is</h2>
+            <p>Chassis does two things on a Mac, with nothing leaving it. One photo gives the make, model and likely model years, matched against every model in the EPA&rsquo;s U.S. records since 1984, with the spec sheet, recalls and crash ratings behind it. A thirty second walk-around video becomes a photoreal Gaussian-splat model of that car, standing upright at its true size.</p>
+            <p>The rest of the app sits around those two: a collection of cars you have spotted, paint and wheel previews, a condition record, a sell kit, and a garage that parks everything side by side to scale. None of that is the interesting part.</p>
+
+            <h2>A confidence number that means something</h2>
+            <p>Identification is zero-shot. YOLO11 segmentation finds the largest vehicle and squares up a crop around it, then SigLIP embeds that crop and also embeds a short sentence for each of the 1,454 model families in the EPA data, two phrasings averaged, so the nearest sentences are the candidates. Nothing is trained on car photos. The year range works the same way, one sentence per model year, and the range grows outward from the best year until it holds 90% of the year probability or reaches five years, whichever comes first.</p>
+            <p>When a guess is not good enough there is a way out of probability altogether. Point it at the VIN and EasyOCR reads the windscreen plate, door sticker or registration. North American VINs carry a check digit in position 9, so a misread can be told from a real VIN rather than trusted blindly, and the characters that OCR habitually confuses, S for 5, B for 8, Z for 2, G for 6, D for 0, are swapped until the check digit agrees. NHTSA then confirms the decode. It is a small thing, but it is the difference between an OCR result and an identification.</p>
+            <p>That gives a percentage next to every answer, and a percentage is worthless unless it tracks reality. So it was measured.</p>
+            <figure class="diagram">
+              <svg viewBox="0 0 740 196" role="img" aria-label="Accuracy by shown confidence on 600 held-out photos. Accuracy rises at every step of the scale, so the match percentage can be read at face value."><text class="dg-band" x="0" y="12">ACCURACY BY SHOWN CONFIDENCE, 600 HELD-OUT PHOTOS</text><rect class="dg-box" x="132" y="30" width="420" height="22" rx="3"/><rect class="dg-box dg-box--accent" x="132" y="30" width="412" height="22" rx="3"/><text class="dg-t" x="0" y="45">Shown 95% or more</text><text class="dg-t" x="562" y="45">98% right</text><text class="dg-src" x="648" y="45">n = 159</text><rect class="dg-box" x="132" y="68" width="420" height="22" rx="3"/><rect class="dg-box dg-box--accent" x="132" y="68" width="372" height="22" rx="3"/><text class="dg-t" x="0" y="83">Shown 80 to 95%</text><text class="dg-t" x="562" y="83">89% right</text><text class="dg-src" x="648" y="83">n = 166</text><rect class="dg-box" x="132" y="106" width="420" height="22" rx="3"/><rect class="dg-box dg-box--accent" x="132" y="106" width="315" height="22" rx="3"/><text class="dg-t" x="0" y="121">Shown 50 to 80%</text><text class="dg-t" x="562" y="121">75% right</text><text class="dg-src" x="648" y="121">n = 189</text><rect class="dg-box" x="132" y="144" width="420" height="22" rx="3"/><rect class="dg-box dg-box--accent" x="132" y="144" width="200" height="22" rx="3"/><text class="dg-t" x="0" y="159">Shown below 50%</text><text class="dg-t" x="562" y="159">48% right</text><text class="dg-src" x="648" y="159">n = 86</text><text class="dg-src" x="132" y="182">0</text><text class="dg-src" x="552" y="182" text-anchor="end">100%</text></svg>
+              <figcaption>Accuracy rises at every step of the scale, which is the only thing that makes a confidence number worth showing. A reader who sees 62% can treat it as a coin flip they are likely to win, not as a guess dressed up as a number.</figcaption>
+            </figure>
+
+            <h2>Measuring it without marking my own homework</h2>
+            <p>The test set is Stanford Cars, 600 photos the model had never been tuned on. Getting there took some care. Stanford labels look like <code>acura tl sedan 2012</code>, which has to be matched to an EPA model family before anything can be scored; 24 of the 196 classes have no EPA family at all, because they were never sold in the U.S. with an EPA rating, and those are reported and dropped rather than quietly counted as misses.</p>
+            <p>The year-range settings were tuned on the first 600 photos of a fixed shuffle. The numbers below come from the next 600, which played no part in that. Running both tells you how much the tuning bought: 82.3% on the photos it was tuned against, 81.0% on the ones it had never seen. A gap that small is the point of splitting them.</p>
+            <p>On the held-out 600: 81.0% name the exact make and model, 96.8% have it in the top five, 95.7% get the make right, and 86% of the year ranges contain the true year, with ranges averaging 4.6 years. It takes 0.8 seconds a photo on an M1 Pro.</p>
+            <p>What it gets wrong is as informative as what it gets right, so the harness prints the twelve most common confusions. They are almost all one car mistaken for its own sibling: a Ferrari 458 Italia called a 458 Spider, a Jaguar XK called an XKR, a BMW X6 called an ActiveHybrid X6. Those are the coupe and the convertible, the base car and the performance trim, the petrol car and the hybrid. It is not confusing a Ferrari with a hatchback.</p>
+            <p>One caveat belongs with those numbers. Stanford Cars photos are mostly clean, well-framed shots, so the calibration is measured under easier conditions than a phone photo taken across a car park. The ranking should hold; the exact percentages may not.</p>
+
+            <h2>From a phone video to a car at real size</h2>
+            <p>The 3D side is mostly not machine learning. ffmpeg samples three candidates per kept frame and takes the sharpest of each slice by variance of the Laplacian, 150 frames at 1600px. Phones film HDR by default, and read naively those frames come out flat and dull, an orange car turning brown, so the HLG or PQ curve is undone at 16 bits and mapped back through HDR&rsquo;s 203 nit reference white. YOLO11 outlines the car in every frame, and turntable videos are spotted by the background standing still while the car turns.</p>
+            <p>Then the video is checked before anything slow runs, against thresholds taken from real captures: portrait orientation, the car running off the sides of more than 75% of frames, filling more than 65% of the picture or less than 6% of it, found in under 60% of frames, or a video under 15 seconds. Any of those and the job pauses with the reasons in plain words rather than spending twenty minutes to produce a smear.</p>
+            <p>COLMAP then places the cameras: SIFT at 6,000 features a frame, each frame matched against its next ten and every fifth frame against every other fifth so the end of the walk finds the start, then incremental mapping. It gets up to three attempts, varying whether masks are used and whether the lens is solved once or per frame, until 60% of frames are placed; under 40% it gives up and says why. Brush then trains the splat for 12,000 steps on the masked frames.</p>
+            <p>The clean-up is where a splat stops looking like soup. Every splat&rsquo;s centre is projected into 30 frames and survives only if it lands on the car in at least 60% of the frames that can see it, voting against outlines pulled 10px tighter than the ones used for training. Only the largest connected blob is kept, which is what removes floaters. Long splats have to keep both ends on the body, because streaks reaching off the panel are what make edges look smeared. Then the road goes: splats lying flat at floor level, low ones outside the car&rsquo;s outline seen from above, and pale ones at pavement height. The floor is set at the bottom of the tyres.</p>
+            <p>The splat file is only ever filtered, never moved. One transform at the viewer centres it, stands it upright and scales it to metres, so view-dependent colour stays correct.</p>
+            <figure class="diagram">
+              <svg viewBox="0 0 740 284" role="img" aria-label="The capture pipeline, from a phone video to a car standing upright at real size."><defs><marker id="dg-a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="dg-head" d="M0 1 L7 4 L0 7 z"/></marker></defs><text class="dg-band" x="0" y="12">PHONE VIDEO IN</text><rect class="dg-box" x="0" y="26" width="172" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="86" y="46">ffmpeg picks the</tspan><tspan x="86" y="61">sharpest 150 frames</tspan></text><path class="dg-arr" d="M176 49 L196 49" marker-end="url(#dg-a)"/><rect class="dg-box" x="196" y="26" width="160" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="276" y="46">HDR decoded at</tspan><tspan x="276" y="61">16 bits, not flat</tspan></text><path class="dg-arr" d="M360 49 L380 49" marker-end="url(#dg-a)"/><rect class="dg-box" x="380" y="26" width="168" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="464" y="46">YOLO11 outlines</tspan><tspan x="464" y="61">the car per frame</tspan></text><path class="dg-arr" d="M552 49 L572 49" marker-end="url(#dg-a)"/><rect class="dg-box dg-box--accent" x="572" y="26" width="168" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="656" y="46">Check: pause if it</tspan><tspan x="656" y="61">will come out smeared</tspan></text><path class="dg-arr" d="M656 76 V104 H95 V130" marker-end="url(#dg-a)"/><text class="dg-src" x="105" y="99">frames and masks, cleared to build</text><rect class="dg-box" x="0" y="138" width="190" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="95" y="158">COLMAP places</tspan><tspan x="95" y="173">every frame</tspan></text><path class="dg-arr" d="M194 161 L214 161" marker-end="url(#dg-a)"/><rect class="dg-box" x="214" y="138" width="210" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="319" y="158">Brush trains the splat</tspan><tspan x="319" y="173">12,000 steps</tspan></text><path class="dg-arr" d="M428 161 L448 161" marker-end="url(#dg-a)"/><rect class="dg-box dg-box--accent" x="448" y="138" width="230" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="563" y="158">Clean-up: cross-view votes,</tspan><tspan x="563" y="173">needles, haze, road</tspan></text><text class="dg-band" x="0" y="214">STOOD UPRIGHT AT REAL SIZE</text><rect class="dg-box" x="0" y="228" width="270" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="135" y="248">Scale from the length you enter,</tspan><tspan x="135" y="263">or the height it was filmed at</tspan></text><path class="dg-arr" d="M274 251 L294 251" marker-end="url(#dg-a)"/><rect class="dg-box dg-box--accent" x="294" y="228" width="250" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="419" y="248">Lexus UX measured 4.49 m</tspan><tspan x="419" y="263">against 4.50 m real</tspan></text></svg>
+              <figcaption>The capture pipeline. The check before the long part matters: a full capture takes 15 to 30 minutes, so a video that cannot work is better caught in the first thirty seconds.</figcaption>
+            </figure>
+
+            <h2>Getting the size right with nothing to measure against</h2>
+            <p>A reconstruction from a single camera has no inherent scale, and there is no ruler in the shot. If you know your car&rsquo;s length you can type it. If you do not, the fallback is that the camera itself is the reference: people hold a phone at about chest height while walking around a car, 1.48 m, and the floor position is already known from the tyres.</p>
+            <p>A Lexus UX filmed on an iPhone scaled itself to 4.49 &times; 1.84 &times; 1.49 m, length by width by height. The real car is 4.50 &times; 1.84 &times; 1.54 m. Length within a centimetre and width exact, from a phone video and an assumption about how tall a person is. The height comes out about 5 cm low, and an earlier build of the same video, before the clean-up rules were tightened, landed at 4.46 &times; 1.85 &times; 1.49 m.</p>
+          <figure class="shot">
+            <a href="../images/chassis-360.jpg" target="_blank" rel="noopener">
+              <img src="../images/chassis-360.jpg" alt="The Lexus UX as a Gaussian splat, turned in the browser. Nothing in the video told the pipeline how large the car was." loading="lazy" />
+            </a>
+            <figcaption>The Lexus UX as a Gaussian splat, turned in the browser. Nothing in the video told the pipeline how large the car was.</figcaption>
+          </figure>
+            <p>That assumption is also the weak point, and it is worth stating how weak. Every 10 cm the phone sits above or below chest height moves the whole model by about 7%. The floor comes from the lowest 0.2% of splats, the tyre bottoms, and the camera height from the 85th percentile of the path so that a lower second loop does not drag it down. Anything that comes out under 2.8 m or over 7.5 m is rejected as implausible rather than shown.</p>
+            <p>The last resort, once the guess is refused, is the typical length for the car&rsquo;s EPA size class, and the code says outright that this one is rough, because EPA classes are decided by interior volume rather than exterior size. Entering the length removes the guess entirely.</p>
+
+            <h2>Where the work actually is</h2>
+            <p>Two learned models do the perception: SigLIP names the car, YOLO11 finds it. Everything between them is ordinary engineering. Camera placement, the geometric clean-up, the scaling, the frame selection and the HDR handling are all classical, because a car on a flat surface filmed in a circle is a well-posed geometry problem and fitting it beats learning it.</p>
+            <p>The README lists every model and dataset with its licence, including the ones that are pretrained and not mine, because a reader deserves to know which parts I built.</p>
+
+            <h2>Honest limits</h2>
+            <p>It needs an Apple Silicon Mac with 16 GB of memory, and about 5.3 GB of models download the first time each feature runs. Because it uses Ultralytics YOLO11 under AGPL-3.0, it is for personal use on your own machine.</p>
+            <p>One-photo 3D, when there is no video, is a shape sketched by TripoSR and is labelled a guess everywhere it appears. The condition comparison finds a drawn-on scratch on a re-shot photo and flags nothing on an unchanged one, but photos taken from noticeably different spots produce small false outlines near edges, glass and wheels, and the page says so rather than hiding it.</p>
+            <p>The identification covers models in the EPA&rsquo;s U.S. records. A car never sold here has no family to match against, and the harness counts that as out of scope rather than as a win.</p>
+
+          <p class="stack"><span class="stack-label">Stack</span> React 18, TypeScript and Vite &middot; three.js through React Three Fiber, Spark for the splats &middot; FastAPI with a disk-backed job queue and a separate worker &middot; SigLIP So400m, YOLO11, EasyOCR, BiRefNet, TripoSR &middot; pycolmap structure-from-motion &middot; Brush splat training &middot; EPA and NHTSA public data &middot; vitest and Python test suites</p>
+          <p class="project-links">
+              <a href="https://github.com/rahul-sg/Chassis" target="_blank" rel="noopener">Source</a>
+              <span class="note">Runs locally on Apple Silicon and the models download on first use, so there is no hosted demo.</span>
+          </p>
+        </div>
+      </article>
+
+      <nav class="wrap pager" aria-label="Other projects">
+        <a class="pager-link pager-prev" href="sideline.html">
+          <span class="pager-label">Previous</span>
+          <span class="pager-name">Sideline</span>
+        </a>
+        <a class="pager-link pager-next" href="llm-evaluation.html">
+          <span class="pager-label">Next</span>
+          <span class="pager-name">LLM Evaluation Framework</span>
+        </a>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer-inner">
+        <p>Rahul Sengupta</p>
+        <p class="site-footer-links">
+          <a href="mailto:rahul_sen_gupta@yahoo.com">Email</a>
+          <a href="https://github.com/rahul-sg" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com/in/rahul-sg" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="../Rahul_S_Resume_Final.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute;</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="../script.js?v=11"></script>
+  </body>
+</html>
