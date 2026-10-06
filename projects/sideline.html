@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sideline &middot; Rahul Sengupta</title>
+    <meta name="description" content="Real NFL plays rebuilt in 3D from player-tracking data, with a computer-vision pipeline that recovers player positions from broadcast video at 1.5 yd median error against the league&#x27;s own tracking." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sideline &middot; Rahul Sengupta" />
+    <meta property="og:description" content="Real NFL plays rebuilt in 3D from player-tracking data, with a computer-vision pipeline that recovers player positions from broadcast video at 1.5 yd median error against the league&#x27;s own tracking." />
+    <meta property="og:image" content="../images/og-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=11" />
+    <link rel="icon" type="image/x-icon" href="../favicon.ico?v=11" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png?v=11" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=11" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css?v=11" />
+    <script>
+      // Applied before first paint so a returning dark-mode reader never sees a flash.
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav class="subnav" aria-label="Sections">
+      <div class="wrap subnav-inner">
+        <a class="subnav-brand" href="../index.html">Rahul Sengupta</a>
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#writing">Writing</a>
+        <a href="../index.html#tools">Tools</a>
+        <a href="../index.html#contact">Contact</a>
+        <button class="theme-toggle" type="button" id="theme-toggle"
+                aria-label="Switch between light and dark">
+          <span class="theme-toggle-label">Dark</span>
+        </button>
+      </div>
+    </nav>
+
+    <main id="main">
+      <article class="section wrap project project-page">
+        <div class="project-aside">
+          <p class="project-index">03 / 06</p>
+          <dl class="facts">
+            <div><dt>Context</dt><dd>Personal, solo</dd></div>
+            <div><dt>Role</dt><dd>Everything</dd></div>
+            <div><dt>Status</dt><dd>Open source</dd></div>
+          </dl>
+          <dl class="keyfigs">
+            <div><dt>1.5 yd</dt><dd>median error vs NFL tracking</dd></div>
+            <div><dt>14,242</dt><dd>plays rebuilt in 3D</dd></div>
+            <div><dt>65,134</dt><dd>routes searchable</dd></div>
+          </dl>
+          <p class="aside-back"><a href="../index.html#work">All work</a></p>
+        </div>
+
+        <div class="project-body">
+          <header class="page-head">
+            <h1>Sideline</h1>
+            <p class="page-sub">Real NFL plays rebuilt in 3D, and recovered from broadcast video</p>
+          </header>
+
+          <p class="lead">A 3D replay of real NFL plays built from league player-tracking data, plus a computer-vision pipeline that recovers player positions from ordinary broadcast footage and is scored against the NFL’s own tracking.</p>
+          <figure class="shot">
+            <a href="../images/sideline-hero.jpg" target="_blank" rel="noopener">
+              <img src="../images/sideline-hero.jpg" alt="The front page, running a real play live in 3D. Every figure on it is read from the tracking data rather than written by hand." loading="lazy" />
+            </a>
+            <figcaption>The front page, running a real play live in 3D. Every figure on it is read from the tracking data rather than written by hand.</figcaption>
+          </figure>
+
+            <h2>What it is</h2>
+            <p>Sideline rebuilds real NFL plays in 3D from player-tracking data. Every tracked player, ten times a second, in a stadium you can move the camera around: the broadcast angle, the All-22, the end zone, or the quarterback's own eyeline.</p>
+            <p>On top of the replay there are three other ways in. QB Read freezes the play at the throw and asks you to pick a receiver before showing where the ball actually went and how open everyone was. Route Finder lets you sketch a route and ranks 65,134 real routes by how closely they start the same way. This Week carries the current season's scores, win-probability curves and the plays that swung each game.</p>
+
+            <h2>The hard part: no tracking data for most games</h2>
+            <p>Public tracking data covers a sliver of football. The NFL releases it through the Big Data Bowl for one season of pass plays and one full 2017 game. Everything else, including every game played last weekend, has no public coordinates at all.</p>
+            <p>So the interesting question is whether you can recover them from the thing that does exist for every game: the television broadcast. That is what the vision pipeline does, and it is the part of this project I would want to be judged on.</p>
+
+            <h2>How the video pipeline works</h2>
+            <p>Finding the play comes first. An OCR model reads the score bar's quarter and game clock twice a second, and the snap is the frame where the clock ticks below the play's known snap time. That removes the need to tell the system where anything is.</p>
+            <p>Then the camera has to be located, which is the whole problem in disguise. A to-scale template of the field's paint, yard lines, sidelines, hash marks and ticks, is fitted to a paint mask by optimising an eight-parameter homography against a distance transform; ICP recovers when the fit drifts badly. Across fast pans, ORB features and RANSAC chain the camera frame to frame through motion blur, and fits that disagree with the measured motion are thrown out.</p>
+            <p>Players come from YOLO11 at 1280px, identities are held together by ByteTrack, teams are split by k-means on torso colour in Lab space with each cluster tied to offense or defense by which side of the line it starts on, and jersey numbers are read by OCR over three contrast variants, voted across frames and constrained to the 22 numbers actually on the field for that play.</p>
+            <figure class="diagram">
+              <svg viewBox="0 0 740 284" role="img" aria-label="The vision pipeline, end to end. The last row is the part that matters: the output is scored against the NFL's own tracking of the same plays rather than eyeballed."><defs><marker id="dg-a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="dg-head" d="M0 1 L7 4 L0 7 z"/></marker></defs><text class="dg-band" x="0" y="12">BROADCAST VIDEO IN</text><rect class="dg-box" x="0" y="26" width="150" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="75" y="46">Score-bar OCR</tspan><tspan x="75" y="61">finds the snap</tspan></text><path class="dg-arr" d="M154 49 L178 49" marker-end="url(#dg-a)"/><rect class="dg-box" x="182" y="26" width="150" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="257" y="46">YOLO11</tspan><tspan x="257" y="61">finds players</tspan></text><path class="dg-arr" d="M336 49 L360 49" marker-end="url(#dg-a)"/><rect class="dg-box" x="364" y="26" width="150" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="439" y="46">ByteTrack</tspan><tspan x="439" y="61">keeps identities</tspan></text><path class="dg-arr" d="M518 49 L542 49" marker-end="url(#dg-a)"/><rect class="dg-box dg-box--accent" x="546" y="26" width="194" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="643" y="46">Homography to the paint</tspan><tspan x="643" y="61">ICP recovers big errors</tspan></text><path class="dg-arr" d="M643 76 V104 H90 V130" marker-end="url(#dg-a)"/><text class="dg-src" x="100" y="99">camera located, every frame</text><rect class="dg-box" x="0" y="138" width="170" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="85" y="158">k-means on torso</tspan><tspan x="85" y="173">colour: which team</tspan></text><path class="dg-arr" d="M174 161 L198 161" marker-end="url(#dg-a)"/><rect class="dg-box" x="202" y="138" width="180" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="292" y="158">Jersey OCR, voted</tspan><tspan x="292" y="173">across frames</tspan></text><path class="dg-arr" d="M386 161 L410 161" marker-end="url(#dg-a)"/><rect class="dg-box dg-box--accent" x="414" y="138" width="180" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="504" y="158">Player tracks</tspan><tspan x="504" y="173">at 10 Hz, in yards</tspan></text><text class="dg-band" x="0" y="214">SCORED AGAINST GROUND TRUTH</text><rect class="dg-box" x="0" y="228" width="250" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="125" y="256">Hungarian match vs NFL tracking</tspan></text><path class="dg-arr" d="M254 251 L278 251" marker-end="url(#dg-a)"/><rect class="dg-box dg-box--accent" x="282" y="228" width="230" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="397" y="256">1.5 yd median over 50 plays</tspan></text></svg>
+              <figcaption>The vision pipeline, end to end. The last row is the part that matters: the output is scored against the NFL's own tracking of the same plays rather than eyeballed.</figcaption>
+            </figure>
+
+            <h2>Measured against the league's own data</h2>
+            <p>The output is scored, not eyeballed. Every play of a 2017 game was found, fitted and tracked with no manual setup, then matched against the NFL's tracking of the same plays by Hungarian assignment.</p>
+            <p>Fifty of 68 plays were found and started automatically. Across those fifty, median position error is 1.51 yards, mean 1.84, ninetieth percentile 3.91, with 71% of positions matched to a tracked player. On a single play with a hand-made first-frame fit, median error drops to 0.63 yards and 95% match. Jersey names come out right 91% of the time on the names that are readable at all.</p>
+            <p>Two fixes found while measuring did most of the work on that single play, taking median error from 1.84 to 0.63 yards. Hash marks were being discarded: perspective squashes them into dots and a blob filter was throwing them away, so they went back into the paint mask. And paint hidden behind players or the score bar was being counted as a miss, which pushed the fit into squashing the field to avoid it.</p>
+            <p>Part of the gap that remains is not error at all, it is a difference in what each system measures. The league's chips sit in the shoulder pads. The video sees feet.</p>
+          <figure class="shot">
+            <a href="../images/sideline-vision.jpg" target="_blank" rel="noopener">
+              <img src="../images/sideline-vision.jpg" alt="The vision results, scored against the NFL's own tracking of the same play. White circles are the league's chip data, yellow dots are positions recovered from the TV broadcast alone." loading="lazy" />
+            </a>
+            <figcaption>The vision results, scored against the NFL's own tracking of the same play. White circles are the league's chip data, yellow dots are positions recovered from the TV broadcast alone.</figcaption>
+          </figure>
+
+            <h2>What is deliberately not a model</h2>
+            <p>A lot of this project is not machine learning, and that is a choice rather than a gap. Camera location, pan tracking and field registration are classical computer vision and optimisation, because the field is a known rigid object with exact dimensions and fitting it is better posed than learning it.</p>
+            <p>Expected points and win probability are not mine either. They come from nflverse's nflfastR models, trained on decades of play-by-play, and the project consumes them rather than pretending to have built them. The README lists which models are pretrained and which are not, because a reader deserves to know where the work actually is.</p>
+
+            <h2>Honest limits</h2>
+            <p>The 2023 tracking release has no linemen and ends at the catch, so the 2017 game is the only source where a full play with all 22 players exists. Player models are a dressed mannequin rather than a likeness.</p>
+            <p>The vision pipeline needs one calibrated wide shot per broadcast, and 18 of 68 plays in the test video had no usable wide shot near the snap. A play is followed only until the first camera cut, players who leave frame are held and faded, most players stay unnamed because numbers are only readable when someone is large in frame, and the ball is not tracked at all.</p>
+            <p>Anything the data does not cover is drawn faded and labelled rather than invented, which is the same rule the rest of my work runs on.</p>
+
+          <p class="stack"><span class="stack-label">Stack</span> TypeScript, React and three.js &middot; Python data pipeline &middot; PyTorch, YOLO11, ByteTrack and EasyOCR &middot; classical CV: homography fitting, ICP, ORB and RANSAC &middot; k-means team splitting &middot; Node animation baker &middot; four test suites</p>
+          <p class="project-links">
+              <a href="https://github.com/rahul-sg/Sideline" target="_blank" rel="noopener">Source</a>
+              <span class="note">Runs locally; the tracking data is a Kaggle download, so there is no hosted demo.</span>
+          </p>
+        </div>
+      </article>
+
+      <nav class="wrap pager" aria-label="Other projects">
+        <a class="pager-link pager-prev" href="touse.html">
+          <span class="pager-label">Previous</span>
+          <span class="pager-name">Touse</span>
+        </a>
+        <a class="pager-link pager-next" href="llm-evaluation.html">
+          <span class="pager-label">Next</span>
+          <span class="pager-name">LLM Evaluation Framework</span>
+        </a>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer-inner">
+        <p>Rahul Sengupta</p>
+        <p class="site-footer-links">
+          <a href="mailto:rahul_sen_gupta@yahoo.com">Email</a>
+          <a href="https://github.com/rahul-sg" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com/in/rahul-sg" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="../Rahul_S_Resume_Final.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute;</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="../script.js?v=11"></script>
+  </body>
+</html>

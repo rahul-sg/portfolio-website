@@ -80,8 +80,9 @@
             I am an AI/ML Software Engineer, working full time while finishing a master's in
             Computer Science at Georgia Tech with a machine learning specialisation. The projects
             below are a search system used daily inside a city government, a housing forecasting
-            service I deployed and operated myself, an agent pipeline, an LLM evaluation framework,
-            a static analysis tool, and an election model. The subject matter has nothing in
+            service I deployed and operated myself, a 3D football replay built from league
+            tracking data, an LLM evaluation framework, an agent pipeline, and a static analysis
+            tool. The subject matter has nothing in
             common. What they share is that none of them was finished when the model worked.
           </p>
           <p>
@@ -192,6 +193,35 @@
           <div class="project-aside">
             <p class="project-index">03</p>
             <dl class="facts">
+              <div><dt>Context</dt><dd>Personal, solo</dd></div>
+              <div><dt>Role</dt><dd>Everything</dd></div>
+              <div><dt>Status</dt><dd>Open source</dd></div>
+            </dl>
+            <dl class="keyfigs">
+              <div><dt>1.5 yd</dt><dd>median error vs NFL tracking</dd></div>
+              <div><dt>14,242</dt><dd>plays rebuilt in 3D</dd></div>
+              <div><dt>65,134</dt><dd>routes searchable</dd></div>
+            </dl>
+          </div>
+          <div class="project-body">
+            <h3><a href="projects/sideline.html">Sideline</a></h3>
+            <p class="work-sub">Real NFL plays rebuilt in 3D, and recovered from broadcast video</p>
+            <p class="work-summary">A 3D replay of real NFL plays built from league player-tracking data: every tracked player at 10 Hz, from any camera angle, with a route library of 65,134 routes you can search by drawing one. Alongside it, a computer-vision pipeline recovers player positions from ordinary broadcast footage and is scored against the NFL&#x27;s own tracking at 1.5 yd median error.</p>
+            <p class="stack"><span class="stack-label">Stack</span> TypeScript, React and three.js &middot; Python data pipeline &middot; PyTorch, YOLO11, ByteTrack and EasyOCR &middot; homography fitting, ICP, ORB and RANSAC &middot; four test suites</p>
+            <p class="project-links">
+              <a class="work-more" href="projects/sideline.html">Read more</a>
+              <a href="https://github.com/rahul-sg/Sideline" target="_blank" rel="noopener">Source</a>
+            </p>
+            <a class="work-thumb" href="projects/sideline.html">
+              <img src="images/sideline-hero.jpg" alt="" loading="lazy" />
+            </a>
+          </div>
+        </article>
+
+        <article class="project work-item">
+          <div class="project-aside">
+            <p class="project-index">04</p>
+            <dl class="facts">
               <div><dt>Context</dt><dd>UCSD capstone</dd></div>
               <div><dt>Role</dt><dd>Led evaluation research; four-person team</dd></div>
               <div><dt>Status</dt><dd>Paper and source public</dd></div>
@@ -221,7 +251,7 @@
 
         <article class="project work-item">
           <div class="project-aside">
-            <p class="project-index">04</p>
+            <p class="project-index">05</p>
             <dl class="facts">
               <div><dt>Context</dt><dd>Personal, solo</dd></div>
               <div><dt>Role</dt><dd>Everything</dd></div>
@@ -245,7 +275,7 @@
 
         <article class="project work-item">
           <div class="project-aside">
-            <p class="project-index">05</p>
+            <p class="project-index">06</p>
             <dl class="facts">
               <div><dt>Context</dt><dd>Personal, solo</dd></div>
               <div><dt>Role</dt><dd>Everything</dd></div>
@@ -271,38 +301,9 @@
             </a>
           </div>
         </article>
-
-        <article class="project work-item">
-          <div class="project-aside">
-            <p class="project-index">06</p>
-            <dl class="facts">
-              <div><dt>Context</dt><dd>Personal, solo</dd></div>
-              <div><dt>Role</dt><dd>Everything</dd></div>
-              <div><dt>Status</dt><dd>Source open; host paused</dd></div>
-            </dl>
-            <dl class="keyfigs">
-              <div><dt>505</dt><dd>races forecast</dd></div>
-              <div><dt>2,240</dt><dd>historical races</dd></div>
-              <div><dt>10k</dt><dd>simulations</dd></div>
-            </dl>
-          </div>
-          <div class="project-body">
-            <h3><a href="projects/midterm-forecast.html">2026 Midterm Forecast</a></h3>
-            <p class="work-sub">505 races, with a correlated simulation</p>
-            <p class="work-summary">Forecasts every one of the 505 races in the 2026 US midterms with a Ridge model trained on 2,240 real district results, and simulates chamber control 10,000 times with a shared national swing error rather than treating races as independent.</p>
-            <p class="stack"><span class="stack-label">Stack</span> FastAPI &middot; scikit-learn &middot; React and Vite &middot; Docker &middot; AWS EC2 behind Caddy &middot; 23 tests with network sources patched</p>
-            <p class="project-links">
-              <a class="work-more" href="projects/midterm-forecast.html">Read more</a>
-              <a href="https://github.com/rahul-sg/midterm-predictor" target="_blank" rel="noopener">Source</a>
-            </p>
-            <a class="work-thumb" href="projects/midterm-forecast.html">
-              <img src="images/midterm-dashboard.jpg" alt="" loading="lazy" />
-            </a>
-          </div>
-        </article>
       </section>
 
-      <section class="section wrap" id="also">
+<section class="section wrap" id="also">
         <h2 class="section-title">Also built</h2>
         <div class="prose">
           <dl class="minor-list">
@@ -329,6 +330,13 @@
                 AI plan-checking for city construction submittals, built at the UC Berkeley Haas
                 and UCSD Blackstone Launchpad programs. See Experience below. The repository
                 belongs to the team.
+              </dd>
+            </div>
+            <div>
+              <dt>2026 Midterm Forecast</dt>
+              <dd>
+                Forecasts every one of the 505 races in the 2026 US midterms with a Ridge model trained on 2,240 real district results, and simulates chamber control 10,000 times with a shared national swing error rather than treating races as independent.
+                <a href="https://github.com/rahul-sg/midterm-predictor" target="_blank" rel="noopener">Source</a>
               </dd>
             </div>
             <div>
