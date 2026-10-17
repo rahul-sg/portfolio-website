@@ -51,12 +51,12 @@
           <dl class="facts">
             <div><dt>Client</dt><dd>City of Cupertino</dd></div>
             <div><dt>Role</dt><dd>Built and shipped it</dd></div>
-            <div><dt>Status</dt><dd>In daily use by City staff</dd></div>
+            <div><dt>Status</dt><dd>Rolled out city-wide</dd></div>
           </dl>
           <dl class="keyfigs">
+            <div><dt>~200</dt><dd>staff it reached</dd></div>
             <div><dt>1.2M</dt><dd>pages indexed</dd></div>
             <div><dt>20+</dt><dd>record types</dd></div>
-            <div><dt>1.4s</dt><dd>median search</dd></div>
           </dl>
           <p class="aside-back"><a href="../index.html#work">All work</a></p>
         </div>
@@ -67,7 +67,7 @@
             <p class="page-sub">Semantic search over a municipal archive, for the City of Cupertino</p>
           </header>
 
-          <p class="lead">A search and question-answering layer over the City of Cupertino's public records: roughly 1.2 million pages spanning 1953 to today, indexed from Laserfiche as documents are filed, queried in plain English, and in daily use by City staff.</p>
+          <p class="lead">A search and question-answering layer over the City of Cupertino's public records: roughly 1.2 million pages spanning 1953 to today, indexed from Laserfiche as documents are filed, queried in plain English, and rolled out to about 200 staff across the City.</p>
           <figure class="shot">
             <a href="../images/records-search.jpg" target="_blank" rel="noopener">
               <img src="../images/records-search.jpg" alt="The start page. Sections carry their own record counts, the search box takes a plain-English question, and Needs attention surfaces agreements expiring inside 90 days and records that changed in Laserfiche this week." loading="lazy" />
@@ -119,7 +119,7 @@
 
             <h2>Where it stands</h2>
             <p>In production on Azure behind City single sign-on, with continuous deployment, application monitoring, and a daily evaluation pipeline. A search returns in about 1.4 seconds at the median and under 3 seconds at the 95th percentile, and an answer costs about a third of a cent.</p>
-            <p>Set against what it replaced: more than 20 record types rather than one, seventy years of data rather than nine, a question in plain English rather than keyword matching alone, and a new document searchable when it is filed rather than whenever the next load happened to run. It is in daily use inside the City, and the staff using it describe it as a substantial improvement on what they had before. Access is internal and requires a cupertino.gov sign-in.</p>
+            <p>Set against what it replaced: more than 20 record types rather than one, seventy years of data rather than nine, a question in plain English rather than keyword matching alone, and a new document searchable when it is filed rather than whenever the next load happened to run. It has since been rolled out to the whole City, about 200 staff, and is used across departments rather than by the records team alone. The people using it describe it as a substantial improvement on what they had before. Access is internal and requires a cupertino.gov sign-in.</p>
 
           <p class="stack"><span class="stack-label">Stack</span> Python and FastAPI &middot; Azure OpenAI embeddings and GPT &middot; Azure AI Search &middot; cross-encoder reranking &middot; BM25 &middot; Laserfiche as system of record &middot; Azure App Service with Entra ID &middot; CI/CD with Application Insights</p>
             <p class="project-links">
