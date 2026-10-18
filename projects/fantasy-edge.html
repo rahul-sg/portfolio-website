@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fantasy Edge &middot; Rahul Sengupta</title>
+    <meta name="description" content="A live fantasy football service built on a projection model validated out of time against a season-average baseline, calibrated interval estimates, and a correlated Monte Carlo over 12,000 simulated matchups." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Fantasy Edge &middot; Rahul Sengupta" />
+    <meta property="og:description" content="A live fantasy football service built on a projection model validated out of time against a season-average baseline, calibrated interval estimates, and a correlated Monte Carlo over 12,000 simulated matchups." />
+    <meta property="og:image" content="../images/og-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=11" />
+    <link rel="icon" type="image/x-icon" href="../favicon.ico?v=11" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png?v=11" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=11" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css?v=11" />
+    <script>
+      // Applied before first paint so a returning dark-mode reader never sees a flash.
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav class="subnav" aria-label="Sections">
+      <div class="wrap subnav-inner">
+        <a class="subnav-brand" href="../index.html">Rahul Sengupta</a>
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#writing">Writing</a>
+        <a href="../index.html#tools">Tools</a>
+        <a href="../index.html#contact">Contact</a>
+        <button class="theme-toggle" type="button" id="theme-toggle"
+                aria-label="Switch between light and dark">
+          <span class="theme-toggle-label">Dark</span>
+        </button>
+      </div>
+    </nav>
+
+    <main id="main">
+      <article class="section wrap project project-page">
+        <div class="project-aside">
+          <p class="project-index">03 / 06</p>
+          <dl class="facts">
+            <div><dt>Context</dt><dd>Personal, solo</dd></div>
+            <div><dt>Role</dt><dd>Everything</dd></div>
+            <div><dt>Status</dt><dd>Live, invite-only</dd></div>
+          </dl>
+          <dl class="keyfigs">
+            <div><dt>5.92</dt><dd>held-out RMSE, 6.39 baseline</dd></div>
+            <div><dt>10.3%</dt><dd>p90 coverage, 10% ideal</dd></div>
+            <div><dt>52,764</dt><dd>player-games trained on</dd></div>
+          </dl>
+          <p class="aside-back"><a href="../index.html#work">All work</a></p>
+        </div>
+
+        <div class="project-body">
+          <header class="page-head">
+            <h1>Fantasy Edge</h1>
+            <p class="page-sub">Projections with honest error bars, and the decisions they support</p>
+          </header>
+
+          <p class="lead">A live fantasy football service for ESPN and Sleeper leagues, built on a gradient-boosted projection model validated against a season it never saw, interval estimates that land where they claim to, and a correlated Monte Carlo that turns all of it into which lineup actually wins the week.</p>
+          <figure class="shot">
+            <a href="../images/fantasy-edge-matchup.jpg" target="_blank" rel="noopener">
+              <img src="../images/fantasy-edge-matchup.jpg" alt="Sunday afternoon in the sample league. Every matchup in the league with a live win percentage, the scoreboard clock feeding each projection, and the last play for every player still on the field." loading="lazy" />
+            </a>
+            <figcaption>Sunday afternoon in the sample league. Every matchup in the league with a live win percentage, the scoreboard clock feeding each projection, and the last play for every player still on the field.</figcaption>
+          </figure>
+
+            <h2>What it is</h2>
+            <p>Edge connects to ESPN and Sleeper fantasy leagues and answers the only questions that matter in one: who to start, who to pick up, what to bid, and who to trade for. It is live at <a href="https://edgefantasy.us" target="_blank" rel="noopener">edgefantasy.us</a>, invite-only for a group of friends, with a sample league open to anyone.</p>
+            <p>The interesting part is not the football. It is that every number on the screen is a distribution rather than a point estimate, every distribution was checked against a season the model never saw, and the parts that could not prove they helped were left switched off.</p>
+
+            <h2>The projection model, and what it is measured against</h2>
+            <p>A LightGBM model over 79 features, trained on 52,764 skill-position games. Four heads: a mean regressor plus p10, p50 and p90 quantile regressors with the quantiles forced into order. Features are strictly backward-looking, and the same function builds training rows and inference rows, so a traded player inherits his new team&rsquo;s context instead of leaking his old one.</p>
+            <p>Validation is time-based rather than random. Train through season N minus one, score the whole of season N, then refit. Random splits would let the model see week 12 while predicting week 11 of the same season, which would flatter it badly.</p>
+            <p>The baseline matters as much as the score. For a fantasy projection the honest thing to beat is a player&rsquo;s own season average, because that is what you would use if you built nothing. It beats that at every position on RMSE in both tested seasons.</p>
+            <figure class="diagram">
+              <svg viewBox="0 0 740 206" role="img" aria-label="Held-out accuracy by position against the season-average baseline, and interval coverage against its 10 percent target."><text class="dg-band" x="0" y="12">RMSE ON A HELD-OUT SEASON, LOWER IS BETTER</text><text class="dg-src" x="0" y="34">QB</text><rect class="dg-box" x="52" y="22" width="300" height="16" rx="3"/><rect class="dg-box dg-box--accent" x="52" y="22" width="267" height="16" rx="3"/><text class="dg-t" x="362" y="35">7.80</text><text class="dg-src" x="410" y="35">season average 8.78</text><text class="dg-src" x="0" y="60">RB</text><rect class="dg-box" x="52" y="48" width="300" height="16" rx="3"/><rect class="dg-box dg-box--accent" x="52" y="48" width="284" height="16" rx="3"/><text class="dg-t" x="362" y="61">5.97</text><text class="dg-src" x="410" y="61">season average 6.30</text><text class="dg-src" x="0" y="86">WR</text><rect class="dg-box" x="52" y="74" width="300" height="16" rx="3"/><rect class="dg-box dg-box--accent" x="52" y="74" width="277" height="16" rx="3"/><text class="dg-t" x="362" y="87">5.76</text><text class="dg-src" x="410" y="87">season average 6.23</text><text class="dg-src" x="0" y="112">TE</text><rect class="dg-box" x="52" y="100" width="300" height="16" rx="3"/><rect class="dg-box dg-box--accent" x="52" y="100" width="282" height="16" rx="3"/><text class="dg-t" x="362" y="113">4.95</text><text class="dg-src" x="410" y="113">season average 5.26</text><text class="dg-band" x="0" y="150">AND THE INTERVALS LAND WHERE THEY SHOULD</text><rect class="dg-box dg-box--accent" x="0" y="162" width="230" height="36" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="115" y="178">10.6% finished below p10</tspan><tspan x="115" y="192">10.3% above p90</tspan></text><text class="dg-src" x="248" y="178">target is 10% and 10%</text><text class="dg-src" x="248" y="192">on 600 games the model never saw</text></svg>
+              <figcaption>Trained through one season, scored on the whole of the next. The bars are the comparison that matters: a projection is only worth building if it beats taking a player&rsquo;s season average, and it does, at every position. The second row is the part the rest of the system depends on.</figcaption>
+            </figure>
+
+            <h2>Why RMSE, and why that is not a detail</h2>
+            <p>RMSE weighs big misses more heavily than small ones, and these projections get summed into a lineup total, so one catastrophic miss costs more than several near misses. MAE rewards predicting the median, which flatters a season average at positions whose scoring is driven by touchdowns.</p>
+            <p>You can see the difference in the numbers. On MAE the 2025 running backs look like a tie, 4.27 against the baseline&rsquo;s 4.25. On RMSE the same games are 5.97 against 6.30. Picking the metric after seeing both would be the easiest way to lie here, so the reasoning is written down and the losing metric is reported too.</p>
+
+            <h2>Making a learned improvement prove itself</h2>
+            <p>The projection shown is a blend of ESPN, Rotowire and the model. The obvious move is to learn the mixing weights from which source has been most accurate, and that move is a trap: a mix fitted on past results will always score better on those same results.</p>
+            <p>So a learned mix only replaces the hand-set default if it beats it on held-out games in at least 80% of 2,000 paired bootstrap resamples. Running backs and receivers cleared that bar. Quarterbacks, tight ends, kickers and defences did not, and still run on the defaults. Kickers came out at 55%, which is a coin flip wearing a number.</p>
+            <p>Four of six positions rejecting my own improvement is the result I would point at first. It is the part of the system that decides what is allowed to be true.</p>
+            <figure class="diagram">
+              <svg viewBox="0 0 740 232" role="img" aria-label="How a learned blend weight has to earn its place: it only ships if it beats the default in at least 80 percent of 2,000 bootstrap resamples."><defs><marker id="dg-a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="dg-head" d="M0 1 L7 4 L0 7 z"/></marker></defs><text class="dg-band" x="0" y="12">EVERY LEARNED WEIGHT HAS TO EARN ITS PLACE</text><rect class="dg-box" x="0" y="26" width="190" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="95" y="46">Fit the mix per position</tspan><tspan x="95" y="61">on 15,752 player-games</tspan></text><path class="dg-arr" d="M194 49 L218 49" marker-end="url(#dg-a)"/><rect class="dg-box" x="222" y="26" width="200" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="322" y="46">Score it against the default</tspan><tspan x="322" y="61">on games it never trained on</tspan></text><path class="dg-arr" d="M426 49 L450 49" marker-end="url(#dg-a)"/><rect class="dg-box dg-box--accent" x="454" y="26" width="200" height="46" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="554" y="46">2,000 paired resamples</tspan><tspan x="554" y="61">must favour it 80% of the time</tspan></text><text class="dg-band" x="0" y="106">WHAT ACTUALLY SHIPPED</text><rect class="dg-box dg-box--accent" x="0" y="120" width="150" height="40" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="75" y="145">RB &middot; learned, 85%</tspan></text><rect class="dg-box dg-box--accent" x="160" y="120" width="150" height="40" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="235" y="145">WR &middot; learned, 85%</tspan></text><rect class="dg-box" x="320" y="120" width="130" height="40" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="385" y="145">QB &middot; kept, 31%</tspan></text><rect class="dg-box" x="460" y="120" width="130" height="40" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="525" y="145">TE &middot; kept, 24%</tspan></text><rect class="dg-box" x="600" y="120" width="140" height="40" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="670" y="145">K, D/ST &middot; kept</tspan></text><text class="dg-src" x="0" y="186">Two positions cleared the bar. Four did not, and kept the hand-set default.</text><text class="dg-src" x="0" y="204">A 55% result on kickers is a coin flip, so nothing changes.</text><text class="dg-src" x="0" y="222">The whole test re-runs every Tuesday.</text></svg>
+              <figcaption>The gate exists because a mix fitted on past results will always look better on those results. Four of six positions could not prove the gain was real, so they still run on weights I set by hand.</figcaption>
+            </figure>
+
+            <h2>Uncertainty that was measured, not assumed</h2>
+            <p>A questionable tag is not a coin flip, and guessing what it means would undo the calibration work. So it was measured: every official injury report since 2016 next to the snap counts that followed. A player listed questionable who practised fully on Friday plays 89% of the time. Limited, 76%. Did not practise, 55%. Doubtful, 1%.</p>
+            <p>It splits further by injury, by position and by role, with small groups shrunk toward their broader group and position applied on the log-odds scale. Questionable quarterbacks play 52% of the time against 74% for receivers and tight ends. A hamstring is 63% where an illness is 77%.</p>
+            <p>The sharpest finding is about role rather than health. A starting quarterback on the report after a full practice plays 96% of the time; a fill-in quarterback in the same situation, 83%. The fill-in is not less healthy. He loses the job when the starter recovers, and the injury report is just where that shows up. Measuring the right cohort mattered more than any model choice here.</p>
+          <figure class="shot">
+            <a href="../images/fantasy-edge-player.jpg" target="_blank" rel="noopener">
+              <img src="../images/fantasy-edge-player.jpg" alt="A projection going wrong, shown rather than buried. Bijan Robinson scored 7.3 against a projection of 24.8, the actual result is marked on the curve the model drew before kickoff, and the line underneath says it gave a game that low a 1% chance. Underneath that, which stats caused the miss." loading="lazy" />
+            </a>
+            <figcaption>A projection going wrong, shown rather than buried. Bijan Robinson scored 7.3 against a projection of 24.8, the actual result is marked on the curve the model drew before kickoff, and the line underneath says it gave a game that low a 1% chance. Underneath that, which stats caused the miss.</figcaption>
+          </figure>
+
+            <h2>Deciding, rather than ranking</h2>
+            <p>Projections are an input, not an answer. Each player becomes a gamma distribution matched to his blended mean and the model&rsquo;s quantile spread, multiplied by a weighted coin flip for whether he suits up at all.</p>
+            <p>The matchup is then played out 12,000 times with the players correlated through a Gaussian copula: teammates share a team factor so a quarterback and his receiver rise together, both sides of a game share a game factor for shootouts, and a defence moves against the offence it is facing. Treating players as independent would understate the variance badly, which is exactly the error that makes a confident-looking lineup wrong.</p>
+            <p>The lineup is then chosen by win probability rather than projected points, solved at six risk settings from floor-leaning to ceiling-leaning, with slots assigned exactly by the Hungarian algorithm under each league&rsquo;s own rules. Underdogs get handed ceiling, favourites get floor. It only abandons the highest-points lineup when the gain is worth at least 0.4 percentage points of win probability, because churn with no edge is still churn.</p>
+            <p>The opponent is simulated with the lineup they have actually set, not the perfect one. Assuming every rival plays optimally would make you look like a bigger underdog than you are, and would quietly push every recommendation toward desperation.</p>
+          <figure class="shot">
+            <a href="../images/fantasy-edge-waivers.jpg" target="_blank" rel="noopener">
+              <img src="../images/fantasy-edge-waivers.jpg" alt="Waiver bids priced against the league rather than in the abstract. Each free agent is valued by what he adds to this roster, and the bid is capped at what a rival who wants him could actually spend." loading="lazy" />
+            </a>
+            <figcaption>Waiver bids priced against the league rather than in the abstract. Each free agent is valued by what he adds to this roster, and the bid is capped at what a rival who wants him could actually spend.</figcaption>
+          </figure>
+
+            <h2>The decision that made the whole thing worth building</h2>
+            <p>A star listed questionable usually gets benched out of fear. That is normally wrong. If his backup is still swappable once the inactive list drops ninety minutes before kickoff, keeping him in is worth p times the starter plus one minus p times the backup, which beats benching him whenever he is the better player when he plays.</p>
+            <p>So Edge builds the lineup valuing him as if he plays, works out the exact swaps to make if he sits (including chains, like moving a receiver to FLEX to free a slot), and scores that plan inside the simulation by applying each swap only in the runs where that player did not suit up. Then it sorts every change into do it now, wait for the game-time call, or decide now because the backup&rsquo;s game starts first and waiting is not an option.</p>
+            <p>It is a small idea that only works if the play probability is honest and the simulation is correlated. Both pieces had to exist first.</p>
+
+            <h2>Shipping it to other people</h2>
+            <p>Running this for yourself is one thing. Running it for friends means invite-only sign-in through Clerk, a membership per person per league, daily caps on the Claude-backed features, spend tracked per day and per feature and per person, and an admin page for people, jobs and server health.</p>
+            <p>It also means holding other people&rsquo;s credentials. ESPN private leagues need the user&rsquo;s own session cookies, so those are encrypted at rest rather than stored as handed over. The API accepts only its own origin, and the Docker build context excludes the data directory and the environment file outright, so neither can reach the builder.</p>
+            <p>The engine runs on Fly.io and the site on Vercel. The machine sizing is written down with its reasoning: five leagues on 1 GB left about 180 MB spare, which meant Tuesday&rsquo;s retraining would have run on swap, so it runs on 2 GB with swap as the backstop instead.</p>
+
+            <h2>Honest limits</h2>
+            <p>The calibration was measured on the 2025 and 2026 seasons. Those are two seasons, not twenty, and a year with an unusual injury pattern could move it.</p>
+            <p>Nothing here predicts injuries before they happen or calls every breakout. The advantage is narrower than that: reading practice reports and line moves as they land, using role signals that move before box scores do, carrying uncertainty instead of collapsing it, and knowing what every rival in your league needs and can spend.</p>
+            <p>ESPN has no public API, so league data comes from unofficial endpoints and the news from ordinary public pages, cached and rate-limited per host. That is reasonable for personal use and it is the reason this is invite-only rather than a product. Turning it into one would mean licensed feeds.</p>
+
+          <p class="stack"><span class="stack-label">Stack</span> Python and FastAPI &middot; LightGBM, NumPy and SciPy &middot; Gaussian copula simulation &middot; Hungarian assignment &middot; Next.js 16, React 19 and Tailwind 4 &middot; Postgres and SQLite &middot; Clerk for invite-only sign-in &middot; Claude for news extraction and game plans &middot; Fly.io and Vercel</p>
+          <p class="project-links">
+              <a href="https://edgefantasy.us/league/demo/team/1" target="_blank" rel="noopener">Live demo</a>
+              <a href="https://github.com/rahul-sg/fantasy-edge" target="_blank" rel="noopener">Source</a>
+              <span class="note">The demo league is open to anyone and runs on the current week&rsquo;s real projections.</span>
+          </p>
+        </div>
+      </article>
+
+      <nav class="wrap pager" aria-label="Other projects">
+        <a class="pager-link pager-prev" href="touse.html">
+          <span class="pager-label">Previous</span>
+          <span class="pager-name">Touse</span>
+        </a>
+        <a class="pager-link pager-next" href="chassis.html">
+          <span class="pager-label">Next</span>
+          <span class="pager-name">Chassis</span>
+        </a>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer-inner">
+        <p>Rahul Sengupta</p>
+        <p class="site-footer-links">
+          <a href="mailto:rahul_sen_gupta@yahoo.com">Email</a>
+          <a href="https://github.com/rahul-sg" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com/in/rahul-sg" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="../Rahul_S_Resume_Final.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute;</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="../script.js?v=11"></script>
+  </body>
+</html>

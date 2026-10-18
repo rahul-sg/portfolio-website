@@ -80,9 +80,9 @@
             I am an AI/ML Software Engineer, working full time while finishing a master's in
             Computer Science at Georgia Tech with a machine learning specialisation. The projects
             below are a search system used daily inside a city government, a housing forecasting
-            service I deployed and operated myself, a 3D football replay built from league
-            tracking data, a car identifier that rebuilds your own car in 3D from a phone video,
-            an LLM evaluation framework, and a static analysis tool. The subject matter has nothing in
+            service I deployed and operated myself, a fantasy football service running for real
+            users, a car identifier that rebuilds your own car in 3D from a phone video, a 3D
+            football replay built from league tracking data, and an LLM evaluation framework. The subject matter has nothing in
             common. What they share is that none of them was finished when the model worked.
           </p>
           <p>
@@ -195,25 +195,26 @@
             <dl class="facts">
               <div><dt>Context</dt><dd>Personal, solo</dd></div>
               <div><dt>Role</dt><dd>Everything</dd></div>
-              <div><dt>Status</dt><dd>Open source</dd></div>
+              <div><dt>Status</dt><dd>Live, invite-only</dd></div>
             </dl>
             <dl class="keyfigs">
-              <div><dt>1.5 yd</dt><dd>median error vs NFL tracking</dd></div>
-              <div><dt>14,242</dt><dd>plays rebuilt in 3D</dd></div>
-              <div><dt>65,134</dt><dd>routes searchable</dd></div>
+              <div><dt>5.92</dt><dd>held-out RMSE, 6.39 baseline</dd></div>
+              <div><dt>10.3%</dt><dd>p90 coverage, 10% ideal</dd></div>
+              <div><dt>52,764</dt><dd>player-games trained on</dd></div>
             </dl>
           </div>
           <div class="project-body">
-            <h3><a href="projects/sideline.html">Sideline</a></h3>
-            <p class="work-sub">Real NFL plays rebuilt in 3D, and recovered from broadcast video</p>
-            <p class="work-summary">A 3D replay of real NFL plays built from league player-tracking data: every tracked player at 10 Hz, from any camera angle, with a route library of 65,134 routes you can search by drawing one. Alongside it, a computer-vision pipeline recovers player positions from ordinary broadcast footage and is scored against the NFL&#x27;s own tracking at 1.5 yd median error.</p>
-            <p class="stack"><span class="stack-label">Stack</span> TypeScript, React and three.js &middot; Python data pipeline &middot; PyTorch, YOLO11, ByteTrack and EasyOCR &middot; homography fitting, ICP, ORB and RANSAC &middot; four test suites</p>
+            <h3><a href="projects/fantasy-edge.html">Fantasy Edge</a></h3>
+            <p class="work-sub">Projections with honest error bars, and the decisions they support</p>
+            <p class="work-summary">A live fantasy football service for ESPN and Sleeper leagues, running for a group of friends with a sample league open to anyone. A LightGBM model over 52,764 player-games, validated by training through one season and scoring the whole of the next, beats a season-average baseline at every position. Its p10 and p90 land within half a point of where they claim to, which is what lets 12,000 correlated simulations pick the lineup most likely to win rather than the one with the most projected points.</p>
+            <p class="stack"><span class="stack-label">Stack</span> Python and FastAPI &middot; LightGBM, NumPy and SciPy &middot; Gaussian copula simulation &middot; Hungarian assignment &middot; Next.js 16 and React 19 &middot; Postgres &middot; Clerk sign-in &middot; Claude for news extraction &middot; Fly.io and Vercel</p>
             <p class="project-links">
-              <a class="work-more" href="projects/sideline.html">Read more</a>
-              <a href="https://github.com/rahul-sg/Sideline" target="_blank" rel="noopener">Source</a>
+              <a class="work-more" href="projects/fantasy-edge.html">Read more</a>
+              <a href="https://edgefantasy.us/league/demo/team/1" target="_blank" rel="noopener">Live demo</a>
+              <a href="https://github.com/rahul-sg/fantasy-edge" target="_blank" rel="noopener">Source</a>
             </p>
-            <a class="work-thumb" href="projects/sideline.html">
-              <img src="images/sideline-hero.jpg" alt="" loading="lazy" />
+            <a class="work-thumb" href="projects/fantasy-edge.html">
+              <img src="images/fantasy-edge-matchup.jpg" alt="" loading="lazy" />
             </a>
           </div>
         </article>
@@ -251,6 +252,35 @@
           <div class="project-aside">
             <p class="project-index">05</p>
             <dl class="facts">
+              <div><dt>Context</dt><dd>Personal, solo</dd></div>
+              <div><dt>Role</dt><dd>Everything</dd></div>
+              <div><dt>Status</dt><dd>Open source</dd></div>
+            </dl>
+            <dl class="keyfigs">
+              <div><dt>1.5 yd</dt><dd>median error vs NFL tracking</dd></div>
+              <div><dt>14,242</dt><dd>plays rebuilt in 3D</dd></div>
+              <div><dt>65,134</dt><dd>routes searchable</dd></div>
+            </dl>
+          </div>
+          <div class="project-body">
+            <h3><a href="projects/sideline.html">Sideline</a></h3>
+            <p class="work-sub">Real NFL plays rebuilt in 3D, and recovered from broadcast video</p>
+            <p class="work-summary">A 3D replay of real NFL plays built from league player-tracking data: every tracked player at 10 Hz, from any camera angle, with a route library of 65,134 routes you can search by drawing one. Alongside it, a computer-vision pipeline recovers player positions from ordinary broadcast footage and is scored against the NFL&#x27;s own tracking at 1.5 yd median error.</p>
+            <p class="stack"><span class="stack-label">Stack</span> TypeScript, React and three.js &middot; Python data pipeline &middot; PyTorch, YOLO11, ByteTrack and EasyOCR &middot; homography fitting, ICP, ORB and RANSAC &middot; four test suites</p>
+            <p class="project-links">
+              <a class="work-more" href="projects/sideline.html">Read more</a>
+              <a href="https://github.com/rahul-sg/Sideline" target="_blank" rel="noopener">Source</a>
+            </p>
+            <a class="work-thumb" href="projects/sideline.html">
+              <img src="images/sideline-hero.jpg" alt="" loading="lazy" />
+            </a>
+          </div>
+        </article>
+
+        <article class="project work-item">
+          <div class="project-aside">
+            <p class="project-index">06</p>
+            <dl class="facts">
               <div><dt>Context</dt><dd>UCSD capstone</dd></div>
               <div><dt>Role</dt><dd>Led evaluation research; four-person team</dd></div>
               <div><dt>Status</dt><dd>Paper and source public</dd></div>
@@ -277,41 +307,20 @@
             </a>
           </div>
         </article>
-
-        <article class="project work-item">
-          <div class="project-aside">
-            <p class="project-index">06</p>
-            <dl class="facts">
-              <div><dt>Context</dt><dd>Personal, solo</dd></div>
-              <div><dt>Role</dt><dd>Everything</dd></div>
-              <div><dt>Status</dt><dd>Open source, v1.1</dd></div>
-            </dl>
-            <dl class="keyfigs">
-              <div><dt>5</dt><dd>layers joined</dd></div>
-              <div><dt>126</dt><dd>tests</dd></div>
-              <div><dt>0</dt><dd>dependencies</dd></div>
-            </dl>
-          </div>
-          <div class="project-body">
-            <h3><a href="projects/cartographer.html">Cartographer</a></h3>
-            <p class="work-sub">Mapping a codebase you did not write</p>
-            <p class="work-summary">A static analysis tool that maps a multi-repo, multi-service estate and joins five normally separate layers into one graph, then exposes it to a browser, a CLI, and to Claude over MCP. Zero dependencies, no network calls, and every edge marked as extracted or inferred.</p>
-            <p class="stack"><span class="stack-label">Stack</span> Python 3.8+ standard library only &middot; hand-rolled force, 3D, and diagram renderers &middot; MCP server over stdio exposing 14 tools &middot; 126 Python tests plus a renderer smoke suite across roughly 1,500 camera states</p>
-            <p class="project-links">
-              <a class="work-more" href="projects/cartographer.html">Read more</a>
-              <a href="https://github.com/rahul-sg/codebase-cartographer" target="_blank" rel="noopener">Source</a>
-            </p>
-            <a class="work-thumb" href="projects/cartographer.html">
-              <img src="images/cartographer-map.jpg" alt="" loading="lazy" />
-            </a>
-          </div>
-        </article>
       </section>
 
 <section class="section wrap" id="also">
         <h2 class="section-title">Also built</h2>
         <div class="prose">
           <dl class="minor-list">
+            <div>
+              <dt>Cartographer</dt>
+              <dd>
+                A static analysis tool that maps a multi-repo, multi-service estate and joins five normally separate layers into one graph, then exposes it to a browser, a CLI, and to Claude over MCP. Zero dependencies, no network calls, and every edge marked as extracted or inferred.
+                <a href="projects/cartographer.html">Read more</a>
+                <a href="https://github.com/rahul-sg/codebase-cartographer" target="_blank" rel="noopener">Source</a>
+              </dd>
+            </div>
             <div>
               <dt>Job Search Agent</dt>
               <dd>
