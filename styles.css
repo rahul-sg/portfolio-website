@@ -139,11 +139,13 @@ a:focus-visible,
   padding-bottom: clamp(2rem, 4vw, 2.75rem);
 }
 
+/* The name and the links share a line; the links drop under the name when it runs out of room. */
 .masthead-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(11rem, 20vw, 14rem);
-  align-items: start;
-  gap: clamp(1.5rem, 4vw, 3.5rem);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
 }
 
 .portrait {
@@ -159,10 +161,6 @@ a:focus-visible,
   border: 1px solid var(--rule);
 }
 
-.masthead-text {
-  min-width: 0;
-}
-
 h1 {
   margin: 0;
   font-family: var(--serif);
@@ -173,67 +171,31 @@ h1 {
   color: var(--ink);
 }
 
-.standfirst {
-  margin: 0.85rem 0 0;
-  max-width: 34rem;
-  font-family: var(--serif);
-  font-size: 1.18rem;
-  line-height: 1.55;
-  color: var(--ink-2);
-}
-
-/* Contact is the masthead's right column. Links stack rather than run across. */
-.masthead-contact {
-  margin-top: 0.5rem;
-}
-
-.panel-label {
-  margin: 0 0 0.6rem;
-  font-family: var(--mono);
-  font-size: 0.64rem;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
 .masthead-links {
   display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.4rem;
   margin: 0;
   padding: 0;
   list-style: none;
   font-size: 0.93rem;
 }
 
-/* The facts run the full width under both columns, which ties the two sides
-   together and keeps the masthead from growing a hole in the middle. */
-.masthead-facts {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem 2rem;
-  margin: 0;
-  padding-top: 1.2rem;
-  border-top: 1px solid var(--rule);
+/* Who this is, in a couple of plain sentences, before the work. */
+.intro {
+  margin-top: clamp(1.25rem, 3vw, 1.75rem);
 }
 
-.masthead-facts-wrap {
-  margin-top: clamp(1.75rem, 4vw, 2.5rem);
-}
-
-.masthead-facts dt {
-  font-family: var(--mono);
-  font-size: 0.64rem;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
-.masthead-facts dd {
-  margin: 0.25rem 0 0;
-  font-size: 0.95rem;
-  line-height: 1.4;
+.intro p {
+  max-width: var(--measure);
+  margin: 0 0 0.7rem;
+  font-size: 1.12rem;
+  line-height: 1.6;
   color: var(--ink-2);
+}
+
+.intro p:last-child {
+  margin-bottom: 0;
 }
 
 /* ── Sub-navigation ───────────────────────────────────────────────────────── */
@@ -271,10 +233,6 @@ h1 {
 /* ── Sections ─────────────────────────────────────────────────────────────── */
 .section {
   padding-block: clamp(2.5rem, 5.5vw, 4rem);
-}
-
-#about {
-  padding-bottom: clamp(1.5rem, 3vw, 2.25rem);
 }
 
 .section-title {
@@ -993,53 +951,6 @@ code {
   border-color: var(--rule-2);
 }
 
-/* ── Masthead side panel ──────────────────────────────────────────────────── */
-/* ── Intro: prose plus a right rail ───────────────────────────────────────── */
-.intro-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(13rem, 24vw, 16.5rem);
-  align-items: start;
-  gap: clamp(1.5rem, 4vw, 3.5rem);
-}
-
-.intro-aside {
-  padding-left: clamp(1.2rem, 2.5vw, 2rem);
-  border-left: 1px solid var(--rule);
-}
-
-.aside-title {
-  margin: 0 0 1.1rem;
-  font-family: var(--mono);
-  font-weight: 500;
-  font-size: 0.68rem;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
-.aside-list {
-  margin: 0;
-}
-
-.aside-list > div + div {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--rule);
-}
-
-.aside-list dt {
-  font-family: var(--serif);
-  font-size: 1rem;
-  color: var(--ink);
-}
-
-.aside-list dd {
-  margin: 0.15rem 0 0;
-  font-size: 0.85rem;
-  line-height: 1.45;
-  color: var(--ink-3);
-}
-
 /* ── Outside work ─────────────────────────────────────────────────────────── */
 .edu-aside {
   margin: 0;
@@ -1161,43 +1072,15 @@ code {
     margin-left: 0;
   }
 
-  .masthead-inner,
-  .intro-grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.5rem;
-  }
-
   /* Once the grid collapses the portrait would otherwise stretch edge to edge. */
   .masthead-inner .portrait {
     width: 132px;
     order: -1;
   }
 
-  .masthead-facts {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .masthead-contact {
-    margin-top: 1.6rem;
-  }
-
-  .masthead-links {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.4rem 1.4rem;
-  }
-
   .edu-list > div {
     grid-template-columns: minmax(0, 1fr);
     gap: 0.35rem;
-  }
-
-  .intro-aside {
-    margin-top: 2rem;
-    padding-left: 0;
-    padding-top: 1.5rem;
-    border-left: none;
-    border-top: 1px solid var(--rule-2);
   }
 }
 
@@ -1208,11 +1091,6 @@ code {
 
   .masthead-inner .portrait {
     width: 112px;
-  }
-
-  .masthead-facts {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0.9rem;
   }
 }
 

@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rahul Sengupta</title>
-    <meta name="description" content="Rahul Sengupta, AI/ML Software Engineer. I build machine learning systems that run in production, where most of the work sits around the model rather than in it." />
+    <meta name="description" content="I'm an AI/ML software engineer in the Bay Area, doing my master's in CS at Georgia Tech with a focus on machine learning. Here's some of what I've built." />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Rahul Sengupta" />
-    <meta property="og:description" content="Rahul Sengupta, AI/ML Software Engineer. I build machine learning systems that run in production, where most of the work sits around the model rather than in it." />
+    <meta property="og:description" content="I'm an AI/ML software engineer in the Bay Area, doing my master's in CS at Georgia Tech with a focus on machine learning. Here's some of what I've built." />
     <meta property="og:image" content="images/og-card.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg?v=11" />
@@ -30,31 +30,17 @@
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="masthead">
       <div class="wrap masthead-inner">
-        <div class="masthead-text">
-          <h1>Rahul Sengupta</h1>
-          <p class="standfirst">
-            AI/ML Software Engineer. I build machine learning systems that run in production,
-            where most of the work sits around the model rather than in it.
-          </p>
-        </div>
-
-        <div class="masthead-contact">
-          <p class="panel-label">Contact</p>
-          <ul class="masthead-links">
-            <li><a href="mailto:rahul_sen_gupta@yahoo.com">rahul_sen_gupta@yahoo.com</a></li>
-            <li><a href="https://github.com/rahul-sg" target="_blank" rel="noopener">GitHub</a></li>
-            <li><a href="https://linkedin.com/in/rahul-sg" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a href="Rahul_S_Resume_Final.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute; (PDF)</a></li>
-          </ul>
-        </div>
+        <h1>Rahul Sengupta</h1>
+        <ul class="masthead-links">
+          <li><a href="mailto:rahul_sen_gupta@yahoo.com">Email</a></li>
+          <li><a href="https://github.com/rahul-sg" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://linkedin.com/in/rahul-sg" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="Rahul_S_Resume_Final.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute;</a></li>
+        </ul>
       </div>
-
-      <div class="wrap masthead-facts-wrap">
-        <dl class="masthead-facts">
-          <div><dt>Focus</dt><dd>Machine learning systems in production</dd></div>
-          <div><dt>Studying</dt><dd>M.S. Computer Science, Georgia Tech</dd></div>
-          <div><dt>Based in</dt><dd>San Francisco Bay Area</dd></div>
-        </dl>
+      <div class="wrap intro" id="about">
+        <p>I'm an AI/ML software engineer in the Bay Area, and I'm doing my master's in CS at Georgia Tech with a focus on machine learning. I'm most interested in large ML systems.</p>
+        <p>Outside of work I'm usually building something. Here's some of it.</p>
       </div>
     </header>
 
@@ -74,60 +60,6 @@
     </nav>
 
     <main id="main">
-      <section class="section wrap intro-grid" id="about">
-        <div class="prose">
-          <p>
-            I am an AI/ML Software Engineer, working full time while finishing a master's in
-            Computer Science at Georgia Tech with a machine learning specialisation. The projects
-            below are a search system used daily inside a city government, a housing forecasting
-            service I deployed and operated myself, a fantasy football service running for real
-            users, a car identifier that rebuilds your own car in 3D from a phone video, a 3D
-            football replay built from league tracking data, and an LLM evaluation framework. The subject matter has nothing in
-            common. What they share is that none of them was finished when the model worked.
-          </p>
-          <p>
-            The bugs I remember all lived in the seams: the ETL that feeds a forecast, the cache
-            that serves it, the deployment that has to stay up at three in the morning. Several of
-            these have real users, which is where that lesson came from, because a system that only
-            has to work on my own machine never teaches it. Most of what I learn now comes from
-            pointing three things at each other: graduate coursework, the production systems I work
-            on day to day, and whatever I am building on my own.
-          </p>
-          <p>
-            If there is a throughline, it is measurement. The records search refuses to answer
-            rather than return its best guess, because a confident wrong answer costs more than no
-            answer. Touse publishes its realised forecast error rather than only a backtest.
-            Cartographer marks every edge as extracted or inferred and ships a view of what it
-            could not determine. I am more interested in knowing when a system is wrong than in
-            the number it reports when everything goes well.
-          </p>
-        </div>
-
-        <aside class="intro-aside">
-          <h2 class="aside-title">Across the stack</h2>
-          <dl class="aside-list">
-            <div>
-              <dt>Data</dt>
-              <dd>Ingestion, ETL, scheduling, and the checks that catch a bad feed before a model
-                ever sees it</dd>
-            </div>
-            <div>
-              <dt>Models</dt>
-              <dd>Forecasting, LLM systems, and classical ML, picked to fit the problem rather than
-                the fashion</dd>
-            </div>
-            <div>
-              <dt>Services</dt>
-              <dd>APIs, backends, and the cloud infrastructure they run on</dd>
-            </div>
-            <div>
-              <dt>Delivery</dt>
-              <dd>The interface someone actually uses, and the deployment that keeps it alive</dd>
-            </div>
-          </dl>
-        </aside>
-      </section>
-
       <section class="section wrap" id="work">
         <h2 class="section-title">Selected work</h2>
 

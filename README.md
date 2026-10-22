@@ -89,20 +89,14 @@ To drop dark mode entirely, delete the toggle markup, the
 
 ## Masthead
 
-Two parts. A grid with the name, standfirst, and contact block on the left and
-the portrait on the right, then a full-width facts strip underneath spanning
-both columns. The strip is what keeps the header from growing a hole: the
-portrait makes the right column tall, so putting the facts beside it left dead
-space under the text.
+The name and the links (Email, GitHub, LinkedIn, Résumé) on one line, then a
+short intro in `.intro`, which is also the `#about` anchor. The links wrap under
+the name when the line runs out of room. There's no portrait for now; `.portrait`
+is still in the stylesheet for when one goes back in.
 
-Two traps if you edit it:
-
-- `.portrait` needs `height: auto`. The `height="200"` attribute is a
-  presentational hint, and without `height: auto` both dimensions are definite
-  and `aspect-ratio: 1 / 1` is silently ignored.
-- The facts strip sits inside its own `.wrap` so its rule aligns with the text
-  column. Putting `.wrap` on the `<dl>` itself and then setting a `margin`
-  shorthand kills the auto centering.
+One trap if you add it back: `.portrait` needs `height: auto`. The
+`height="200"` attribute is a presentational hint, and without `height: auto`
+both dimensions are definite and `aspect-ratio: 1 / 1` is silently ignored.
 
 ## Layout
 
