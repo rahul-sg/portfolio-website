@@ -477,6 +477,17 @@ code {
   white-space: nowrap;
 }
 
+/* A private repository's note, where its Source link was. */
+.minor-list dd .note {
+  margin-left: 0.15rem;
+  white-space: nowrap;
+}
+
+.minor-list dd .note a {
+  margin-left: 0;
+  font-size: inherit;
+}
+
 /* ── Experience ───────────────────────────────────────────────────────────── */
 .role-dates {
   margin: 0.4rem 0 0;
