@@ -8,7 +8,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="2026 Midterm Forecast &middot; Rahul Sengupta" />
     <meta property="og:description" content="A Ridge model over 2,240 real district results forecasting all 505 races in the 2026 US midterms, with a correlated Monte Carlo seat distribution." />
-    <meta property="og:image" content="../images/og-card.png" />
+    <meta property="og:image" content="https://rahul-sg.github.io/portfolio-website/images/og-card.png?v=2" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=11" />
     <link rel="icon" type="image/x-icon" href="../favicon.ico?v=11" />
@@ -16,7 +16,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=11" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../styles.css?v=11" />
     <script>
       // Applied before first paint so a returning dark-mode reader never sees a flash.
@@ -47,7 +47,6 @@
     <main id="main">
       <article class="section wrap project project-page">
         <div class="project-aside">
-          <p class="project-index">Also built</p>
           <dl class="facts">
             <div><dt>Context</dt><dd>Personal, solo</dd></div>
             <div><dt>Role</dt><dd>Everything</dd></div>
@@ -83,11 +82,11 @@
 
             <h2>The model</h2>
             <p>Ridge regression on 2,240 real district-level results: 2,115 from the MIT Election Data and Science Lab covering every House district across the 2006, 2010, 2014, 2018, and 2022 cycles, plus 125 hand-curated competitive Senate and Governor races.</p>
-            <p>The eight features are partisan lean, its square, lean interacted with incumbency, incumbency, the live generic ballot margin, presidential approval, unemployment, and a presidential-year term. Training is restricted to contested races, so uncontested districts cannot teach the model to be confident about nothing. Five-fold cross-validated MAE is 7.95 points, with a 6.87-point residual standard deviation calibrated on competitive races.</p>
+            <p>The eight features are partisan lean, its square, lean interacted with incumbency, incumbency, the live generic ballot margin, presidential approval, unemployment, and a presidential-year term. Training is restricted to contested races, so uncontested districts can't teach the model to be confident about nothing. Five-fold cross-validated MAE is 7.95 points, with a 6.87-point residual standard deviation calibrated on competitive races.</p>
 
             <h2>One input deliberately kept out of the regression</h2>
-            <p>Fundraising advantage is applied as a bounded post-hoc adjustment, capped at plus or minus 3 points, rather than as a Ridge feature. The reason is a data problem, not a modelling preference: the historical training set has no fundraising records, so including it as a feature produces near-zero training variance and a coefficient inflated far beyond what the data supports.</p>
-            <p>A bounded adjustment you can reason about is better than a learned weight you cannot defend.</p>
+            <p>Fundraising advantage is applied as a bounded post-hoc adjustment, capped at plus or minus 3 points, instead of as a Ridge feature. The reason is a data problem, not a modelling preference: the historical training set has no fundraising records, so including it as a feature produces near-zero training variance and a coefficient inflated far beyond what the data supports.</p>
+            <p>A bounded adjustment you can reason about is better than a learned weight you can't defend.</p>
 
             <h2>Correlated simulation</h2>
             <p>The seat distribution comes from 10,000 trials in which a shared national swing error, sigma of 2 points, is applied across every race, plus an independent per-race error drawn from that race's own interval.</p>
@@ -95,7 +94,7 @@
 
             <h2>Live inputs</h2>
             <p>Generic ballot polls and candidate names are scraped from Wikipedia every four hours, weighted by pollster grade. FEC fundraising comes from the <code>weball26</code> bulk file daily, no API key required. Unemployment comes from the BLS API, with GDP and consumer sentiment from FRED and seeded fallbacks when a source is unreachable.</p>
-            <p>The candidate scraper returns a name only when exactly one candidate has declared for a party's primary, so a contested primary shows TBD rather than a guess.</p>
+            <p>The candidate scraper returns a name only when exactly one candidate has declared for a party's primary, so a contested primary shows TBD instead of a guess.</p>
 
             <h2>What the site does with it</h2>
             <p>Per-race pages showing the model inputs behind each prediction. A tipping-point view computing each race's marginal contribution to majority probability across simulations. A scenario builder that re-runs the full simulation for any set of national conditions and encodes its state in the URL, so a scenario is shareable. And a backtest tab with per-cycle accuracy and the biggest misses.</p>

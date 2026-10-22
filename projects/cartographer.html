@@ -8,7 +8,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Cartographer &middot; Rahul Sengupta" />
     <meta property="og:description" content="A dependency-free static analysis tool that joins symbol, module, service, data, and behavioural layers of a multi-repo estate into one graph." />
-    <meta property="og:image" content="../images/og-card.png" />
+    <meta property="og:image" content="https://rahul-sg.github.io/portfolio-website/images/og-card.png?v=2" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=11" />
     <link rel="icon" type="image/x-icon" href="../favicon.ico?v=11" />
@@ -16,7 +16,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=11" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../styles.css?v=11" />
     <script>
       // Applied before first paint so a returning dark-mode reader never sees a flash.
@@ -47,7 +47,6 @@
     <main id="main">
       <article class="section wrap project project-page">
         <div class="project-aside">
-          <p class="project-index">Also built</p>
           <dl class="facts">
             <div><dt>Context</dt><dd>Personal, solo</dd></div>
             <div><dt>Role</dt><dd>Everything</dd></div>
@@ -64,7 +63,7 @@
         <div class="project-body">
           <header class="page-head">
             <h1>Cartographer</h1>
-            <p class="page-sub">Mapping a codebase you did not write</p>
+            <p class="page-sub">Mapping a codebase you didn't write</p>
           </header>
 
           <p class="lead">A static analysis tool that maps a multi-repo, multi-service estate and joins five normally separate layers into one graph, then exposes it to a browser, a CLI, and to Claude over MCP. Python standard library only, with no network calls in any code path.</p>
@@ -78,7 +77,7 @@
             <a href="../images/cartographer-coverage.jpg" target="_blank" rel="noopener">
               <img src="../images/cartographer-coverage.jpg" alt="The Coverage view, which is the part I care most about: 208 edges read from source against 12 that are only name matches, and a list of what the scan could not establish, phrased as questions to bring to a teammate." loading="lazy" />
             </a>
-            <figcaption>The Coverage view, which is the part I care most about: 208 edges read from source against 12 that are only name matches, and a list of what the scan could not establish, phrased as questions to bring to a teammate.</figcaption>
+            <figcaption>The Coverage view, which is the part I care most about: 208 edges read from source against 12 that are only name matches, and a list of what the scan couldn't establish, phrased as questions to bring to a teammate.</figcaption>
           </figure>
 
             <h2>The problem it exists for</h2>
@@ -93,16 +92,16 @@
             </figure>
 
             <h2>Uncertainty as a feature</h2>
-            <p>Every edge is marked <code>EXTRACTED</code>, meaning read from source, config, a spec, or a trace, or <code>INFERRED</code>, meaning name-matched and therefore a lead rather than a fact. That distinction is visible everywhere, including in the UI, and a dedicated Coverage view lists what the scan could not establish.</p>
+            <p>Every edge is marked <code>EXTRACTED</code>, meaning read from source, config, a spec, or a trace, or <code>INFERRED</code>, meaning name-matched and therefore a lead, not a fact. That distinction is visible everywhere, including in the UI, and a dedicated Coverage view lists what the scan couldn't establish.</p>
             <p>A map that hides its own gaps is worse than one that admits them, because you eventually repeat it in front of someone who knows better.</p>
 
             <h2>Making a 145,000-node graph legible</h2>
-            <p>A real estate produces on the order of 145,000 nodes. Drawn at once, that is not slow so much as illegible, and nobody learns anything from a grey hairball. So the graph collapses to whichever level you are looking at and rolls edges up with counts.</p>
+            <p>A real estate produces on the order of 145,000 nodes. Drawn at once, that's not slow so much as illegible, and nobody learns anything from a grey hairball. So the graph collapses to whichever level you are looking at and rolls edges up with counts.</p>
             <p>Measured on a 39,796-node graph, the estate view renders 26 readable nodes with 39,770 rolled up inside them, in 0.39 seconds. Nothing is discarded: a service-to-service arrow expands back into the individual calls that justify it.</p>
 
             <h2>Constraints that shaped it</h2>
-            <p>Zero dependencies, Python 3.8 standard library only, and no server, because in regulated environments the reason good tooling does not get adopted is procurement rather than capability.</p>
-            <p>The force simulation, the 3D projection, and the diagram layout are hand-rolled rather than pulled from a CDN, since an outbound request simply fails on a locked-down machine. A test asserts that no asset references an external host.</p>
+            <p>Zero dependencies, Python 3.8 standard library only, and no server, because in regulated environments good tools usually get blocked by procurement, not by what they can do.</p>
+            <p>The force simulation, the 3D projection, and the diagram layout are all hand-rolled, with nothing loaded from a CDN, because an outbound request just fails on a locked-down machine. A test asserts that no asset references an external host.</p>
             <figure class="code-figure">
               <pre><code>$ ./install.sh                # verify it runs here (~10s)
 $ cartographer init --root .  # discover repos, modules, proxies
@@ -111,20 +110,20 @@ $ cartographer ui             # explore it, loopback only
 
 $ cartographer impact OrderService.submit
 $ cartographer audit          # what the extractors MISSED</code></pre>
-              <figcaption>The whole surface. No install step, because there is nothing to install.</figcaption>
+              <figcaption>The whole surface. No install step, because there's nothing to install.</figcaption>
             </figure>
 
-            <h2>What it is actually good at</h2>
+            <h2>What it's actually good at</h2>
             <p>Finding coupling nobody documented: two services writing one table, a <code>CREATE TABLE</code> in one repository whose only writer lives in another, files in different repositories that change together in the same commits, which is a real dependency that no import graph contains.</p>
-            <p>And answering what breaks if I change this, across layers, with the exact file and line behind every claim, and reviewers drawn from who actually touched the code rather than from an org chart.</p>
+            <p>And answering what breaks if I change this, across layers, with the exact file and line behind every claim, and reviewers picked from who actually touched the code, not from an org chart.</p>
 
             <h2>What building it taught me</h2>
-            <p>The two worst bugs in the tool were silent recall failures: extractors quietly missing things while reporting success. That is why it ships an <code>audit</code> command comparing raw source against what was extracted, because a tool that maps a codebase has to be able to check its own coverage.</p>
+            <p>The two worst bugs in the tool were silent recall failures: extractors quietly missing things while reporting success. That's why it ships an <code>audit</code> command comparing raw source against what was extracted, because a tool that maps a codebase has to be able to check its own coverage.</p>
             <p>Related, and more general: several of my early assertions passed against deliberately broken code, because they measured something adjacent to the property they claimed to check. A new assertion is worth nothing until you have watched it fail.</p>
 
-            <h2>Honest limits</h2>
-            <p>The symbol backend is regex-based, roughly 70% recall against a real parser, and <code>calls</code> edges are name-matched rather than scope-resolved, which is why they are marked <code>INFERRED</code>. Dynamic dispatch, reflection, and dependency-injection wiring are invisible to static scanning, so <code>scan</code> accepts runtime traces as the answer to all three.</p>
-            <p>It is not state of the art at any single layer, and it says so. Techniques are cited where used: personalised-PageRank repo maps from aider, churn and change coupling from Adam Tornhill's work, provenance marking from Graphify. Absence of an edge is not proof of independence, and the tool says that everywhere too.</p>
+            <h2>Limits</h2>
+            <p>The symbol backend is regex-based, roughly 70% recall against a real parser, and <code>calls</code> edges are matched by name, not resolved by scope, which is why they are marked <code>INFERRED</code>. Dynamic dispatch, reflection, and dependency-injection wiring are invisible to static scanning, so <code>scan</code> accepts runtime traces as the answer to all three.</p>
+            <p>It's not state of the art at any single layer, and it says so. Techniques are cited where used: personalised-PageRank repo maps from aider, churn and change coupling from Adam Tornhill's work, provenance marking from Graphify. Absence of an edge isn't proof of independence, and the tool says that everywhere too.</p>
 
           <p class="stack"><span class="stack-label">Stack</span> Python 3.8+ standard library only &middot; hand-rolled force, 3D, and diagram renderers &middot; MCP server over stdio exposing 14 tools &middot; 126 Python tests plus a renderer smoke suite across roughly 1,500 camera states</p>
             <p class="project-links">

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Knock &middot; Rahul Sengupta</title>
+    <meta name="description" content="Knock reads your resume, checks 773 company job boards every morning for new jobs you actually qualify for, and tailors your resume and cover letter for the ones you pick, checked against what you really wrote." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Knock &middot; Rahul Sengupta" />
+    <meta property="og:description" content="Knock reads your resume, checks 773 company job boards every morning for new jobs you actually qualify for, and tailors your resume and cover letter for the ones you pick, checked against what you really wrote." />
+    <meta property="og:image" content="https://rahul-sg.github.io/portfolio-website/images/og-card.png?v=2" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=11" />
+    <link rel="icon" type="image/x-icon" href="../favicon.ico?v=11" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png?v=11" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=11" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css?v=11" />
+    <script>
+      // Applied before first paint so a returning dark-mode reader never sees a flash.
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav class="subnav" aria-label="Sections">
+      <div class="wrap subnav-inner">
+        <a class="subnav-brand" href="../index.html">Rahul Sengupta</a>
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#education">Education</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#writing">Writing</a>
+        <a href="../index.html#tools">Tools</a>
+        <a href="../index.html#contact">Contact</a>
+        <button class="theme-toggle" type="button" id="theme-toggle"
+                aria-label="Switch between light and dark">
+          <span class="theme-toggle-label">Dark</span>
+        </button>
+      </div>
+    </nav>
+
+    <main id="main">
+      <article class="section wrap project project-page">
+        <div class="project-aside">
+          <dl class="facts">
+            <div><dt>Context</dt><dd>Personal, solo</dd></div>
+            <div><dt>Role</dt><dd>Everything</dd></div>
+            <div><dt>Status</dt><dd>Live, invite-only beta</dd></div>
+          </dl>
+          <dl class="keyfigs">
+            <div><dt>773</dt><dd>company job boards</dd></div>
+            <div><dt>190,000+</dt><dd>open postings it tracks</dd></div>
+            <div><dt>4</dt><dd>hiring systems it reads directly</dd></div>
+          </dl>
+          <p class="aside-back"><a href="../index.html#work">All work</a></p>
+        </div>
+
+        <div class="project-body">
+          <header class="page-head">
+            <h1>Knock</h1>
+            <p class="page-sub">New jobs you qualify for, every morning</p>
+          </header>
+
+          <p class="lead">Knock reads your resume, checks companies' own career sites every morning for new jobs you actually qualify for, and tailors your resume and cover letter for the ones you pick. It's live in an invite-only beta at <a href="https://knockapply.com" target="_blank" rel="noopener">knockapply.com</a>, with a public sample anyone can look at.</p>
+
+          <figure class="shot">
+            <a href="../images/knock-demo.jpg" target="_blank" rel="noopener">
+              <img src="../images/knock-demo.jpg" alt="The public sample: a made-up graduate's matches from postings open today on companies' own career sites, each with a fit score and the reasons behind it." loading="lazy" />
+            </a>
+            <figcaption>The public sample: a made-up graduate's matches from postings open today on companies' own career sites, each with a fit score and the reasons behind it.</figcaption>
+          </figure>
+
+            <h2>Where it came from</h2>
+            <p>Knock grew out of my <a href="job-search-agent.html">Job Search Agent</a>, a local pipeline I ran for my own search. The rules that made that useful are code here: read the stated minimum, not the title; don't trust an aggregator's dates; never apply for anyone; never make anything up.</p>
+
+            <h2>Where the jobs come from</h2>
+            <p>Knock polls the public job boards companies run on Workday, Greenhouse, Ashby and Lever, 773 of them as of October 2026, every six hours. That's where a posting actually lives, so a job that closes drops off the list.</p>
+            <p>Workday needed its own approach. A Workday posting's public page keeps answering 200 with the old details after a job closes, so Knock reads the JSON the site's own pages load, which answers 403 or 404 once a job is gone. The posted date comes from the company's system, and Knock records when it first saw each posting, so a repost doesn't pass for new.</p>
+
+            <h2>Reading what a posting requires</h2>
+            <p>Each relevant posting is read once by Claude Haiku, and the result is shared by everyone it might fit. A big backlog goes through the Message Batches API at half price. It pulls out the minimum years, the minimum degree, licenses you'd need to already hold, clearance, citizenship, sponsorship, pay, workplace, and the required and preferred skills.</p>
+            <p>Only what's required counts against you, so "Master's preferred" on a Bachelor's minimum is just a note. And it goes by the body text: a "New Grad" title can still require a Master's. Until Claude has read a posting, regular-expression rules stand in, and the page says so.</p>
+            <p>Before switching models, an eval reads the same real postings with two of them and compares the fields matching depends on, with the stronger model as the answer key.</p>
+
+          <figure class="shot">
+            <a href="../images/knock-fit.jpg" target="_blank" rel="noopener">
+              <img src="../images/knock-fit.jpg" alt="How one fit is worked out: what counts in the person's favor, the gaps and checks, and what the posting asks for, quoted where it matters." loading="lazy" />
+            </a>
+            <figcaption>How one fit is worked out: what counts in the person's favor, the gaps and checks, and what the posting asks for, quoted where it matters.</figcaption>
+          </figure>
+
+            <h2>Matching</h2>
+            <p>Matching uses no AI, so a run over the whole index takes seconds and costs nothing. Titles come first: exact matches, then related titles in the same family, ranked a little lower. Then level, place and how recent the posting is, filtered by each person's settings. Then the gap between what a posting requires and what the person has, which sets the tier.</p>
+            <p>There are four tiers. Strong fit means no experience minimum, or new grads welcome. Fits means they meet the stated minimum. Stretch is up to a year short, or a degree that equivalent experience can replace. Reach is more than a year short, or a required degree or license they don't hold. Experience is worked out from the dates on the resume, and internships and research count fully toward a 0 to 1 year minimum and a quarter as much toward longer ones. A clearance they don't hold, citizenship they don't have, or no sponsorship when they need it leaves the posting out entirely.</p>
+
+            <h2>Tailored materials that stay true</h2>
+            <p>When someone picks a job, Claude Sonnet tailors their resume, a cover letter and a short recruiter note to it. It only rewords and reorders what's already in their profile, and every resume bullet cites the line it came from.</p>
+            <p>Then a check runs before anything is shown. A bullet with a number that isn't in its source line goes back to the person's original. Skills they never listed are dropped. Numbers in the letter that appear nowhere in the profile or the posting are flagged. Skills a posting asks for that the profile doesn't show come back as questions, and answering one adds it to the profile for next time. The resume and letter come out as .docx files in the classic layout the Job Search Agent used, and Knock never applies to a job or contacts anyone on someone's behalf.</p>
+
+            <h2>Running it</h2>
+            <p>Every six hours a full cycle polls every board, reads new postings and rematches everyone, and across all 773 boards it takes about five minutes. At 7am Eastern each person gets an email with only the jobs that matched since their last one, and nothing at all when there aren't any. Sign-in is invite-only through Clerk, and Claude spend runs on daily budgets an admin can change, or switch off, from the admin page while it runs. The site is on Vercel and the engine on Fly.io, with Postgres behind it.</p>
+
+            <h2>Limits</h2>
+            <p>LinkedIn and Indeed don't let other sites read their postings, so Knock only sees jobs on companies' own boards, and a posting from anywhere else has to be pasted by its company link or its text. Workday is read through endpoints that aren't official, so a change on their side would need a fix on mine. And it covers tech, business and finance roles for now.</p>
+
+          <p class="stack"><span class="stack-label">Stack</span> Python and FastAPI &middot; PostgreSQL and SQLAlchemy &middot; Claude Haiku and Sonnet through the Anthropic API, with Message Batches &middot; RapidFuzz &middot; python-docx &middot; APScheduler &middot; Next.js 16, React 19 and Tailwind 4 &middot; Clerk invite-only sign-in &middot; Resend &middot; Fly.io and Vercel</p>
+          <p class="project-links">
+              <a href="https://knockapply.com/demo" target="_blank" rel="noopener">Live demo</a>
+              <a href="https://knockapply.com" target="_blank" rel="noopener">knockapply.com</a>
+              <span class="note">The sample is open to anyone and runs on postings open today. The source is private; <a href="mailto:rahul_sen_gupta@yahoo.com?subject=Code%20for%20Knock">email me</a> to see it.</span>
+          </p>
+        </div>
+      </article>
+
+      <nav class="wrap pager" aria-label="Other projects">
+        <a class="pager-link pager-prev" href="fantasy-edge.html">
+          <span class="pager-label">Previous</span>
+          <span class="pager-name">Fantasy Edge</span>
+        </a>
+        <a class="pager-link pager-next" href="llm-evaluation.html">
+          <span class="pager-label">Next</span>
+          <span class="pager-name">LLM Evaluation Framework</span>
+        </a>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer-inner">
+        <p>Rahul Sengupta</p>
+        <p class="site-footer-links">
+          <a href="mailto:rahul_sen_gupta@yahoo.com">Email</a>
+          <a href="https://github.com/rahul-sg" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://linkedin.com/in/rahul-sg" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="../Rahul_S_Resume_Final.pdf" target="_blank" rel="noopener">R&eacute;sum&eacute;</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="../script.js?v=11"></script>
+  </body>
+</html>

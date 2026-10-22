@@ -8,7 +8,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Touse &middot; Rahul Sengupta" />
     <meta property="og:description" content="A housing affordability tool with a two-stage ZIP-level price forecast: a global LightGBM panel sets the endpoint, a per-ZIP Prophet model shapes the path." />
-    <meta property="og:image" content="../images/og-card.png" />
+    <meta property="og:image" content="https://rahul-sg.github.io/portfolio-website/images/og-card.png?v=2" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="../favicon.svg?v=11" />
     <link rel="icon" type="image/x-icon" href="../favicon.ico?v=11" />
@@ -16,7 +16,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png?v=11" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../styles.css?v=11" />
     <script>
       // Applied before first paint so a returning dark-mode reader never sees a flash.
@@ -47,7 +47,6 @@
     <main id="main">
       <article class="section wrap project project-page">
         <div class="project-aside">
-          <p class="project-index">02 / 06</p>
           <dl class="facts">
             <div><dt>Context</dt><dd>Personal, solo</dd></div>
             <div><dt>Role</dt><dd>Everything</dd></div>
@@ -79,7 +78,7 @@
             <p>Five cooperating processes run over PostgreSQL and Redis: a Caddy reverse proxy, a Vite single-page app, a FastAPI backend, a Celery worker, and a Celery Beat scheduler. ETL jobs collect market data on each source's own publication cadence and write to Postgres, and the API serves it read-mostly. Zillow's ZHVI series alone is roughly 15.8 million rows across three home types, and the ZIP centroid table is about 41,000.</p>
 
             <h2>What it computes</h2>
-            <p>A maximum home price across six loan types, conventional, FHA, VA, USDA, 5/1 ARM, and jumbo, against the live 30-year rate from Freddie Mac's weekly survey. A readiness score built on debt-to-income that includes the projected mortgage rather than only current obligations. And a twelve-month price projection for a given ZIP with an 80% band.</p>
+            <p>A maximum home price across six loan types, conventional, FHA, VA, USDA, 5/1 ARM, and jumbo, against the live 30-year rate from Freddie Mac's weekly survey. A readiness score built on debt-to-income that counts the projected mortgage, not just current debts. And a twelve-month price projection for a given ZIP with an 80% band.</p>
 
             <h2>The forecast, in two stages</h2>
             <p>A global LightGBM panel model predicts each ZIP's twelve-month-forward price growth from 37 features: lagged local prices and growth rates, US macro series from FRED and Freddie Mac, metro-level supply and rent from Zillow, and election-cycle and seasonality terms, with ZIP and home type passed as categoricals. That sets the endpoint.</p>
@@ -108,17 +107,17 @@
 
             <h2>Leakage discipline</h2>
             <p>Lag features are computed within each <code>(zip, home_type)</code> group, so a condo's history can never leak into a single-family lag for the same ZIP. Macro series are joined as-of and backward, so only values published at or before time <em>t</em> are visible when training at <em>t</em>.</p>
-            <p>Metro supply is joined same-month on purpose: supply at <em>t</em> and price growth from <em>t</em> to <em>t+12</em> are contemporaneous, so relative to the target it is not future information.</p>
+            <p>Metro supply is joined same-month on purpose: supply at <em>t</em> and price growth from <em>t</em> to <em>t+12</em> are contemporaneous, so relative to the target it's not future information.</p>
 
             <h2>Holding the forecast accountable</h2>
-            <p>Every served forecast writes a row recording what was predicted and when the horizon ends. A daily job backfills the actual price once that horizon arrives and computes signed and absolute error, so the site can publish realized accuracy per ZIP rather than only a backtest number.</p>
+            <p>Every served forecast writes a row recording what was predicted and when the horizon ends. A daily job backfills the actual price once that horizon arrives and computes signed and absolute error, so the site can publish realized accuracy per ZIP, not just a backtest number.</p>
             <p>Every training run is logged with its panel size, feature count, and duration. Per-ZIP drivers come from TreeSHAP, so a forecast can be interrogated instead of taken on faith.</p>
 
             <h2>Operations</h2>
-            <p>Celery Beat matches each source's real publication schedule: Freddie Mac weekly after the Thursday rate release, FRED weekly, Zillow monthly on the 15th, with the panel retraining on the 16th and cached Prophet trajectories refreshed two hours later. A daily freshness check alerts if any dataset passes its staleness threshold. Every ETL write is an upsert on a composite key, so a rerun is a no-op rather than a duplicate.</p>
+            <p>Celery Beat matches each source's real publication schedule: Freddie Mac weekly after the Thursday rate release, FRED weekly, Zillow monthly on the 15th, with the panel retraining on the 16th and cached Prophet trajectories refreshed two hours later. A daily freshness check alerts if any dataset passes its staleness threshold. Every ETL write is an upsert on a composite key, so a rerun changes nothing instead of creating duplicates.</p>
 
             <h2>Status</h2>
-            <p>I built, deployed, and operated this on a single EC2 instance behind Caddy with automatic TLS. The instance is currently shut down and the source is private. I am happy to walk through the code or the model.</p>
+            <p>I built, deployed, and operated this on a single EC2 instance behind Caddy with automatic TLS. The instance is currently shut down and the source is private. I'm happy to walk through the code or the model.</p>
 
           <p class="stack"><span class="stack-label">Stack</span> FastAPI &middot; React, Vite, TypeScript &middot; LightGBM &middot; Prophet &middot; TreeSHAP &middot; PostgreSQL &middot; Redis &middot; Celery &middot; MapLibre GL &middot; Docker &middot; Caddy &middot; AWS EC2</p>
             <p class="project-links">
@@ -128,14 +127,11 @@
       </article>
 
       <nav class="wrap pager" aria-label="Other projects">
-        <a class="pager-link pager-prev" href="records-search.html">
+        <a class="pager-link pager-prev" href="sideline.html">
           <span class="pager-label">Previous</span>
-          <span class="pager-name">Public Records Search</span>
+          <span class="pager-name">Sideline</span>
         </a>
-        <a class="pager-link pager-next" href="fantasy-edge.html">
-          <span class="pager-label">Next</span>
-          <span class="pager-name">Fantasy Edge</span>
-        </a>
+        <span></span>
       </nav>
     </main>
 
