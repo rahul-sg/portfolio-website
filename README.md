@@ -10,7 +10,7 @@ python3 -m http.server 8000
 ## Pages
 
 ```
-index.html                        landing: intro, work list, also built, education, experience, writing, tools, contact
+index.html                        landing: intro, work list, also built, education, experience, tools; contact is the footer
 projects/records-search.html      Public Records Search
 projects/fantasy-edge.html        Fantasy Edge
 projects/knock.html               Knock

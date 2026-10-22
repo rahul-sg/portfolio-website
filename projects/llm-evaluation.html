@@ -34,7 +34,6 @@
         <a href="../index.html#work">Work</a>
         <a href="../index.html#education">Education</a>
         <a href="../index.html#experience">Experience</a>
-        <a href="../index.html#writing">Writing</a>
         <a href="../index.html#tools">Tools</a>
         <a href="../index.html#contact">Contact</a>
         <button class="theme-toggle" type="button" id="theme-toggle"
@@ -75,12 +74,12 @@
           </figure>
 
             <h2>The problem with the usual metrics</h2>
-            <p>ROUGE, BLEU, and BERTScore reward surface similarity to a reference. They don't see whether a summary is factually grounded in the source, whether it covers what matters, or whether it's structured the way a reader in that domain expects. For summarisation of dense technical material, those are the only things that matter.</p>
+            <p>ROUGE, BLEU, and BERTScore reward surface similarity to a reference. They don't see whether a summary is factually grounded in the source, whether it covers what matters, or whether it's structured the way a reader in that domain expects.</p>
             <p>Human review measures the right thing but doesn't scale, and it's expensive enough that it stops being run. So the question isn't whether to use an LLM as a judge, but how to make an LLM judge you can actually trust.</p>
 
             <h2>The loop</h2>
             <p>A judge scores the current summary against a rubric selected for the detected domain, deterministic signals are computed from the slides themselves, and a controller decides whether the run has converged. If not, the summary is refined and a pairwise comparison decides whether the rewrite actually replaces the current best, which stops a bad rewrite from propagating.</p>
-            <p>Scoring is hybrid on purpose. The rubric judge catches the things only a language model notices, and the deterministic signals, such as length error, section coverage, and lexical grounding against the slide text, catch the things a language model will happily agree with itself about.</p>
+            <p>Scoring is hybrid. The rubric judge catches what only a language model notices, and deterministic signals (length error, section coverage, and lexical grounding against the slide text) catch what a language model would happily agree with itself about.</p>
             <figure class="diagram">
               <svg viewBox="0 0 740 312" role="img" aria-label="The controller decides when to stop, with a floor of four iterations and a hard ceiling of twelve. The best-of-last-3 safeguard stops one weak final rewrite from becoming the answer."><defs><marker id="dg-a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="dg-head" d="M0 1 L7 4 L0 7 z"/></marker></defs><text class="dg-band" x="0" y="12">GENERATE</text><rect class="dg-box" x="0" y="26" width="150" height="48" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="75" y="54">Lecture slides</tspan></text><path class="dg-arr" d="M154 50 L182 50" marker-end="url(#dg-a)"/><rect class="dg-box" x="186" y="26" width="160" height="48" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="266" y="47">Initial summary</tspan><tspan x="266" y="62">S0</tspan></text><path class="dg-arr" d="M350 50 H420 V96" marker-end="url(#dg-a)"/><rect class="dg-loop" x="0" y="96" width="740" height="120" rx="6"/><text class="dg-band" x="14" y="114">REFINEMENT LOOP</text><rect class="dg-box" x="14" y="140" width="150" height="52" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="89" y="163">Domain-aware</tspan><tspan x="89" y="178">rubric judge</tspan></text><path class="dg-arr" d="M168 166 L192 166" marker-end="url(#dg-a)"/><rect class="dg-box" x="196" y="140" width="140" height="52" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="266" y="163">Deterministic</tspan><tspan x="266" y="178">signals</tspan></text><path class="dg-arr" d="M340 166 L364 166" marker-end="url(#dg-a)"/><rect class="dg-box" x="368" y="140" width="150" height="52" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="443" y="163">Refine, then</tspan><tspan x="443" y="178">pairwise select</tspan></text><path class="dg-arr" d="M522 166 L546 166" marker-end="url(#dg-a)"/><rect class="dg-box dg-box--accent" x="550" y="140" width="176" height="52" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="638" y="163">Lever stopping</tspan><tspan x="638" y="178">controller</tspan></text><path class="dg-arr dg-arr--dash" d="M638 140 V122 H89 V134" marker-end="url(#dg-a)"/><text class="dg-src" text-anchor="middle" x="363" y="114">not converged yet</text><path class="dg-arr" d="M638 192 V232 H400 V252" marker-end="url(#dg-a)"/><text class="dg-src" x="648" y="212">stop</text><rect class="dg-box" x="320" y="252" width="160" height="48" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="400" y="280">Best of last 3</tspan></text><path class="dg-arr" d="M484 276 L508 276" marker-end="url(#dg-a)"/><rect class="dg-box" x="512" y="252" width="200" height="48" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="612" y="273">final.txt and result.json</tspan><tspan x="612" y="288">with every iteration kept</tspan></text></svg>
               <figcaption>The controller decides when to stop, with a floor of four iterations and a hard ceiling of twelve. The best-of-last-3 safeguard stops one weak final rewrite from becoming the answer.</figcaption>
@@ -88,23 +87,23 @@
 
             <h2>Knowing when to stop</h2>
             <p>Iterative refinement raises a simple question: when is a run done? Instead of a fixed number of rounds, a decision table looks at several signals, including the composite quality score, the deterministic signals, and the trend across iterations. It enforces a minimum of four iterations before it's allowed to stop and a hard maximum of twelve so a run can't loop away.</p>
-            <p>It reports a stop state, not just a number: <code>pass</code>, <code>borderline</code>, or <code>stalled</code>. A run that plateaued at a mediocre score is a different result from one that converged, and collapsing them into a single figure hides the case you most need to see. At the end, a best-of-last-three safeguard picks the final summary, because the last rewrite isn't reliably the best one.</p>
+            <p>It reports a stop state, not just a number: <code>pass</code>, <code>borderline</code>, or <code>stalled</code>. A run that plateaued at a mediocre score is a different result from one that converged, and a single number would hide the difference. At the end, a best-of-last-three safeguard picks the final summary, because the last rewrite isn't reliably the best one.</p>
             <figure class="code-figure">
               <pre><code>Final Score (0-1)   0.831
 Stop State          stalled
 Iterations          4
 Detected Domain     BUSINESS
 Scorer Delta |C-M|  0.001</code></pre>
-              <figcaption>One run's stop record. The controller reports <em>why</em> it stopped, not just that it did, which is what makes a stalled run distinguishable from a converged one.</figcaption>
+              <figcaption>One run's stop record: the controller reports <em>why</em> it stopped, so a stalled run can be told apart from a converged one.</figcaption>
             </figure>
 
             <h2>What it scored</h2>
-            <p>Across seven cross-domain lecture sets and three random seeds, the grand mean final score is 0.845 with a standard deviation of 0.017. The tuned policy beat the legacy one on all seven lectures, averaging 0.076 higher. The hardest set was the theory-heavy humanities lecture at 0.825, which is the result I would have predicted and was glad to see the system agree with.</p>
+            <p>Across seven cross-domain lecture sets and three random seeds, the grand mean final score is 0.845 with a standard deviation of 0.017. The tuned policy beat the legacy one on all seven lectures, averaging 0.076 higher. The hardest set was the theory-heavy humanities lecture, at 0.825, which is what I'd have expected.</p>
             <p>For validation I built a human-labelled faithfulness set, 50 samples across all seven lectures, and measured how well the automated score tracked it. Spearman against human faithfulness is 0.808, and against the hallucination signal it is -0.692, in the direction you would want. That correlation, not the score itself, is the number that says whether the evaluator works.</p>
 
             <h2>Why the headline number went down</h2>
             <p>An earlier version of this system reported an average final score of 0.962 against human reference summaries. The later reference-free pipeline reports 0.845, and that drop is intended, not a regression.</p>
-            <p>The first number was measured against a gold summary on an easier task. The second is measured without a reference, on a harder rubric, with a hallucination penalty applied and robustness checked across seeds. The lower number is the one worth reporting, because the measurement behind it is stricter.</p>
+            <p>The first number was measured against a gold summary on an easier task. The second is measured without a reference, on a harder rubric, with a hallucination penalty applied and robustness checked across seeds. The lower number is the one to report, because the measurement behind it is stricter.</p>
 
             <h2>Limits</h2>
             <p>Seven lectures aren't enough for strong statistical claims about domain behaviour or stopping stability, so the results are descriptive evidence, not a benchmark.</p>

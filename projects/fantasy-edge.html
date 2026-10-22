@@ -34,7 +34,6 @@
         <a href="../index.html#work">Work</a>
         <a href="../index.html#education">Education</a>
         <a href="../index.html#experience">Experience</a>
-        <a href="../index.html#writing">Writing</a>
         <a href="../index.html#tools">Tools</a>
         <a href="../index.html#contact">Contact</a>
         <button class="theme-toggle" type="button" id="theme-toggle"
@@ -75,19 +74,19 @@
           </figure>
 
             <h2>What it is</h2>
-            <p>Edge connects to ESPN and Sleeper fantasy leagues and answers the only questions that matter in one: who to start, who to pick up, what to bid, and who to trade for. It's live at <a href="https://edgefantasy.us" target="_blank" rel="noopener">edgefantasy.us</a>, invite-only for a group of friends, with a sample league open to anyone.</p>
-            <p>The interesting part isn't the football. It's that every number on the screen is a distribution, not a point estimate, every distribution was checked against a season the model never saw, and the parts that couldn't prove they helped were left switched off.</p>
+            <p>Edge connects to ESPN and Sleeper fantasy leagues and answers the questions that come up every week: who to start, who to pick up, what to bid, and who to trade for. It's live at <a href="https://edgefantasy.us" target="_blank" rel="noopener">edgefantasy.us</a>, invite-only for a group of friends, with a sample league open to anyone.</p>
+            <p>Every number on the screen is a distribution, not a point estimate. Each one was checked against a season the model never saw, and the parts that couldn't prove they helped are switched off.</p>
 
             <h2>The projection model, and what it's measured against</h2>
             <p>A LightGBM model over 79 features, trained on 52,764 skill-position games. Four heads: a mean regressor plus p10, p50 and p90 quantile regressors with the quantiles forced into order. Features are strictly backward-looking, and the same function builds training rows and inference rows, so a traded player inherits his new team&rsquo;s context instead of leaking his old one.</p>
             <p>Validation splits by time, not at random. Train through season N minus one, score the whole of season N, then refit. Random splits would let the model see week 12 while predicting week 11 of the same season, which would flatter it badly.</p>
-            <p>The baseline matters as much as the score. For a fantasy projection the thing to beat is a player&rsquo;s own season average, because that's what you would use if you built nothing. It beats that at every position on RMSE in both tested seasons.</p>
+            <p>For a fantasy projection, the baseline to beat is a player&rsquo;s own season average, because that's what you would use if you built nothing. It beats that at every position on RMSE in both tested seasons.</p>
             <figure class="diagram">
               <svg viewBox="0 0 740 206" role="img" aria-label="Held-out accuracy by position against the season-average baseline, and interval coverage against its 10 percent target."><text class="dg-band" x="0" y="12">RMSE ON A HELD-OUT SEASON, LOWER IS BETTER</text><text class="dg-src" x="0" y="34">QB</text><rect class="dg-box" x="52" y="22" width="300" height="16" rx="3"/><rect class="dg-box dg-box--accent" x="52" y="22" width="267" height="16" rx="3"/><text class="dg-t" x="362" y="35">7.80</text><text class="dg-src" x="410" y="35">season average 8.78</text><text class="dg-src" x="0" y="60">RB</text><rect class="dg-box" x="52" y="48" width="300" height="16" rx="3"/><rect class="dg-box dg-box--accent" x="52" y="48" width="284" height="16" rx="3"/><text class="dg-t" x="362" y="61">5.97</text><text class="dg-src" x="410" y="61">season average 6.30</text><text class="dg-src" x="0" y="86">WR</text><rect class="dg-box" x="52" y="74" width="300" height="16" rx="3"/><rect class="dg-box dg-box--accent" x="52" y="74" width="277" height="16" rx="3"/><text class="dg-t" x="362" y="87">5.76</text><text class="dg-src" x="410" y="87">season average 6.23</text><text class="dg-src" x="0" y="112">TE</text><rect class="dg-box" x="52" y="100" width="300" height="16" rx="3"/><rect class="dg-box dg-box--accent" x="52" y="100" width="282" height="16" rx="3"/><text class="dg-t" x="362" y="113">4.95</text><text class="dg-src" x="410" y="113">season average 5.26</text><text class="dg-band" x="0" y="150">AND THE INTERVALS LAND WHERE THEY SHOULD</text><rect class="dg-box dg-box--accent" x="0" y="162" width="230" height="36" rx="4"/><text class="dg-t" text-anchor="middle"><tspan x="115" y="178">10.6% finished below p10</tspan><tspan x="115" y="192">10.3% above p90</tspan></text><text class="dg-src" x="248" y="178">target is 10% and 10%</text><text class="dg-src" x="248" y="192">on 600 games the model never saw</text></svg>
               <figcaption>Trained through one season, scored on the whole of the next. The bars are the comparison that matters: a projection is only worth building if it beats taking a player&rsquo;s season average, and it does, at every position. The second row is the part the rest of the system depends on.</figcaption>
             </figure>
 
-            <h2>Why RMSE, and why that's not a detail</h2>
+            <h2>Why RMSE</h2>
             <p>RMSE weighs big misses more heavily than small ones, and these projections get summed into a lineup total, so one catastrophic miss costs more than several near misses. MAE rewards predicting the median, which flatters a season average at positions whose scoring is driven by touchdowns.</p>
             <p>You can see the difference in the numbers. On MAE the 2025 running backs look like a tie, 4.27 against the baseline&rsquo;s 4.25. On RMSE the same games are 5.97 against 6.30. Picking the metric after seeing both would be the easiest way to lie here, so the reasoning is written down and the losing metric is reported too.</p>
 
@@ -101,7 +100,7 @@
             </figure>
 
             <h2>Then checking itself against its own live output</h2>
-            <p>Everything above is validated against history, which is the easy half. In production there's a harder question: are the projections it's making right now running high or low? So the system keeps a scorecard. Before every kickoff it logs its own final projection for every rostered player, in every league, next to what that player went on to score.</p>
+            <p>Everything above is checked against history. In production there's a harder question: are the projections it's making right now running high or low? So the system keeps a scorecard. Before every kickoff it logs its own final projection for every rostered player, in every league, next to what that player went on to score.</p>
             <p>Every Tuesday it measures, per position, whether this season&rsquo;s projections ran high or low for the players who actually played, and scales the coming week by that much. It shows up on the player page as a <em>Learned</em> factor. Nothing moves before 60 games. The measured correction is shrunk toward doing nothing until roughly 400 games stand behind it, and it's never allowed past 12%. A player who appears in four leagues counts once, not four times.</p>
             <p>Two guards matter more than the fit itself. The correction is kept only if, fitted without the latest finished week, it would have improved that week&rsquo;s projections; when it wouldn't have, it's thrown away and nothing changes. And every fit divides out whatever correction was in force when each projection was made, so it always measures the raw model and corrections can never compound on each other. That second one is the quieter trap: a system that corrects its own corrected output will happily walk away from reality while every individual step looks reasonable.</p>
             <p>That closes the loop. The model has to beat a baseline on a season it never saw before it ships, and then has to keep proving it against its own live output every week after.</p>
@@ -122,7 +121,7 @@
             <p>Projections are an input, not an answer. Each player becomes a gamma distribution matched to his blended mean and the model&rsquo;s quantile spread, multiplied by a weighted coin flip for whether he suits up at all.</p>
             <p>The matchup is then played out 12,000 times with the players correlated through a Gaussian copula: teammates share a team factor so a quarterback and his receiver rise together, both sides of a game share a game factor for shootouts, and a defence moves against the offence it's facing. Treating players as independent would understate the variance badly, which is exactly the error that makes a confident-looking lineup wrong.</p>
             <p>The lineup is then chosen by win probability, not projected points, solved at six risk settings from floor-leaning to ceiling-leaning, with slots assigned exactly by the Hungarian algorithm under each league&rsquo;s own rules. Underdogs get handed ceiling, favourites get floor. It only abandons the highest-points lineup when the gain is worth at least 0.4 percentage points of win probability, because churn with no edge is still churn.</p>
-            <p>The opponent is simulated with the lineup they have actually set, not the perfect one. Assuming every rival plays optimally would make you look like a bigger underdog than you are, and would quietly push every recommendation toward desperation.</p>
+            <p>The opponent is simulated with the lineup they have actually set, not the perfect one. Assuming every rival plays optimally would make you look like a bigger underdog than you are, and would push every recommendation toward desperate moves.</p>
           <figure class="shot">
             <a href="../images/fantasy-edge-waivers.jpg" target="_blank" rel="noopener">
               <img src="../images/fantasy-edge-waivers.jpg" alt="Waiver bids priced against what the rest of the league needs and can spend. Each free agent is valued by what he adds to this roster, and the bid is capped at what a rival who wants him could actually spend." loading="lazy" />
@@ -133,7 +132,7 @@
             <h2>The decision that made the whole thing worth building</h2>
             <p>A star listed questionable usually gets benched out of fear. That's normally wrong. If his backup is still swappable once the inactive list drops ninety minutes before kickoff, keeping him in is worth p times the starter plus one minus p times the backup, which beats benching him whenever he is the better player when he plays.</p>
             <p>So Edge builds the lineup valuing him as if he plays, works out the exact swaps to make if he sits (including chains, like moving a receiver to FLEX to free a slot), and scores that plan inside the simulation by applying each swap only in the runs where that player didn't suit up. Then it sorts every change into do it now, wait for the game-time call, or decide now because the backup&rsquo;s game starts first and waiting isn't an option.</p>
-            <p>It's a small idea that only works if the play probability is right and the simulation is correlated. Both pieces had to exist first.</p>
+            <p>It only works because the play probability is right and the simulation is correlated, so both of those had to exist first.</p>
 
             <h2>Shipping it to other people</h2>
             <p>Running this for yourself is one thing. Running it for friends means invite-only sign-in through Clerk, a membership per person per league, daily caps on the Claude-backed features, spend tracked per day and per feature and per person, and an admin page for people, jobs and server health.</p>

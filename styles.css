@@ -537,6 +537,14 @@ code {
   color: var(--ink-3);
 }
 
+/* On the homepage the footer is also the contact line. */
+.site-footer .site-footer-note {
+  max-width: var(--measure);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
 .site-footer-links {
   display: flex;
   flex-wrap: wrap;

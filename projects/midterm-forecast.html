@@ -34,7 +34,6 @@
         <a href="../index.html#work">Work</a>
         <a href="../index.html#education">Education</a>
         <a href="../index.html#experience">Experience</a>
-        <a href="../index.html#writing">Writing</a>
         <a href="../index.html#tools">Tools</a>
         <a href="../index.html#contact">Contact</a>
         <button class="theme-toggle" type="button" id="theme-toggle"
@@ -84,7 +83,7 @@
             <p>Ridge regression on 2,240 real district-level results: 2,115 from the MIT Election Data and Science Lab covering every House district across the 2006, 2010, 2014, 2018, and 2022 cycles, plus 125 hand-curated competitive Senate and Governor races.</p>
             <p>The eight features are partisan lean, its square, lean interacted with incumbency, incumbency, the live generic ballot margin, presidential approval, unemployment, and a presidential-year term. Training is restricted to contested races, so uncontested districts can't teach the model to be confident about nothing. Five-fold cross-validated MAE is 7.95 points, with a 6.87-point residual standard deviation calibrated on competitive races.</p>
 
-            <h2>One input deliberately kept out of the regression</h2>
+            <h2>One input kept out of the regression</h2>
             <p>Fundraising advantage is applied as a bounded post-hoc adjustment, capped at plus or minus 3 points, instead of as a Ridge feature. The reason is a data problem, not a modelling preference: the historical training set has no fundraising records, so including it as a feature produces near-zero training variance and a coefficient inflated far beyond what the data supports.</p>
             <p>A bounded adjustment you can reason about is better than a learned weight you can't defend.</p>
 

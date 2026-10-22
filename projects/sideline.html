@@ -34,7 +34,6 @@
         <a href="../index.html#work">Work</a>
         <a href="../index.html#education">Education</a>
         <a href="../index.html#experience">Experience</a>
-        <a href="../index.html#writing">Writing</a>
         <a href="../index.html#tools">Tools</a>
         <a href="../index.html#contact">Contact</a>
         <button class="theme-toggle" type="button" id="theme-toggle"
@@ -78,7 +77,7 @@
             <p>Sideline rebuilds real NFL plays in 3D from player-tracking data. Every tracked player, ten times a second, in a stadium you can move the camera around: the broadcast angle, the All-22, the end zone, or the quarterback's own eyeline.</p>
             <p>On top of the replay there are three other ways in. QB Read freezes the play at the throw and asks you to pick a receiver before showing where the ball actually went and how open everyone was. Route Finder lets you sketch a route and ranks 65,134 real routes by how closely they start the same way. This Week carries the current season's scores, win-probability curves and the plays that swung each game.</p>
 
-            <h2>The hard part: no tracking data for most games</h2>
+            <h2>Most games have no tracking data</h2>
             <p>Public tracking data covers a sliver of football. The NFL releases it through the Big Data Bowl for one season of pass plays and one full 2017 game. Everything else, including every game played last weekend, has no public coordinates at all.</p>
             <p>So the interesting question is whether you can recover them from the thing that does exist for every game: the television broadcast. That's what the vision pipeline does, and it's the part of this project I would want to be judged on.</p>
 
@@ -103,8 +102,8 @@
             <figcaption>The vision results, scored against the NFL's own tracking of the same play. White circles are the league's chip data, yellow dots are positions recovered from the TV broadcast alone.</figcaption>
           </figure>
 
-            <h2>What is deliberately not a model</h2>
-            <p>A lot of this project isn't machine learning, and that's on purpose. Camera location, pan tracking and field registration are classical computer vision and optimisation, because the field is a known rigid object with exact dimensions and fitting it is better posed than learning it.</p>
+            <h2>What isn't a model</h2>
+            <p>A lot of this project isn't machine learning. Camera location, pan tracking and field registration are classical computer vision and optimisation, because the field is a known rigid object with exact dimensions and fitting it is better posed than learning it.</p>
             <p>Expected points and win probability aren't mine either. They come from nflverse's nflfastR models, trained on decades of play-by-play, and the project uses them as they are. I didn't build them. The README lists which models are pretrained and which are not, because a reader deserves to know where the work actually is.</p>
 
             <h2>Limits</h2>
