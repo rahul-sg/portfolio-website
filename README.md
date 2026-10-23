@@ -96,10 +96,13 @@ To drop dark mode entirely, delete the toggle markup, the
 
 ## Masthead
 
-The name and the links (Email, GitHub, LinkedIn, Résumé) on one line, then a
-short intro in `.intro`, which is also the `#about` anchor. The links wrap under
-the name when the line runs out of room. There's no portrait for now; `.portrait`
-is still in the stylesheet for when one goes back in.
+The name and the links (Email, GitHub, LinkedIn, Résumé on request) on one
+line, then a short intro in `.intro`, which is also the `#about` anchor. The
+links wrap under the name when the line runs out of room. There's no portrait
+for now; `.portrait` is still in the stylesheet for when one goes back in.
+
+The résumé isn't posted on the site. Its link, here and in every footer, opens
+an email asking for it.
 
 One trap if you add it back: `.portrait` needs `height: auto`. The
 `height="200"` attribute is a presentational hint, and without `height: auto`
