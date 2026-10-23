@@ -49,7 +49,7 @@
           <dl class="facts">
             <div><dt>Context</dt><dd>Personal, solo</dd></div>
             <div><dt>Role</dt><dd>Everything</dd></div>
-            <div><dt>Status</dt><dd>Live, invite-only beta</dd></div>
+            <div><dt>Status</dt><dd>Live</dd></div>
           </dl>
           <dl class="keyfigs">
             <div><dt>773</dt><dd>company job boards</dd></div>
@@ -65,7 +65,7 @@
             <p class="page-sub">New jobs you qualify for, every morning</p>
           </header>
 
-          <p class="lead">Knock reads your resume, checks companies' own career sites every morning for new jobs you actually qualify for, and tailors your resume and cover letter for the ones you pick. It's live in an invite-only beta at <a href="https://knockapply.com" target="_blank" rel="noopener">knockapply.com</a>, with a public sample anyone can look at.</p>
+          <p class="lead">Knock reads your resume, checks companies' own career sites every morning for new jobs you actually qualify for, and tailors your resume and cover letter for the ones you pick. It's live at <a href="https://knockapply.com" target="_blank" rel="noopener">knockapply.com</a>, with a public sample anyone can look at.</p>
 
           <figure class="shot">
             <a href="../images/knock-demo.jpg" target="_blank" rel="noopener">
@@ -102,12 +102,12 @@
             <p>Then a check runs before anything is shown. A bullet with a number that isn't in its source line goes back to the person's original. Skills they never listed are dropped. Numbers in the letter that appear nowhere in the profile or the posting are flagged. Skills a posting asks for that the profile doesn't show come back as questions, and answering one adds it to the profile for next time. The resume and letter come out as .docx files in the classic layout the Job Search Agent used, and Knock never applies to a job or contacts anyone on someone's behalf.</p>
 
             <h2>Running it</h2>
-            <p>Every six hours a full cycle polls every board, reads new postings and rematches everyone, and across all 773 boards it takes about five minutes. At 7am Eastern each person gets an email with only the jobs that matched since their last one, and nothing at all when there aren't any. Sign-in is invite-only through Clerk, and Claude spend runs on daily budgets an admin can change, or switch off, from the admin page while it runs. The site is on Vercel and the engine on Fly.io, with Postgres behind it.</p>
+            <p>Every six hours a full cycle polls every board, reads new postings and rematches everyone, and across all 773 boards it takes about five minutes. At 7am Eastern each person gets an email with only the jobs that matched since their last one, and nothing at all when there aren't any. Sign-in goes through Clerk, and Claude spend runs on daily budgets an admin can change, or switch off, from the admin page while it runs. The site is on Vercel and the engine on Fly.io, with Postgres behind it.</p>
 
             <h2>Limits</h2>
             <p>LinkedIn and Indeed don't let other sites read their postings, so Knock only sees jobs on companies' own boards, and a posting from anywhere else has to be pasted by its company link or its text. Workday is read through endpoints that aren't official, so a change on their side would need a fix on mine. And it covers tech, business and finance roles for now.</p>
 
-          <p class="stack"><span class="stack-label">Stack</span> Python and FastAPI &middot; PostgreSQL and SQLAlchemy &middot; Claude Haiku and Sonnet through the Anthropic API, with Message Batches &middot; RapidFuzz &middot; python-docx &middot; APScheduler &middot; Next.js 16, React 19 and Tailwind 4 &middot; Clerk invite-only sign-in &middot; Resend &middot; Fly.io and Vercel</p>
+          <p class="stack"><span class="stack-label">Stack</span> Python and FastAPI &middot; PostgreSQL and SQLAlchemy &middot; Claude Haiku and Sonnet through the Anthropic API, with Message Batches &middot; RapidFuzz &middot; python-docx &middot; APScheduler &middot; Next.js 16, React 19 and Tailwind 4 &middot; Clerk sign-in &middot; Resend &middot; Fly.io and Vercel</p>
           <p class="project-links">
               <a href="https://knockapply.com/demo" target="_blank" rel="noopener">Live demo</a>
               <a href="https://knockapply.com" target="_blank" rel="noopener">knockapply.com</a>
