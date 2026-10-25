@@ -150,9 +150,13 @@ measure (`--measure-wide`):
   characters or they will scroll horizontally.
 - `figure.shot` wraps a screenshot in `images/`, linked to the full-size file.
 
-Screenshots were captured by running each project locally, except Knock's,
-which come from its public sample at knockapply.com/demo (a made-up person, so
-no one's real job search is on the page). Two notes if you
+Screenshots were captured by running each project locally, with two
+exceptions. Knock's come from its public sample at knockapply.com/demo (a
+made-up person, so no one's real job search is on the page), except Today,
+which the sample doesn't have: that one is the screenshot in Knock's own
+README, the same made-up person on a local run, with the top bar cropped off.
+And the Fantasy Edge scoreboard was taken from the live sample league at
+edgefantasy.us. Two notes if you
 recapture them: the midterm frontend container serves the built SPA with no
 API proxy, so `/api/*` returns `index.html` and the UI renders `0` and `NaN`
 unless something proxies to the backend the way Caddy does in production. And
